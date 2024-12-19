@@ -22,8 +22,8 @@ function LoginPage() {
         setError("");
         
         try {
-
-            const res = axios.post("/api/auth/login", {
+            const BASE_URL = import.meta.env.VITE_BASE_URL;
+            const res = axios.post(`${BASE_URL}/api/auth/login`, {
                 usernameOrEmail: user,
                 password: password
             });
