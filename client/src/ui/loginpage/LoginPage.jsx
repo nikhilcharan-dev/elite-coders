@@ -28,7 +28,7 @@ function LoginPage() {
                 password: password
             });
 
-            window.prompt(res.data.message);
+            window.alert(res.data.message);
             console.log(res);
 
         } catch(err) {
