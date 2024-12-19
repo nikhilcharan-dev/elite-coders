@@ -1,0 +1,92 @@
+
+.log {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.login-page {
+    padding: 20px;
+    height: auto;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.login-page:hover {
+    transform: scale(1.02);
+}
+
+.credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.text-area {
+    width: 90%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.text-area:focus {
+    border-color: #007BFF;
+}
+
+.credentials > a {
+    color: #d22;
+    font-size: 0.9rem;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: color 0.3s;
+}
+
+.credentials > a:hover {
+    color: #a00;
+    text-decoration: underline;
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.login-btn, .register-btn {
+    height: 45px;
+    width: 120px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    background-color: #007BFF;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover, .register-btn:hover {
+    background-color: #004aad;
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+.login-btn:active, .register-btn:active {
+    transform: translateY(1px);
+}
+
+.error-message {
+    color: red;
+}
