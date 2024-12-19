@@ -1,0 +1,12 @@
+{
+    "builds": [
+      {
+        "src": "client/package.json",
+        "use": "@vercel/node",
+        "config": {
+          "zeroConfig": true
+        }
+      }
+    ]
+}
+  
