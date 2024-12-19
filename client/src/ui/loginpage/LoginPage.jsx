@@ -7,7 +7,7 @@ function LoginPage() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         if (!user && !password) {
             setError("Please fill out all fields.");
@@ -23,12 +23,12 @@ function LoginPage() {
         
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = axios.post(`${BASE_URL}/api/auth/login`, {
+            const res = await axios.post(`${BASE_URL}/api/auth/login`, {
                 usernameOrEmail: user,
                 password: password
             });
 
-            window.alert(res.data);
+            window.prompt(res.data.message);
             console.log(res);
 
         } catch(err) {
