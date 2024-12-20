@@ -21,7 +21,7 @@ app
         return res.send(welcome);
     });
 
-app.use('/api/auth', authRoutes);
+app.use('/api/oauth', authRoutes);
 
 
 app.listen(process.env.PORT, () => {

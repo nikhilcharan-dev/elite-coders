@@ -1,30 +1,36 @@
 import React, { useState } from "react";
 import axios from "axios";
-import './LoginPage.css';
+import './RegisterPage.css';
 
-function LoginPage() {
+function RegisterPage() {
     const [user, setUser] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const handleLogin = async (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
-        if (!user && !password) {
+        if (!email && !user && !password) {
             setError("Please fill out all fields.");
             return;
-        } else if(!user) {
-            setError("Please Enter username");
+        } else if(!email) {
+            setError("Please Enter email");
             return;
         } else if(!password) {
             setError("Please Enter password");
             return;
+        } else if(!user) {
+            setError("Please Enter username");
+            return;
         }
+
         setError("");
         
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = await axios.post(`${BASE_URL}/api/oauth/login`, {
-                usernameOrEmail: user,
+            const res = await axios.post(`${BASE_URL}/api/oauth/register`, {
+                email: email,
+                username: user,
                 password: password
             });
 
@@ -32,28 +38,34 @@ function LoginPage() {
             console.log(res);
 
         } catch(err) {
-            if(err.respone && err.respone.data) {
-                setError(err.respone.data.message);
-            } else {
-                setError("Something went wrong. Please try again later.");
-            }
+            setError(err.response?.data?.message || 'An unexpected error occurred');
         }
         
     };
 
     return (
-        <div className="log">
-            <section className="login-page">
-                <h1>Login</h1>
-                <form className="credentials" onSubmit={handleLogin}>
+        <div className="register">
+            <section className="register-page">
+                <h1>Register</h1>
+                <form className="credentials" onSubmit={handleRegister}>
                     {error && <p className="error-message">{error}</p>}
                     <label>
                         <input
                             type="text"
-                            placeholder="Enter your Username or E-mail"
+                            placeholder="Enter your Username"
                             className="text-area"
                             value={user}
                             onChange={(e) => setUser(e.target.value)}
+                            aria-label="User"
+                        />
+                    </label>
+                    <label>
+                        <input
+                            type="text"
+                            placeholder="Enter your E-mail"
+                            className="text-area"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             aria-label="User"
                         />
                     </label>
@@ -67,15 +79,12 @@ function LoginPage() {
                             aria-label="Password"
                         />
                     </label>
-                    <a href="/" className="forgot-password-link">
-                        Forgot your password?
-                    </a>
                     <div className="btns">
-                        <button type="submit" className="login-btn">
+                        <button type="button" className="login-btn">
                             Login
                         </button>
                         <button
-                            type="button"
+                            type="submit"
                             className="register-btn"
                             onClick={() => console.log("Redirecting to registration...")}
                         >
@@ -88,4 +97,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default RegisterPage;
