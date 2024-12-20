@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
+import quoteRoutes from './routes/quotes.js'
 import connectDB from './config/db.js';
 
 dotenv.config();
@@ -22,6 +23,7 @@ app
     });
 
 app.use('/api/oauth', authRoutes);
+app.use('/api/random', quoteRoutes);
 
 
 app.listen(process.env.PORT, () => {
