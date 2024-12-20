@@ -32,11 +32,11 @@ function LoginPage() {
 
             // cookies
             localStorage.setItem("token", res.data.token);
-            localStorage.setItem("id", res.data.id);
+            localStorage.setItem("id", res.data.userData._id);
 
             window.alert(res.data.message);
             console.log(res);
-            navigate(`/profile?id=${res.data.id}`);
+            navigate(`/profile?id=${res.data.userData._id}`);
 
 
         } catch(err) {

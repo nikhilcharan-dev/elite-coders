@@ -39,6 +39,8 @@ function RegisterPage() {
             window.alert(res.data.message);
             console.log(res);
 
+            navigate('/login');
+
         } catch(err) {
             setError(err.response?.data?.message || 'An unexpected error occurred');
         }

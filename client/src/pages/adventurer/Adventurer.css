@@ -2,8 +2,9 @@
     height: 100vh;
     width: 100%;
     display: flex;
+    gap: 1.5rem;
     flex-direction: column;
-    justify-content: center;
+    align-content: flex-start;
     align-items: center;
     background: linear-gradient(135deg, #F6F4F0, #4DA1A9);
 }
