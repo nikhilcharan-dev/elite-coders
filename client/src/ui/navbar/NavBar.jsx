@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import user from '../img/user-dark.png'
 
 import './NavBar.css';
@@ -12,21 +14,21 @@ function NavBar() {
             </div>
             <ul>
                 <li>
-                    <a href='/'>Learn</a>
+                    <Link to='/learn'>Learn</Link>
                 </li>
                 <li>
-                    <a href='/'>Practise</a>
+                    <Link to='/practise'>Practise</Link>
                 </li>
                 <li>
-                    <a href='/'>Compete</a>
+                    <Link to='/compete'>Compete</Link>
                 </li>
                 <li>
-                    <a href='/'>About</a>
+                    <Link to='/about'>About</Link>
                 </li>
                 <li>
-                    <a href='/'>
+                    <Link to='/profile'>
                         <img id='user' src={user} alt='profile'/>
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>

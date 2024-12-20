@@ -1,0 +1,32 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and border are included in element size */
+}
+
+.intro {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    width: 99vw;
+    gap: 1.5rem;
+    color: #2E5077;
+    align-items: center;
+    justify-content: center;
+    background-color: #4DA1A9;
+}
+
+.home {
+    height: 100vh;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #F6F4F0;
+}

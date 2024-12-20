@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './LoginPage.css';
 
@@ -6,6 +7,7 @@ function LoginPage() {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -77,7 +79,7 @@ function LoginPage() {
                         <button
                             type="button"
                             className="register-btn"
-                            onClick={() => console.log("Redirecting to registration...")}
+                            onClick={() => navigate('/register')}
                         >
                             Register
                         </button>
