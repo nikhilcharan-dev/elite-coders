@@ -8,27 +8,17 @@ function Quote() {
 
     useEffect(() => {
         const fetchJoke = async () => {
+            const BASE_URL = import.meta.env.VITE_BASE_URL;
             try {
-                let response = null;
-                if(Math.random() > 0.5) {
-                    response = await axios.get('https://v2.jokeapi.dev/joke/Programming?type=horizontal');
-                    setQuote(response.data.joke);
-                    console.log('okokok');
-                } else {
-                    response = await axios.get('https://zenquotes.io/api/random');
-                    console.log(response);
-                    response = response.data[0];
-                    setQuote(response.q);
-
-                }
+                const response = await axios.get(`${BASE_URL}/api/random/quote`);
+                setQuote(response.data.quote);
             } catch (err) {
-                console.error(err);
                 setQuote('Great Things Take Time');
             } finally {
                 setLoading(false);
             }
         };
-        
+
         fetchJoke();
     }, []);
 

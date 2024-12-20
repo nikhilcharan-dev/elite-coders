@@ -1,0 +1,45 @@
+.tale {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #F6F4F0, #4DA1A9);
+}
+
+.tale h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.tale p {
+    width: 50%;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.tale img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.tale a {
+    font-size: 1.5rem;
+    color: #000;
+    text-decoration: none;
+    background-color: #8bc189;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.tale a:hover {
+    background-color: #248d8f;
+    color: #fff;
+    transform: scale(1.05)
+}

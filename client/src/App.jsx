@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { DayProvider } from './ui/daycontext/DayContext';
 
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import LoginPage from "./ui/loginpage/LoginPage";
+import Adventurer from './pages/adventurer/Adventurer';
 import RegisterPage from "./ui/registerpage/RegisterPage";
 
 function App() {
@@ -11,6 +12,10 @@ function App() {
     {
       path: '/',
       element: <Home/>
+    },
+    {
+      path: '/profile',
+      element: <Adventurer/>
     },
     {
       path: '/login',
@@ -22,7 +27,7 @@ function App() {
     },
     {
       path: '*',
-      element: <h1>404 Not Found</h1>
+      element: <Adventurer/>
     }
   ]);
 

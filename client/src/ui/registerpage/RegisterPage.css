@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #F6F4F0, #4DA1A9);
 }
 
 .register-page {

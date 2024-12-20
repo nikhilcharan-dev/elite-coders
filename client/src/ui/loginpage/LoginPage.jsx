@@ -30,8 +30,14 @@ function LoginPage() {
                 password: password
             });
 
+            // cookies
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("id", res.data.id);
+
             window.alert(res.data.message);
             console.log(res);
+            navigate(`/profile?id=${res.data.id}`);
+
 
         } catch(err) {
             if(err.respone && err.respone.data) {
