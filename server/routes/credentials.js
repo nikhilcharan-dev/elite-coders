@@ -62,6 +62,7 @@ mongoose.connection.once('open', () => {
             console.error('Error retrieving profile photo:', error);
             res.status(500).send('Internal Server Error');
         }
+        
     });
 });
 
