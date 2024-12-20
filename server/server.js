@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import quoteRoutes from './routes/quotes.js'
+import infoRoutes from './routes/credentials.js';
 import connectDB from './config/db.js';
 
 dotenv.config();
@@ -18,12 +19,14 @@ app
     .get((req, res) => {
         const welcome = `
             <h1> Welcome to Backend Server </h1>
+            <p> Nikhil Charan -- </p>
         `;
         return res.send(welcome);
     });
 
 app.use('/api/oauth', authRoutes);
 app.use('/api/random', quoteRoutes);
+app.use('/api', infoRoutes);
 
 
 app.listen(process.env.PORT, () => {

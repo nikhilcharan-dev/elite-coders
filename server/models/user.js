@@ -1,37 +1,36 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    friends: { 
-        type: [
-            { 
-                type: mongoose.Schema.Types.ObjectId, 
-                ref: "User"
-            }
-        ], default: []
-    },
-    friendRequests: { 
-        type: [
-            { 
-                type: mongoose.Schema.Types.ObjectId, 
-                ref: "User" 
-            }
-        ], default: [] 
-    },
+
+    profilePhoto: { type: mongoose.Schema.Types.ObjectId, ref: "GridFSFile", default: null },
+
+    gender: { type: String, enum: ['Male', 'Female', 'Other'], default: 'Other' },
+
+    dob: { type: Date, default: null },
+
+    email: { type: String, required: true, unique: true }, 
+
+    bio: { type: String, default: "Elite Coder" },
+
+    gotoLanguage: { type: String, default: "" },
+
+    password: { type: String, required: true }, 
+
+    friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }],
+
+    friendRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }],
+
     recommendedQuestions: {
-        type: [
-            {
-                senderId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-                questionLink: { type: String, required: true },
-            },
-        ],
+        type: [{
+            senderId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+            questionLink: { type: String, required: true, },
+        }],
         default: [],
     },
+
 }, { timestamps: true });
 
-
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;
