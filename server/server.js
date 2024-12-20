@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
 import quoteRoutes from './routes/quotes.js'
 import infoRoutes from './routes/credentials.js';
 import connectDB from './config/db.js';
@@ -26,7 +27,8 @@ app
 
 app.use('/api/oauth', authRoutes);
 app.use('/api/random', quoteRoutes);
-app.use('/api', infoRoutes);
+app.use('/api/users', infoRoutes);
+app.use('/api/users', userRoutes);
 
 
 app.listen(process.env.PORT, () => {

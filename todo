@@ -1,1 +1,36 @@
 Login Page - Register Page
+
+
+
+
+
+
+/* Soft Peach to Aqua */
+background: linear-gradient(135deg, #F9E4D4, #4ECDC4);
+
+/* Lavender to Teal */
+background: linear-gradient(135deg, #E6E6FA, #4B8A8D);
+
+/* Light Coral to Soft Blue */
+background: linear-gradient(135deg, #FAD0C4, #A1C4E8);
+
+/* Warm Beige to Mint Green */
+background: linear-gradient(135deg, #F4E1D2, #A3D8D4);
+
+/* Peach to Sky Blue */
+background: linear-gradient(135deg, #FFB6B9, #A3D8F4);
+
+/* Sunset Colors */
+background: linear-gradient(135deg, #FDCB82, #D14B87);
+
+/* Pale Pink to Light Lavender */
+background: linear-gradient(135deg, #F8D1D4, #C8B6D1);
+
+/* Muted Green to Soft Yellow */
+background: linear-gradient(135deg, #A1D8A1, #F9F3A1);
+
+/* Light Blue to Soft Purple */
+background: linear-gradient(135deg, #A1D8F1, #D3A9F7);
+
+/* Dusty Rose to Pale Green */
+background: linear-gradient(135deg, #D4A6A1, #B1D8B7);
