@@ -3,29 +3,33 @@ import User from '../models/user.js';
 
 const router = express.Router();
 
-// Upload profile photo (Base64)
+
 router.post('/uploadProfilePhoto', async (req, res) => {
+    const { userId, profilePhoto } = req.body;
+
+    if (!userId || !profilePhoto) {
+        return res.status(400).json({ message: "Missing userId or profilePhoto" });
+    }
+
     try {
-        const { userId, profilePhoto } = req.body;
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { profilePhoto },
+            { new: true, runValidators: true }
+        );
 
-        if (!userId || !profilePhoto) {
-            return res.status(400).json({ message: "User ID and profile photo are required" });
-        }
-
-        const user = await User.findByIdAndUpdate(userId, { profilePhoto }, { new: true });
-
-        if (!user) {
+        if (!updatedUser) {
             return res.status(404).json({ message: "User not found" });
         }
 
-        res.status(200).json({ message: "Profile photo uploaded successfully!", user });
+        res.status(200).json(updatedUser);
     } catch (error) {
-        console.error('Error uploading profile photo:', error);
+        console.error("Error updating profile photo:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
 
-// Get profile photo (Base64)
+
 router.get('/getProfilePhoto/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
