@@ -12,7 +12,6 @@ function NavBar() {
     const navigate = useNavigate();
 
     const isLoggedIn = localStorage.getItem('token');
-    const userId = localStorage.getItem('id');
     const userData = sessionStorage.getItem('userData') 
         ? JSON.parse(sessionStorage.getItem('userData')) 
         : null;
@@ -35,10 +34,16 @@ function NavBar() {
             </div>
             <ul>
                 <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
                     <Link to="/learn">Learn</Link>
                 </li>
                 <li>
                     <Link to="/practise">Practise</Link>
+                </li>
+                <li>
+                    <Link to="/">Resources</Link>
                 </li>
                 <li>
                     <Link to="/compete">Compete</Link>

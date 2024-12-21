@@ -3,7 +3,6 @@
     width: 80%;
     color: #fcfcfc;
     text-align: center;
-    align-self: center;
     justify-content: center;
     border-radius: 10px;
     background-color: #2E5077;
@@ -11,6 +10,7 @@
 }
 
 .quote-section > h1 {
+    margin-bottom: 0px;
     text-decoration: underline;
     font-size: xx-large;
 }
@@ -46,12 +46,12 @@
 }
 
 .quote-section:hover {
-    height: 180px;
+    height: 150px;
     width: 90%;
 } 
 
 .quote-section:hover h1 {
-    transform: translateX(-50vh);
+    transform: translateX(-60vh);
 }
 
 .quote-section:hover p {
