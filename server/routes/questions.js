@@ -18,6 +18,8 @@ router.post("/filter", async (req, res) => {
     try {
         const { difficulty, topics, platform } = req.body;
 
+        console.log(difficulty, topics, platform);
+
         const query = {};
         if (difficulty) query.difficulty = { $regex: new RegExp(`^${difficulty}$`, 'i') };
         if (platform) query.platform = { $regex: new RegExp(`^${platform}$`, 'i') };
