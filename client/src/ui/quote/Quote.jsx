@@ -26,7 +26,9 @@ function Quote() {
         <section className="quote-section">
             <h1>Quote of the Day</h1>
             {loading ? (
-                <p>Loading...</p>
+                <>
+                    <p>Loading...</p>
+                </>     
             ) : (
                 <p>{quote}</p>
             )}

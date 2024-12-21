@@ -4,6 +4,7 @@ import { DayProvider } from './ui/daycontext/DayContext';
 import Home from './pages/home/Home';
 import LoginPage from "./ui/loginpage/LoginPage";
 import Adventurer from './pages/adventurer/Adventurer';
+import Practice from './pages/practise/Practise';
 import UserProfile from './pages/userprofile/UserProfile';
 import RegisterPage from "./ui/registerpage/RegisterPage";
 import ProfilePhotoUpload from './pages/demo/ProfilePhotUpload';
@@ -14,6 +15,10 @@ function App() {
     {
       path: '/',
       element: <Home/>
+    },
+    {
+      path: '/practise',
+      element: <Practice/>
     },
     {
       path: '/user/:id',
