@@ -27,7 +27,7 @@ const Practice = () => {
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
             console.log(filters);
-            const res = await axios.post(`${BASE_URL}/api/questions/filter`, { filters });
+            const res = await axios.post(`${BASE_URL}/api/questions/filter`, { ...filters });
             filtered = res.data;
         } catch(err) {
             console.error('Error filtering questions:', err);
