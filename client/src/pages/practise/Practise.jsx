@@ -26,6 +26,7 @@ const Practice = () => {
         var filtered = null;
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
+            console.log(filters);
             const res = await axios.post(`${BASE_URL}/api/questions/filter`, { filters });
             filtered = res.data;
         } catch(err) {

@@ -23,6 +23,7 @@ router.post("/filter", async (req, res) => {
         if (platform) query.platform = { $regex: new RegExp(`^${platform}$`, 'i') };
         if (topics.length > 0) {
             const topicArray = topics.map(topic => new RegExp(`^${topic.trim()}$`, 'i'));
+            console.log(topicArray);
             query.topics = { $in: topicArray };
         }
 

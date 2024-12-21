@@ -27,7 +27,7 @@ const Questions = ({ questions, onRandomQuestion, onRecommendQuestion }) => {
         setLoading(true);
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = await axios.post(`${BASE_URL}/api/questions/filter`, {
+            const res = await axios.post(`${BASE_URL}/api/questions/solve`, {
                 userId,
                 questionId: question._id,
             });
@@ -64,16 +64,18 @@ const Questions = ({ questions, onRandomQuestion, onRecommendQuestion }) => {
 
                                 {/* Solve/Solved */}
                                 {isSolved ? (
-                                    <button className="solved-btn" onClick={() => handleSolve(question)}>
-                                        <a className='link' href={question.link} target="_blank" rel="noreferrer">
-                                            Solved
-                                        </a>
+                                    <button className="solved-btn" onClick={() => {
+                                        handleSolve(question);
+                                        window.location.href = question.link;
+                                        }}>
+                                        Solved
                                     </button>
                                 ) : (
-                                    <button className="solve-btn" onClick={() => handleSolve(question)}>
-                                        <a className='link' href={question.link} target="_blank" rel="noreferrer">
-                                            Solve
-                                        </a>
+                                    <button className="solve-btn"  onClick={() => {
+                                        handleSolve(question);
+                                        window.location.href = question.link;
+                                        }}>
+                                        Solve
                                     </button>
                                 )}
 

@@ -38,7 +38,7 @@ const Filter = ({ onFilter }) => {
           <input
             type="text"
             name="topics"
-            value={filters.topics.join(', ')}
+            value={filters.topics}
             onChange={handleTopicChange}
             placeholder="Enter topics (comma separated)"
           />
