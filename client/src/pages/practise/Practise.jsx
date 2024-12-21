@@ -23,11 +23,11 @@ const Practice = () => {
     }, []);
 
     const handleFilter = async (filters) => {
-        const filtered = null;
+        var filtered = null;
         try {
             // const BASE_URL = import.meta.env.VITE_BASE_URL;
             // const res = await axios.get(`${BASE_URL}/api/questions/filter`, filters);
-            const res = await axios.get('http://localhost:5010/api/questions/filter', filters);
+            const res = await axios.post('http://localhost:5010/api/questions/filter', filters);
             filtered = res.data;
         } catch(err) {
             console.error('Error filtering questions:', err);

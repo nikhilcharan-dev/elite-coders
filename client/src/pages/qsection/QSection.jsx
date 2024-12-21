@@ -11,13 +11,14 @@ const Questions = ({ questions, onRandomQuestion, onRecommendQuestion }) => {
 
       {/* List of Questions */}
       <div className="questions-list">
-        {questions.length > 0 ? (
+        {questions?.length > 0 ? (
           questions.map((question, index) => (
             <div key={index} className="question-card">
               <h4>{question.name}</h4>
               <p><strong>Topics:</strong> {question.topics.join(', ')}</p>
               <p><strong>Difficulty:</strong> {question.difficulty}</p>
               <p><strong>Platform:</strong> {question.platform}</p>
+              <button className='link-btn'><a href={question.link}>Link</a></button>
               <button className="recommend-btn" onClick={() => onRecommendQuestion(question)}>Recommend</button>
             </div>
           ))

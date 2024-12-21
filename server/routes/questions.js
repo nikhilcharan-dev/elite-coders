@@ -20,8 +20,8 @@ router.post("/filter", async (req, res) => {
         const query = {};
         if (difficulty) query.difficulty = { $regex: new RegExp(`^${difficulty}$`, 'i') };
         if (platform) query.platform = { $regex: new RegExp(`^${platform}$`, 'i') };
-        if (topics) {
-            const topicArray = topics.split(",").map(topic => new RegExp(`^${topic.trim()}$`, 'i'));
+        if (topics.length > 0) {
+            const topicArray = topics.map(topic => new RegExp(`^${topic.trim()}$`, 'i'));
             query.topics = { $in: topicArray };
         }
 
