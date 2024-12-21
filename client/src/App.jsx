@@ -4,7 +4,9 @@ import { DayProvider } from './ui/daycontext/DayContext';
 import Home from './pages/home/Home';
 import LoginPage from "./ui/loginpage/LoginPage";
 import Adventurer from './pages/adventurer/Adventurer';
+import UserProfile from './pages/userprofile/UserProfile';
 import RegisterPage from "./ui/registerpage/RegisterPage";
+import ProfilePhotoUpload from './pages/demo/ProfilePhotUpload';
 
 function App() {
 
@@ -14,8 +16,8 @@ function App() {
       element: <Home/>
     },
     {
-      path: '/profile',
-      element: <Adventurer/>
+      path: '/user/:id',
+      element: <UserProfile/>
     },
     {
       path: '/login',
@@ -28,8 +30,14 @@ function App() {
     {
       path: '*',
       element: <Adventurer/>
+    },
+    {
+      path: '/photo',
+      element: <ProfilePhotoUpload/>
     }
   ]);
+
+  console.log(`/user?id=${localStorage.getItem('id')}`)
 
   return (
     <DayProvider>

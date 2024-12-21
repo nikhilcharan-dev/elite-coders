@@ -1,0 +1,21 @@
+
+
+.friends-info > p {
+    background-color: white;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+
+.friends-info > p:hover {
+    transform: scale(1.05);
+    background-color: #4ECDC4;
+}
+
+.top-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}

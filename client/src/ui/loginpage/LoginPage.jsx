@@ -33,10 +33,11 @@ function LoginPage() {
             // cookies
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("id", res.data.userData._id);
+            sessionStorage.setItem('userData', JSON.stringify(res.data.userData));
 
             window.alert(res.data.message);
-            console.log(res);
-            navigate(`/profile?id=${res.data.userData._id}`);
+
+            navigate(`/user/id=${res.data.userData._id}`);
 
 
         } catch(err) {
@@ -79,7 +80,10 @@ function LoginPage() {
                         Forgot your password?
                     </a>
                     <div className="btns">
-                        <button type="submit" className="login-btn">
+                        <button 
+                            type="submit" 
+                            className="login-btn"
+                        >
                             Login
                         </button>
                         <button

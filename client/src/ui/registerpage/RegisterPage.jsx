@@ -4,15 +4,20 @@ import axios from "axios";
 import './RegisterPage.css';
 
 function RegisterPage() {
-    const [user, setUser] = useState("");
+    const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+    const isValidEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     const handleRegister = async (e) => {
         e.preventDefault();
-        if (!email && !user && !password) {
+        if (!email && !username && !password) {
             setError("Please fill out all fields.");
             return;
         } else if(!email) {
@@ -21,8 +26,11 @@ function RegisterPage() {
         } else if(!password) {
             setError("Please Enter password");
             return;
-        } else if(!user) {
+        } else if(!username) {
             setError("Please Enter username");
+            return;
+        } else if(!isValidEmail(email)) {
+            setError("Please Enter a valid email");
             return;
         }
 
@@ -31,9 +39,9 @@ function RegisterPage() {
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
             const res = await axios.post(`${BASE_URL}/api/oauth/register`, {
-                email: email,
-                username: user,
-                password: password
+                email,
+                username,
+                password
             });
 
             window.alert(res.data.message);
@@ -58,8 +66,8 @@ function RegisterPage() {
                             type="text"
                             placeholder="Enter your Username"
                             className="text-area"
-                            value={user}
-                            onChange={(e) => setUser(e.target.value)}
+                            value={username}
+                            onChange={(e) => setUserName(e.target.value)}
                             aria-label="User"
                         />
                     </label>
@@ -70,7 +78,7 @@ function RegisterPage() {
                             className="text-area"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            aria-label="User"
+                            aria-label="Email"
                         />
                     </label>
                     <label>
@@ -84,16 +92,16 @@ function RegisterPage() {
                         />
                     </label>
                     <div className="btns">
-                        <button type="button" className="login-btn"
-                            onClick={() => navigate('/login')}
-                        >
-                            Login
-                        </button>
                         <button
                             type="submit"
                             className="register-btn"
                         >
                             Register
+                        </button>
+                        <button type="button" className="login-btn"
+                            onClick={() => navigate('/login')}
+                        >
+                            Login
                         </button>
                     </div>
                 </form>
