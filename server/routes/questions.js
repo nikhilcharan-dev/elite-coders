@@ -16,7 +16,15 @@ router.get("/", async (req, res) => {
 
 router.post("/filter", async (req, res) => {
     try {
+
+        console.log(req.body);
         const { difficulty, topics, platform } = req.body;
+
+
+        if (!filters) {
+            return res.status(400).json({ message: "No filters provided" });
+        }
+
 
         console.log(difficulty, topics, platform);
 
