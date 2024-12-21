@@ -34,6 +34,10 @@ router.get('/getProfilePhoto/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
 
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+            return res.status(400).json({ message: "Invalid userId" });
+        }
+
         const user = await User.findById(userId);
 
         if (!user || !user.profilePhoto) {
@@ -46,5 +50,6 @@ router.get('/getProfilePhoto/:userId', async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
+
 
 export default router;
