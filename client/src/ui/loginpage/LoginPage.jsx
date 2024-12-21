@@ -33,7 +33,7 @@ function LoginPage() {
             // cookies
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("id", res.data.userData._id);
-            sessionStorage.setItem('userData', JSON.stringify(res.data.userData));
+            localStorage.setItem('userData', JSON.stringify(res.data.userData));
 
             window.alert(res.data.message);
 

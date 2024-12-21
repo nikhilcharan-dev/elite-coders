@@ -12,8 +12,8 @@ function NavBar() {
     const navigate = useNavigate();
 
     const isLoggedIn = localStorage.getItem('token');
-    const userData = sessionStorage.getItem('userData') 
-        ? JSON.parse(sessionStorage.getItem('userData')) 
+    const userData = localStorage.getItem('userData') 
+        ? localStorage.getItem('userData')
         : null;
 
     const loginPage = '/login';

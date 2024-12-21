@@ -13,10 +13,10 @@ const Practice = () => {
 
     useEffect(() => {
         const fetchQuestions = async () => {
-            const response = await fetch('http://localhost:5010/api/questions/'); // Replace with your API endpoint
-            const data = await response.json();
-            setQuestions(data);
-            setAllQuestions(data);
+            const BASE_URL = import.meta.env.VITE_BASE_URL;
+            const res = await axios.get(`${BASE_URL}/api/questions`);
+            setQuestions(res.data);
+            setAllQuestions(res.data);
         };
 
         fetchQuestions();
@@ -25,9 +25,8 @@ const Practice = () => {
     const handleFilter = async (filters) => {
         var filtered = null;
         try {
-            // const BASE_URL = import.meta.env.VITE_BASE_URL;
-            // const res = await axios.get(`${BASE_URL}/api/questions/filter`, filters);
-            const res = await axios.post('http://localhost:5010/api/questions/filter', filters);
+            const BASE_URL = import.meta.env.VITE_BASE_URL;
+            const res = await axios.post(`${BASE_URL}/api/questions/filter`, { filters });
             filtered = res.data;
         } catch(err) {
             console.error('Error filtering questions:', err);
@@ -41,9 +40,8 @@ const Practice = () => {
     };
 
     const handleRecommendQuestion = (question) => {
-        // Simulated API call to recommend a question
-        console.log('Recommended question:', question);
-        alert(`Recommended question "${question.name}" to a friend!`);
+        // Pending !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        console.log('Recommend Question:', question);
     };
 
     return (

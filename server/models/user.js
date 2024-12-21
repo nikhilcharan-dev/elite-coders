@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }],
     friendRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }],
+    solvedQuestions: {
+        type: [mongoose.Schema.Types.ObjectId],
+        default: []
+    },
     recommendedQuestions: {
         type: [{
             senderId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },

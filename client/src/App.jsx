@@ -9,46 +9,51 @@ import UserProfile from './pages/userprofile/UserProfile';
 import RegisterPage from "./ui/registerpage/RegisterPage";
 import ProfilePhotoUpload from './pages/demo/ProfilePhotUpload';
 
+// testing components
+import PopTest from './pages/demo/poptest';
+
 function App() {
-
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <Home/>
-    },
-    {
-      path: '/practise',
-      element: <Practice/>
-    },
-    {
-      path: '/user/:id',
-      element: <UserProfile/>
-    },
-    {
-      path: '/login',
-      element: <LoginPage/>
-    }, 
-    {
-      path: '/register',
-      element: <RegisterPage/>
-    },
-    {
-      path: '*',
-      element: <Adventurer/>
-    },
-    {
-      path: '/photo',
-      element: <ProfilePhotoUpload/>
-    }
-  ]);
-
-  console.log(`/user?id=${localStorage.getItem('id')}`)
-
-  return (
-    <DayProvider>
-      <RouterProvider router={router}/>
-    </DayProvider>
-  );
+	
+	const router = createBrowserRouter([
+		{
+			path: '/',
+			element: <Home />
+		},
+		{
+			path: '/practise',
+			element: <Practice />
+		},
+		{
+			path: '/user/:id',
+			element: <UserProfile />
+		},
+		{
+			path: '/login',
+			element: <LoginPage />
+		},
+		{
+			path: '/register',
+			element: <RegisterPage />
+		},
+		{
+			path: '*',
+			element: <Adventurer />
+		},
+		{
+			path: '/photo',
+			element: <ProfilePhotoUpload />
+		},
+		{
+			path: '/test',
+			element: <PopTest />
+		}
+	]);
+	
+	return (
+		<DayProvider>
+			<RouterProvider router={router} />
+		</DayProvider>
+	);
 };
 
 export default App;

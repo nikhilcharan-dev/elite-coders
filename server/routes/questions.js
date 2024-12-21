@@ -1,4 +1,5 @@
 import express from "express";
+import User from "../models/user.js";
 import Question from "../models/question.js";
 
 const router = express.Router();
@@ -44,6 +45,31 @@ router.get("/random", async (req, res) => {
         res.status(200).json(randomQuestion);
     } catch (error) {
         console.error("Error fetching random question:", error.message);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+router.post('/solve', async (req, res) => {
+    const { userId, questionId } = req.body;
+
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const isSolved = user.solvedQuestions.includes(questionId);
+
+        if (isSolved) {
+            user.solvedQuestions = user.solvedQuestions.filter(id => id.toString() !== questionId);
+        } else {
+            user.solvedQuestions.push(questionId);
+        }
+
+        await user.save();
+        res.status(200).json({ solvedQuestions: user.solvedQuestions });
+    } catch (error) {
+        console.error("Error marking question as solved:", error.message);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
