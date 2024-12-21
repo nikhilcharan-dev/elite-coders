@@ -10,7 +10,7 @@ import RegisterPage from "./ui/registerpage/RegisterPage";
 import ProfilePhotoUpload from './pages/demo/ProfilePhotUpload';
 
 // testing components
-import PopTest from './pages/demo/poptest';
+import PopTest from './pages/demo/PopTest';
 
 function App() {
 	

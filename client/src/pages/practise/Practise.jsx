@@ -14,6 +14,7 @@ const Practice = () => {
     useEffect(() => {
         const fetchQuestions = async () => {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
+            console.log('BASE_URL:', BASE_URL);
             const res = await axios.get(`${BASE_URL}/api/questions`);
             setQuestions(res.data);
             setAllQuestions(res.data);
@@ -26,7 +27,6 @@ const Practice = () => {
         var filtered = null;
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            console.log(filters);
             const res = await axios.post(`${BASE_URL}/api/questions/filter`, { ...filters });
             filtered = res.data;
         } catch(err) {
