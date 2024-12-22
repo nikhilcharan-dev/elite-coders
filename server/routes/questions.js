@@ -14,6 +14,24 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.post('/filter/byIds', async (req, res) => {
+    const { ids } = req.body;
+
+    if (!ids || !Array.isArray(ids)) {
+        return res.status(400).json({ error: 'Invalid IDs provided' });
+    }
+
+    try {
+        const questions = await Question.find({ _id: { $in: ids } });
+        res.status(200).json(questions);
+    } catch (error) {
+        console.error('Error fetching questions by IDs:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+
 router.post("/filter", async (req, res) => {
     try {
 
