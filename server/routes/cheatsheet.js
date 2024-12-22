@@ -30,12 +30,20 @@ router.get("/", async (req, res) => {
     }
 });
 
-// getting by id
-router.get("/:id", async (req, res) => {
-    const { id } = req.params;
+// getting by id/name
+router.get("/:param", async (req, res) => {
+    const { param } = req.params;
+
+    const isObjectId = mongoose.Types.ObjectId.isValid(param);
 
     try {
-        const cheatsheet = await CheatSheet.findById(id);
+        let cheatsheet;
+
+        if (isObjectId) {
+            cheatsheet = await CheatSheet.findById(param);
+        } else {
+            cheatsheet = await CheatSheet.findOne({ name: {$regex: `^${param}$`, $options: 'i'} });
+        }
         if (!cheatsheet) {
             return res.status(404).json({ message: 'Cheatsheet not found' });
         }
