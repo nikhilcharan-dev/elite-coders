@@ -34,6 +34,10 @@ router.get("/", async (req, res) => {
 router.get("/:param", async (req, res) => {
     const { param } = req.params;
 
+    if (!param) {
+        return res.status(400).json({ message: "Parameter is required" });
+    }
+
     const isObjectId = mongoose.Types.ObjectId.isValid(param);
 
     try {
