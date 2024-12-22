@@ -34,6 +34,9 @@ function NavBar() {
             </div>
             <ul>
                 <li>
+                    <Link to="/about">About</Link>
+                </li>
+                <li>
                     <Link to="/">Home</Link>
                 </li>
                 <li>
@@ -43,13 +46,10 @@ function NavBar() {
                     <Link to="/practise">Practise</Link>
                 </li>
                 <li>
-                    <Link to="/">Resources</Link>
-                </li>
-                <li>
                     <Link to="/compete">Compete</Link>
                 </li>
                 <li>
-                    <Link to="/about">About</Link>
+                    <Link to="/">Resources</Link>
                 </li>
                 <li>
                     <Link to={isLoggedIn ? profilePage : loginPage}>

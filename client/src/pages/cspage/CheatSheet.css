@@ -1,0 +1,74 @@
+
+.page {
+    height: 100vh;
+    min-height: fit-content;
+    width: 100%;
+}
+
+.cheatsheet-cards {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.cheatsheet-card {
+	flex: 1;
+	min-width: 250px;
+	max-width: 300px;
+	background-color: white;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cheatsheet-card:hover {
+	transform: scale(1.05);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cheatsheet-card img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin-bottom: 15px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cheatsheet-card h3 {
+	font-size: 1.2rem;
+	color: #333;
+	margin-bottom: 10px;
+}
+
+.cheatsheet-card p {
+	font-size: 0.9rem;
+	color: gray;
+	font-style: italic;
+}
+
+.link-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #FDCB82, #D14B87);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.link-btn:hover {
+    transform: scale(1.04);
+}
+
+.link-btn > a {
+    text-decoration: none;
+    color: white;
+}

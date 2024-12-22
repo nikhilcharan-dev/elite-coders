@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './QSection.css';
 import axios from 'axios';
 
-const Questions = ({ questions, onRandomQuestion, onRecommendQuestion }) => {
-    const [loading, setLoading] = useState(false);
+const Questions = ({ loading, setLoading, questions, onRandomQuestion, onRecommendQuestion }) => {
     const [user, setUser] = useState({});
     const userId = localStorage.getItem('id');
 
@@ -47,9 +46,9 @@ const Questions = ({ questions, onRandomQuestion, onRecommendQuestion }) => {
             {/* Random Question Button */}
             <button className="random-btn" onClick={onRandomQuestion}>Get Random Question</button>
 
-            {loading && <div className="loading-spinner">Loading...</div>}
+            {loading && <div className="loading-spinner"></div>}
 
-            {/* List of Questions */}
+            {/* Questions */}
             <div className="questions-list">
                 {questions?.length > 0 ? (
                     questions.map((question, index) => {
@@ -84,7 +83,9 @@ const Questions = ({ questions, onRandomQuestion, onRecommendQuestion }) => {
                         );
                     })
                 ) : (
-                    <p>No questions found</p>
+                    <>
+                        {!loading && <p>No questions found..</p>}
+                    </>
                 )}
             </div>
         </div>
