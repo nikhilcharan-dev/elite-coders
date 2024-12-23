@@ -33,3 +33,8 @@
     margin-top: 0px;
 }
 
+.actions {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

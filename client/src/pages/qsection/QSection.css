@@ -26,7 +26,12 @@
 }
 
 .random-btn:hover {
+	transform: scale(1.03);
 	background-color: #3bafa3;
+}
+
+.random-btn:active {
+	transform: scale(1.01);
 }
 
 .questions-list {
@@ -34,6 +39,8 @@
 	flex-wrap: wrap;
 	gap: 20px;
 	justify-content: center;
+	max-height: 600px;
+	overflow-y: auto;
 }
 
 .question-card {
@@ -60,12 +67,20 @@
 	padding: 0px;
 }
 
+.platform > * {
+	margin: 0px;
+	padding: 0px;
+}
+
 .icon {
 	height: 15px;
 	width: 15px;
 	object-fit: cover;
+	border-radius: 2px;
+	padding: 2px;
 	margin-left: 5px;
 	margin-right: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .recommend-btn,

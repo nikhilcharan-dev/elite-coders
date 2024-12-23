@@ -1,0 +1,70 @@
+.themed-btn {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.themed-btn:hover {
+    transform: scale(1.1);
+}
+
+.refresh:hover {
+    animation: none;
+}
+
+.refresh:active {
+    animation: rotate 3s linear infinite;
+}
+
+.themed-btn:active {
+    transform: scale(1.);
+}
+
+.themed-btn:focus {
+    outline: none;
+}
+
+.themed-btn > img {
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease;
+}
+
+.refresh {
+    animation: rotate 3s linear infinite;
+}
+
+
+.themed-btn.active img {
+    transform: scale(1.2);
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+.like, .dislike {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.like.active {
+    color: #e82a34; /* Liked color */
+}
+
+.dislike.active {
+    color: #ff7e7e; /* Disliked color */
+}

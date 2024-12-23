@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Spinner from '../spinner/Spinner';
 import Questions from '../qsection/QSection';
+import ThemedButton from '../../ui/button/Button';
+
+import like from '../assests/like.png';
+import dislike from '../assests/dislike.png';
+import liked from '../assests/liked.png';
+import disliked from '../assests/disliked.png';
+import home from '../assests/home.png';
+import refresh from '../assests/refresh.png';
 
 import './CheatSheetDetail.css';
 
 const CheatSheetDetail = () => {
     const { name } = useParams();
+    const userId = localStorage.getItem('id');
+    const navigate = useNavigate();
     const [cheatsheet, setCheatsheet] = useState(null);
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [likes, setLikes] = useState(0);
+    const [dislikes, setDislikes] = useState(0);
+    const [isLiked, setIsLiked] = useState(false);  // Track like state
+    const [isDisliked, setIsDisliked] = useState(false);  // Track dislike state
 
     useEffect(() => {
         const fetchCheatsheet = async () => {
@@ -19,11 +33,12 @@ const CheatSheetDetail = () => {
                 const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${name}`);
                 setCheatsheet(response.data);
 
-                console.log(response.data);
-
                 const ids = response.data.questions;
                 const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/questions/filter/byIds`, { ids });
+                localStorage.setItem('questions', JSON.stringify(res.data));
                 setQuestions(res.data);
+                setLikes(response.data.likes);
+                setDislikes(response.data.dislikes);
             } catch (error) {
                 console.error('Error fetching cheatsheet:', error);
             }
@@ -31,35 +46,80 @@ const CheatSheetDetail = () => {
         };
 
         fetchCheatsheet();
-    }, [name]);
+    }, [name, likes, dislikes]);
 
-    if (loading) return <Spinner/>;
-    if (!cheatsheet) return <p>Cheatsheet not found.</p>;
+    const handleLike = async () => {
+        try {
+            const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${cheatsheet._id}/like`, { userId });
+            setLikes(res.data.likes);
+            setIsLiked(true);
+            setIsDisliked(false);
+        } catch (error) {
+            console.error("Error liking cheatsheet:", error);
+        }
+    };
+
+    const handleDislike = async () => {
+        try {
+            const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${cheatsheet._id}/dislike`, { userId });
+            setDislikes(res.data.dislikes);
+            setIsLiked(false); // Like should be reset if disliked
+            setIsDisliked(true);
+        } catch (error) {
+            console.error("Error disliking cheatsheet:", error.message);
+        }
+    };
+
+    const handleRefresh = () => {
+        setQuestions(JSON.parse(localStorage.getItem('questions')));
+    }
 
     const handleRandomQuestion = () => {
-        const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+        const curQuestions = JSON.parse(localStorage.getItem('questions'));
+        const randomQuestion = curQuestions[Math.floor(Math.random() * curQuestions.length)];
         setQuestions([randomQuestion]);
-    }
+    };
 
     const handleRecommendQuestion = (question) => {
         // Pending !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         console.log('Recommend Question:', question);
     };
 
+    if (loading) return <Spinner />;
+    if (!cheatsheet) return <p>Cheatsheet not found.</p>;
+
     return (
         <div className="cheatsheet-detail">
             <div className="cheatsheet-header">
                 <img
-                    className='cheatsheet-image'
+                    className="cheatsheet-image"
                     src={`/images/${cheatsheet._id}.jpg`}
                     alt={`${cheatsheet.name}'s Profile`}
                     onError={(e) => (e.target.src = '/images/default.png')}
                 />
                 <h1>{`< ${cheatsheet.name} / >`}</h1>
-            </div> 
+            </div>
             <p><strong>Quote:</strong> {cheatsheet.quote}</p>
-            <Questions 
-                loading={loading} 
+            <div className="actions">
+                <ThemedButton link={home} onClick={() => navigate('/')} />
+                <ThemedButton link={refresh} type={'refresh'} onClick={handleRefresh} />
+                <ThemedButton 
+                    link={isLiked ? liked : like} 
+                    count={likes} 
+                    onClick={handleLike} 
+                    isActive={isLiked} 
+                    type="like"
+                />
+                <ThemedButton 
+                    link={isDisliked ? disliked : dislike} 
+                    count={dislikes} 
+                    onClick={handleDislike} 
+                    isActive={isDisliked} 
+                    type="dislike"
+                />
+            </div>
+            <Questions
+                loading={loading}
                 setLoading={setLoading}
                 questions={questions}
                 onRandomQuestion={handleRandomQuestion}

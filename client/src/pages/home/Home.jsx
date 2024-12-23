@@ -12,7 +12,7 @@ const Home = () => {
         <div className="home">
             <NavBar />
             <section className="intro">
-                <h1>Welcome to Elite Coders</h1>
+                <h1 className="quote"> Welcome to Elite Coders</h1>
                 <p>
                     At Elite Coders, we believe that learning programming should be as accessible and
                     collaborative as it is challenging and rewarding. This platform was built with a
@@ -26,7 +26,7 @@ const Home = () => {
                     we aim to create a supportive environment where learners and coders can grow
                     together, solve real-world challenges, and inspire innovation.
                 </p>
-                <h2>Because the future belongs to those who build it.</h2>
+                <h2 className="quote">" Because the future belongs to those who build it. "</h2>
             </section>
             <Quote />
         </div>

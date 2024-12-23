@@ -27,10 +27,10 @@ function Quote() {
             <h1>Quote of the Day</h1>
             {loading ? (
                 <>
-                    <p>Loading...</p>
+                    <p className='quote'>Loading...</p>
                 </>     
             ) : (
-                <p>{quote}</p>
+                <p className='quote'>"{quote}"</p>
             )}
         </section>
     );

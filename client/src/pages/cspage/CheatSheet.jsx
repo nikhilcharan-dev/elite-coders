@@ -30,7 +30,7 @@ const CheatSheet = () => {
 
     return (
         <div className="cheatsheet-section page">
-			<h2>Featured Cheatsheets</h2>
+			<h2 className='quote'>"Cheatsheets Crafted for Excellence"</h2>
 			<div className="cheatsheet-cards">
                 {loading && <Spinner />}
 				{!loading && cheatsheets.length > 0 ? cheatsheets.map((cheatsheet) => (

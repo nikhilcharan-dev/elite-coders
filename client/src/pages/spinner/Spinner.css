@@ -6,6 +6,7 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    user-select: none;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #F6F4F0, #4DA1A9);

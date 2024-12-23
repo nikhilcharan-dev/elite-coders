@@ -1,3 +1,9 @@
+.quote {
+    font-family: 'Cedarville Cursive', cursive;
+    font-weight: bolder;
+  }
+  
+
 .quote-section {
     height: 100px;
     width: 80%;

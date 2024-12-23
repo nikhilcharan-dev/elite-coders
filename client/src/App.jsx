@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { DayProvider } from './ui/daycontext/DayContext';
 
 import Home from './pages/home/Home';
+import About from './pages/about/About';
 import Compete from './pages/compete/Compete';
 import LoginPage from "./ui/loginpage/LoginPage";
 import Practice from './pages/practise/Practise';
@@ -21,6 +22,7 @@ function App() {
 	
 	const routes = [
 		{ path: '/', element: <Home /> },
+		{ path: '/about', element: <About/> },
 		{ path: '/practise', element: <Practice /> },
 		{ path: '/compete', element: <Compete /> },
 		{ path: '/user/:id', element: <UserProfile /> },
