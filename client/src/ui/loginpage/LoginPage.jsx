@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+import Popup from "../../pages/popup/Popup";
+
 import './LoginPage.css';
 
 function LoginPage() {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [popup, setPopup] = useState(false);
+    const [profilePage, setProfilePage] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -30,28 +35,35 @@ function LoginPage() {
                 password: password
             });
 
+            setPopup(true);
             // cookies
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("id", res.data.userData._id);
             localStorage.setItem('userData', JSON.stringify(res.data.userData));
-
-            window.alert(res.data.message);
-
-            navigate(`/user/id=${res.data.userData._id}`);
-
-
+            setProfilePage(`/user/id=${res.data.userData._id}`);
         } catch(err) {
-            if(err.respone && err.respone.data) {
-                setError(err.respone.data.message);
-            } else {
-                setError("Something went wrong. Please try again later.");
-            }
+            setError(err.response.data.message);
         }
-        
     };
+    
+    const handleAfterLogin = () => {
+        setPopup(false);
+        navigate(profilePage);
+    }
 
     return (
         <div className="log">
+            {popup && (
+                <Popup title="Login Successful" isOpen={popup} onClose={handleAfterLogin}>
+                    <p className="quote para" style={{textAlign: "center",
+                                                         margin: "20px 15px 15px 15px", 
+                                                         fontSize: "1.5rem",
+                                                         color: "#4B8A8D"
+                                                        }
+                    }>' Welcome back '</p>
+                </Popup>
+            )}
+
             <section className="login-page">
                 <h1>Login</h1>
                 <form className="credentials" onSubmit={handleLogin}>

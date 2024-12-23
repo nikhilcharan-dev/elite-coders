@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+import Popup from "../../pages/popup/Popup";
+
 import './RegisterPage.css';
 
 function RegisterPage() {
@@ -8,6 +11,8 @@ function RegisterPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [popup, setPopup] = useState(false);
+    const [login, setLogin] = useState("");
     const navigate = useNavigate();
 
     const isValidEmail = (email) => {
@@ -43,20 +48,32 @@ function RegisterPage() {
                 username,
                 password
             });
-
-            window.alert(res.data.message);
-            console.log(res);
-
-            navigate('/login');
+            
+            setPopup(true);
+            setLogin('/login');
 
         } catch(err) {
             setError(err.response?.data?.message || 'An unexpected error occurred');
         }
-        
     };
+
+    const handleAfterRegister = () => {
+        setPopup(false);
+        navigate(login);
+    }
 
     return (
         <div className="register">
+            {popup && (
+                <Popup title="Registration Successful" isOpen={popup} onClose={handleAfterRegister}>
+                    <p className="quote" style={{textAlign: "center",
+                                                         margin: "20px 15px 15px 15px", 
+                                                         fontSize: "1.5rem",
+                                                         color: "#4B8A8D"
+                                                        }
+                    }>A new Journey Begins....</p>
+                </Popup>
+            )}
             <section className="register-page">
                 <h1>Register</h1>
                 <form className="credentials" onSubmit={handleRegister}>

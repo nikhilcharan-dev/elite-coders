@@ -26,6 +26,8 @@ const CheatSheet = () => {
         fetchCheatsheets();
     }, []);
 
+    if(cheatsheets) console.log(cheatsheets);
+
     return (
         <div className="cheatsheet-section page">
 			<h2>Featured Cheatsheets</h2>
@@ -34,10 +36,9 @@ const CheatSheet = () => {
 				{!loading && cheatsheets.length > 0 ? cheatsheets.map((cheatsheet) => (
 					<CheatsheetCard
 						key={cheatsheet._id}
-						profilePhoto={cheatsheet.profilePhoto}
+						profilePhoto={cheatsheet._id}
 						name={cheatsheet.name}
 						quote={cheatsheet.quote}
-                        link={cheatsheet.link}
 					/>
 				)) : (
                     <p>No cheatsheets available.</p>
@@ -48,14 +49,15 @@ const CheatSheet = () => {
 };
 
 
-const CheatsheetCard = ({ profilePhoto, name, quote, link }) => {
+const CheatsheetCard = ({ profilePhoto, name, quote }) => {
+    console.log(name, profilePhoto);
 	return (
 		<div className="cheatsheet-card">
-			<img src={profilePhoto} alt={`${name}'s profile`} />
+			<img src={`images/${profilePhoto}.jpg`} alt={`${name}'s profile`} />
 			<h3>{name}</h3>
-			<p>"{quote}"</p>
-            <button className='link-btn'>
-                <a href={link}>Learn</a>
+			<p className='quote'>"{quote}"</p>
+            <button className='link-btn' onClick={() => window.location.href = '/cheatsheets/' + name}>
+                Learn
             </button>
 		</div>
 	);

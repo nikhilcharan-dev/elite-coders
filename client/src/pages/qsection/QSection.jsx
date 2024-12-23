@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './QSection.css';
 import axios from 'axios';
+import './QSection.css';
+
 
 const Questions = ({ loading, setLoading, questions, onRandomQuestion, onRecommendQuestion }) => {
     const [user, setUser] = useState({});
@@ -31,7 +32,7 @@ const Questions = ({ loading, setLoading, questions, onRandomQuestion, onRecomme
                 questionId: question._id,
             });
 
-            console.log('Updated Solved Questions:', response.data.solvedQuestions);
+            console.log('Updated Solved Questions:', res.data.solvedQuestions);
         } catch (error) {
             console.error("Error solving question:", error);
         } finally {
@@ -59,8 +60,16 @@ const Questions = ({ loading, setLoading, questions, onRandomQuestion, onRecomme
                                 <h4>{question.name}</h4>
                                 <p><strong>Topics:</strong> {question.topics.join(', ')}</p>
                                 <p><strong>Difficulty:</strong> {question.difficulty}</p>
-                                <p><strong>Platform:</strong> {question.platform}</p>
-
+                                <div className="platform">
+                                    <p><strong>Platform: </strong></p>
+                                    <img src={`/images/${question.platform.toUpperCase()}.png`}
+                                        className="icon"
+                                        alt={question.platform}
+                                    />
+                                    <p>
+                                        {question.platform}
+                                    </p>
+                                </div>
                                 {/* Solve/Solved */}
                                 {isSolved ? (
                                     <button className="solved-btn" onClick={() => {

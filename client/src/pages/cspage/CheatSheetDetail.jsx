@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import Spinner from '../spinner/Spinner';
 import Questions from '../qsection/QSection';
 
+import './CheatSheetDetail.css';
+
 const CheatSheetDetail = () => {
     const { name } = useParams();
     const [cheatsheet, setCheatsheet] = useState(null);
@@ -19,8 +21,8 @@ const CheatSheetDetail = () => {
 
                 console.log(response.data);
 
-                const qIds = response.data.questions;
-                const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/questions/filter/byIds`, { qIds });
+                const ids = response.data.questions;
+                const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/questions/filter/byIds`, { ids });
                 setQuestions(res.data);
             } catch (error) {
                 console.error('Error fetching cheatsheet:', error);
@@ -46,9 +48,16 @@ const CheatSheetDetail = () => {
 
     return (
         <div className="cheatsheet-detail">
-            <h1>{cheatsheet.name}</h1>
+            <div className="cheatsheet-header">
+                <img
+                    className='cheatsheet-image'
+                    src={`/images/${cheatsheet._id}.jpg`}
+                    alt={`${cheatsheet.name}'s Profile`}
+                    onError={(e) => (e.target.src = '/images/default.png')}
+                />
+                <h1>{`< ${cheatsheet.name} / >`}</h1>
+            </div> 
             <p><strong>Quote:</strong> {cheatsheet.quote}</p>
-            <h3>Questions:</h3>
             <Questions 
                 loading={loading} 
                 setLoading={setLoading}

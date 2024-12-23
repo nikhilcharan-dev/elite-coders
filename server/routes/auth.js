@@ -37,6 +37,7 @@ router.post('/login', async (req, res) => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return emailRegex.test(str);
     };
+
     let user;
     if(isEmail(usernameOrEmail)) {
         user = await User.findOne({ email: usernameOrEmail });
@@ -47,6 +48,8 @@ router.post('/login', async (req, res) => {
     if(!user) return res.status(400).json({ message: 'User not found' });
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    console.log(isPasswordValid);
 
     if(!isPasswordValid) {
         return res.status(400).json({ message: 'Invalid credentials' });

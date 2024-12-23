@@ -33,10 +33,12 @@
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
+	justify-content: space-between;
 	transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .cheatsheet-card:hover {
+	cursor: pointer;
 	transform: scale(1.05);
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -58,7 +60,7 @@
 .cheatsheet-card p {
 	font-size: 0.9rem;
 	color: gray;
-	font-style: italic;
+	margin-bottom: 0px
 }
 
 .expand-button {
@@ -77,4 +79,29 @@
 .expand-button:hover {
 	background-color: #3bafa3;
 	transform: scale(1.1);
+}
+
+.btns {
+	display: flex;
+	justify-content: center;
+}
+
+.learn-btn,
+ .rec-btn {
+	padding: 10px 20px;
+	font-size: 1rem;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.3s;
+}
+
+.learn-btn {
+	background-color: #F9E4D4;
+	margin-right: 10px;
+}
+
+.rec-btn {
+	background-color: #4ECDC4;
 }

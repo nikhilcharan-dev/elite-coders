@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+
+.cursive-text {
+  font-family: 'Cedarville Cursive', cursive;
+  font-size: 36px;
+}
+
+.quote {
+  font-family: 'Cedarville Cursive', cursive;
+  font-weight: bolder;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}

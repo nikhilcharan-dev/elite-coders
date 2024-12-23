@@ -15,6 +15,8 @@ import ProfilePhotoUpload from './pages/demo/ProfilePhotUpload';
 // testing components
 import PopTest from './pages/demo/PopTest';
 
+import './App.css';
+
 function App() {
 	
 	const routes = [

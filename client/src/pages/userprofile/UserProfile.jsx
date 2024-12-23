@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Edit from "./Edit";
@@ -10,6 +11,8 @@ import email from '../assests/gmail.png';
 import edit from '../assests/edit.png';
 import log from '../assests/log-out.png';
 import def from '../assests/default-other.jpg';
+import boy from '../assests/default-boy.jpg';
+import girl from '../assests/default-girl.jpg';
 
 import "./layout.css";
 import "./elements.css";
@@ -19,7 +22,8 @@ const UserProfile = () => {
 	const [loading, setLoading] = useState(true);
 	const [showEdit, setShowEdit] = useState(false);
 	const [showMail, setShowMail] = useState(false);
-
+	
+	const navigate = useNavigate();
 	const userId = localStorage.getItem("id");
 
 	useEffect(() => {
@@ -41,16 +45,17 @@ const UserProfile = () => {
 	}, [userId]);
 
 	let profileImage = def;
-	console.log(user);
 	if (user) {
 		profileImage = user.profilePhoto ||
-			(user.gender === 'male' ? boy :
-				user.gender === 'female' ? girl : def);
+			(user.gender === 'Male' ? boy :
+				user.gender === 'Female' ? girl : def);
 	}
 
 	const handleLogout = () => {
+		setUser(null);
 		localStorage.clear();
-		window.location.href = "/login";
+		sessionStorage.clear();
+		navigate("/login");
 	}
 
 	if (loading) {

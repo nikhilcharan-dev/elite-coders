@@ -54,6 +54,7 @@ const Filter = ({ onFilter }) => {
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
+            <option value="S">Super Hard</option>
           </select>
         </div>
         <div className="filter-item">
@@ -66,8 +67,8 @@ const Filter = ({ onFilter }) => {
             <option value="">Select Platform</option>
             <option value="LeetCode">LeetCode</option>
             <option value="HackerRank">HackerRank</option>
+            <option value="CodeChef">CodeChef</option>
             <option value="Codeforces">Codeforces</option>
-            <option value="Codewars">Codewars</option>
           </select>
         </div>
         <button type="submit" className="filter-btn">Apply Filters</button>

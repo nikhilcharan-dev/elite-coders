@@ -1,4 +1,5 @@
 .questions-section {
+	align-items: center;
 	background-color: white;
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -6,20 +7,22 @@
 }
 
 .questions-section h3 {
+	text-align: center;
 	font-size: 24px;
 	margin-bottom: 20px;
 }
 
 .random-btn {
-	background-color: #4ECDC4;
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 16px;
-	margin-bottom: 20px;
-	transition: background-color 0.3s;
+    background-color: #4ECDC4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px auto;
+    display: block;
+    transition: background-color 0.3s;
 }
 
 .random-btn:hover {
@@ -50,6 +53,21 @@
 	margin: 5px 0;
 }
 
+.platform {
+	display: flex;
+	align-items: center;
+	margin: 0px;
+	padding: 0px;
+}
+
+.icon {
+	height: 15px;
+	width: 15px;
+	object-fit: cover;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
 .recommend-btn,
 	.solve-btn,
 	.solved-btn {
@@ -70,9 +88,13 @@
 	background-color: #ff758f;
 }
 
-.solve-btn,
-.solved-btn {
+.solve-btn {
 	background-color: #4ECDC4;
+	margin-right: 10px;
+}
+
+.solved-btn {
+	background-color: #ff7e7e;
 	margin-right: 10px;
 }
 
