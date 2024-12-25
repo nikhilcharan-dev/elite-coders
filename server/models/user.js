@@ -9,8 +9,13 @@ const userSchema = new mongoose.Schema({
     bio: { type: String, default: "Elite Coder" },
     gotoLanguage: { type: String, default: "" },
     password: { type: String, required: true },
-    friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }],
-    friendRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }],
+    friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }], // Accepted friends
+    friendRequests: [{
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        type: { type: String, enum: ['sent', 'received'], required: true },  // Sent or received
+        status: { type: String, enum: ['pending', 'accepted', 'rejected'], default: 'pending' }, // Pending, accepted, rejected
+        timestamp: { type: Date, default: Date.now }
+    }],
     solvedQuestions: {
         type: [mongoose.Schema.Types.ObjectId],
         default: []

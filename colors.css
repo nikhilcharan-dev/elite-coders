@@ -1,34 +1,66 @@
 
+
 * {
-
     /* Soft Peach to Aqua */
-background: linear-gradient(135deg, #F9E4D4, #4ECDC4);
-    
-/* Lavender to Teal */
-background: linear-gradient(135deg, #E6E6FA, #4B8A8D);
+    background: linear-gradient(135deg, #F9E4D4, #4ECDC4);
 
-/* Light Coral to Soft Blue */
-background: linear-gradient(135deg, #FAD0C4, #A1C4E8);
+    /* Lavender to Teal */
+    background: linear-gradient(135deg, #E6E6FA, #4B8A8D);
 
-/* Warm Beige to Mint Green */
-background: linear-gradient(135deg, #F4E1D2, #A3D8D4);
+    /* Light Coral to Soft Blue */
+    background: linear-gradient(135deg, #FAD0C4, #A1C4E8);
 
-/* Peach to Sky Blue */
-background: linear-gradient(135deg, #FFB6B9, #A3D8F4);
+    /* Warm Beige to Mint Green */
+    background: linear-gradient(135deg, #F4E1D2, #A3D8D4);
 
-/* Sunset Colors */
-background: linear-gradient(135deg, #FDCB82, #D14B87);
+    /* Peach to Sky Blue */
+    background: linear-gradient(135deg, #FFB6B9, #A3D8F4);
 
-/* Pale Pink to Light Lavender */
-background: linear-gradient(135deg, #F8D1D4, #C8B6D1);
+    /* Sunset Colors */
+    background: linear-gradient(135deg, #FDCB82, #D14B87);
 
-/* Muted Green to Soft Yellow */
-background: linear-gradient(135deg, #A1D8A1, #F9F3A1);
+    /* Pale Pink to Light Lavender */
+    background: linear-gradient(135deg, #F8D1D4, #C8B6D1);
 
-/* Light Blue to Soft Purple */
-background: linear-gradient(135deg, #A1D8F1, #D3A9F7);
+    /* Muted Green to Soft Yellow */
+    background: linear-gradient(135deg, #A1D8A1, #F9F3A1);
 
-/* Dusty Rose to Pale Green */
-background: linear-gradient(135deg, #D4A6A1, #B1D8B7);
+    /* Light Blue to Soft Purple */
+    background: linear-gradient(135deg, #A1D8F1, #D3A9F7);
 
+    /* Dusty Rose to Pale Green */
+    background: linear-gradient(135deg, #D4A6A1, #B1D8B7);
+
+    /* Coral to Gold */
+    background: linear-gradient(135deg, #FF7E5F, #FEB47B);
+
+    /* Cotton Candy Pink to Sky Blue */
+    background: linear-gradient(135deg, #FFB6C1, #87CEEB);
+
+    /* Sunset Orange to Midnight Blue */
+    background: linear-gradient(135deg, #FF4500, #2C3E50);
+
+    /* Vibrant Pink to Neon Green */
+    background: linear-gradient(135deg, #FF007F, #00FF7F);
+
+    /* Tropical Sea Green to Ocean Blue */
+    background: linear-gradient(135deg, #48C9B0, #1F3A57);
+
+    /* Mango to Papaya */
+    background: linear-gradient(135deg, #FFB74D, #FF7043);
+
+    /* Electric Blue to Purple */
+    background: linear-gradient(135deg, #00BFFF, #8A2BE2);
+
+    /* Raspberry to Lemonade */
+    background: linear-gradient(135deg, #E30B5D, #F1C40F);
+
+    /* Soft Lavender to Blush Pink */
+    background: linear-gradient(135deg, #B39DDB, #F8BBD0);
+
+    /* Peach to Cream */
+    background: linear-gradient(135deg, #F5A623, #F2E3D5);
+
+    /* Soft Green to Baby Blue */
+    background: linear-gradient(135deg, #8BC34A, #00BCD4);
 }

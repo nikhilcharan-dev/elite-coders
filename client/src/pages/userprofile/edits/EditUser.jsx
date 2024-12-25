@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+
+import edit from '../../assests/photo-edit.png'
 
 import './EditUser.css';
 
 const EditUser = ({ onClose, user, onEdit }) => {
+    const fileInputRef = useRef(null);
+    const imgRef = useRef(null);
     const [profilePhoto, setProfilePhoto] = useState(user.profilePhoto || '');
     const [file, setFile] = useState(null);
     const [formData, setFormData] = useState({
@@ -12,12 +16,18 @@ const EditUser = ({ onClose, user, onEdit }) => {
         dob: user?.dob || '',
         gender: user?.gender || 'Other',
         language: user?.language || 'Assembly',
-        bio: (user.bio === 'Elite Coder') ? "Tell us something about yourself Elite Coder..." :  user.bio,
+        bio: (user.bio === 'Elite Coder') ? "Tell us something about yourself Elite Coder..." : user.bio,
     });
 
     useEffect(() => {
         setProfilePhoto(user.profilePhoto);
     }, [user]);
+
+    useEffect(() => {
+        if (imgRef.current) {
+            const rect = imgRef.current.getBoundingClientRect();
+        }
+    }, []);
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -175,14 +185,25 @@ const EditUser = ({ onClose, user, onEdit }) => {
                 </form>
             </div>
             <div className="profile-photo-section">
-                    <h4>Profile Photo</h4>
+                <div className="profile-photo-container">
                     {profilePhoto ? (
-                        <img src={profilePhoto} alt="Profile" className="profile-photo" />
+                        <img src={profilePhoto} ref={imgRef} alt="Profile" className="photo" />
                     ) : (
-                        <div className="no-photo">No photo</div>
+                        <div className="no-photo" ref={imgRef}>No photo</div>
                     )}
-                    <input type="file" onChange={handleFileChange} accept="image/*" />
-                    <button onClick={handleProfilePhotoUpload}>Upload Photo</button>
+                    <button className="edit-photo-btn" onClick={() => fileInputRef.current.click()}>
+                        <img src={edit} alt="Edit" className="edit-img" />
+                    </button>
+                    <input
+                        className="photo-input"
+                        ref={fileInputRef}
+                        type="file"
+                        onChange={handleFileChange}
+                        accept="image/*"
+                        style={{ display: 'none' }}
+                    />
+                </div>
+                <button className="upload-btn" onClick={handleProfilePhotoUpload}>Upload Photo</button>
             </div>
         </div>
     );

@@ -4,9 +4,11 @@ import axios from "axios";
 
 import EditUser from "./edits/EditUser";
 import EditMail from "./edits/EditMail";
+import EditFrnd from "./edits/EditFrnd";
 import Navbar from "../../ui/navbar/NavBar";
 import Spinner from "../spinner/Spinner";
 
+import frnds from '../assests/friend.png';
 import email from '../assests/gmail.png';
 import edit from '../assests/edit.png';
 import log from '../assests/log-out.png';
@@ -21,9 +23,10 @@ const UserProfile = () => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [showEdit, setShowEdit] = useState(false);
+	const [showFrnd, setShowFrnd] = useState(false);
 	const [showMail, setShowMail] = useState(false);
 	const [edited, setEdited] = useState(false);
-	
+
 	const navigate = useNavigate();
 	const userId = localStorage.getItem("id");
 
@@ -69,7 +72,7 @@ const UserProfile = () => {
 
 	return (
 		<section className="user-profile">
-			<Navbar edited={edited}/>
+			<Navbar edited={edited} />
 
 			{/* Main Layout */}
 			<div className="profile-layout">
@@ -97,8 +100,8 @@ const UserProfile = () => {
 							<p><strong>Email:</strong> {user.email}</p>
 							<p><strong>Gender:</strong> {user.gender}</p>
 							<p><strong>Date of Birth:</strong> {user.dob ? new Date(user.dob).toLocaleDateString() : "Not available"}</p>
-							<p><strong>Bio:</strong> {user.bio}</p>
 							<p><strong>Preferred Language:</strong> {user.gotoLanguage || "Not specified"}</p>
+							<p><strong>Bio:</strong> {user.bio}</p>
 						</div>
 					</div>
 					<button className="edit-btn" onClick={() => setShowEdit(true)}>
@@ -113,9 +116,15 @@ const UserProfile = () => {
 					{/* Mail Component Button */}
 					{showMail && <EditMail onClose={() => setShowMail(false)} />}
 					<div className="top-buttons">
-						<button className="mail-btn" onClick={() => setShowMail(true)}>
-							<img src={email} alt="Mail" />
-						</button>
+						<div className="left-btns">
+							<button className="frnds-btn" onClick={() => setShowFrnd(true)}>
+								<img src={frnds} alt="Edit Friends" />
+								Manage Friends
+							</button>
+							<button className="mail-btn" onClick={() => setShowMail(true)}>
+								<img src={email} alt="Mail" />
+							</button>
+						</div>
 						<button className="logout-btn" onClick={handleLogout}>
 							<img src={log} alt="LogOut" />
 						</button>
@@ -123,9 +132,16 @@ const UserProfile = () => {
 
 
 					{/* Top Section: Friends and Requests */}
-					<div className="friends-info">
-						<p><strong>Friends:</strong> {user.friends.length || 0}</p>
-						<p><strong>Friend Requests:</strong> {user.friendRequests.length || 0}</p>
+					{showFrnd && <EditFrnd onClose={() => setShowFrnd(false)} user={user} />}
+					<div className="friends-info-container">
+						<div className="friends-info-box">
+							<h4>Friends</h4>
+							<p className="friends-count">{user.friends.length || 0}</p>
+						</div>
+						<div className="friends-info-box">
+							<h4>Friend Requests</h4>
+							<p className="requests-count">{user.friendRequests.length || 0}</p>
+						</div>
 					</div>
 
 					{/* Bottom Section: Achievements */}

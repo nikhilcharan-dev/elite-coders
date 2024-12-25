@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #F6F4F0, #4DA1A9);
+    background: linear-gradient(135deg, #FDCB82, #D14B87);
 }
 
 .register-page {
@@ -23,7 +23,6 @@
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
-    background: linear-gradient(135deg, #4DA1A9, #F6F4F0);
 }
 
 .register-page > h1 {
@@ -31,12 +30,12 @@
     font-size: 2.2rem;
     font-weight: bold;
     color: #2E5077;
-    border-bottom: 1px solid #4B8A8D;
+    border-bottom: 1px solid #ffffff;
     padding-bottom: 10px;
 }
 
 .register-page:hover {
-    border-color: #4DA1A9;
+    border-color: #D14B87;
     transform: scale(1.02);
 }
 

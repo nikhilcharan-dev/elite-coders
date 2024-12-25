@@ -79,6 +79,7 @@ function RegisterPage() {
                 <form className="credentials" onSubmit={handleRegister}>
                     {error && <p className="error-message">{error}</p>}
                     <label>
+                        <span>Username</span>
                         <input
                             type="text"
                             placeholder="Enter your Username"
@@ -89,6 +90,7 @@ function RegisterPage() {
                         />
                     </label>
                     <label>
+                        <span>Email</span>
                         <input
                             type="text"
                             placeholder="Enter your E-mail"
@@ -99,6 +101,7 @@ function RegisterPage() {
                         />
                     </label>
                     <label>
+                        <span>Password</span>
                         <input
                             type="password"
                             placeholder="Enter your Password"

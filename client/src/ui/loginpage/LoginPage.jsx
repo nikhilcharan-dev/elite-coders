@@ -12,6 +12,7 @@ function LoginPage() {
     const [error, setError] = useState("");
     const [popup, setPopup] = useState(false);
     const [profilePage, setProfilePage] = useState("");
+    const [errPass, setErrPass] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -43,6 +44,9 @@ function LoginPage() {
             setProfilePage(`/user/id=${res.data.userData._id}`);
         } catch(err) {
             setError(err.response.data.message);
+            if(error === 'Invalid credentials') {
+                setErrPass(true);
+            }
         }
     };
     
@@ -69,6 +73,7 @@ function LoginPage() {
                 <form className="credentials" onSubmit={handleLogin}>
                     {error && <p className="error-message">{error}</p>}
                     <label>
+                        <span>Username or E-mail</span>
                         <input
                             type="text"
                             placeholder="Enter your Username or E-mail"
@@ -79,6 +84,7 @@ function LoginPage() {
                         />
                     </label>
                     <label>
+                        <span>Password</span>
                         <input
                             type="password"
                             placeholder="Enter your Password"
@@ -88,10 +94,8 @@ function LoginPage() {
                             aria-label="Password"
                         />
                     </label>
-                    <a href="/" className="forgot-password-link">
-                        Forgot your password?
-                    </a>
                     <div className="btns">
+                        { errPass && <a href="/" className="forgot-password-link">Forgot your password?</a> }
                         <button 
                             type="submit" 
                             className="login-btn"

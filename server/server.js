@@ -6,6 +6,7 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
 import topicRoutes from './routes/topics.js'
 import quoteRoutes from './routes/quotes.js';
+import friendRoutes from './routes/friends.js';
 import infoRoutes from './routes/credentials.js';
 import questionRoutes from './routes/questions.js';
 import cheatsheetRouter from './routes/cheatsheet.js';
@@ -37,8 +38,10 @@ app.use('/api/random', quoteRoutes);
 app.use('/api/users', infoRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/topics', topicRoutes);
+app.use('/api/friends', friendRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/cheatsheets', cheatsheetRouter);
+
 
 app.listen(PORT, () => {
     console.log(`Server is running at Port: http://localhost:${PORT}`);

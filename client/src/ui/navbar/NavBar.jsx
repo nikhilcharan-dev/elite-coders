@@ -47,7 +47,9 @@ const NavBar = ({ edited }) => {
     return (
         <nav>
             <div className="logo">
-                <img id="logo" src={elite} alt="logo" />
+                <a href="/">
+                    <img id="logo" src={elite} alt="logo" />
+                </a>
                 <h1>Elite Coders</h1>
             </div>
             <ul>
@@ -64,7 +66,7 @@ const NavBar = ({ edited }) => {
                     <Link to="/compete">Compete</Link>
                 </li>
                 <li>
-                    <Link to="/">Resources</Link>
+                    <Link to="/social">Social</Link>
                 </li>
                 <li>
                     <Link to={isLoggedIn ? profilePage : loginPage}>

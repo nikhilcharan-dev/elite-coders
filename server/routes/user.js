@@ -1,11 +1,22 @@
 import express from 'express';
 import User from '../models/user.js';
+import mongoose from 'mongoose';
 
 const router = express.Router();
 
+// Middleware to check if ObjectId is valid
+const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
+
 router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+
+    // Validate ObjectId
+    if (!isValidObjectId(id)) {
+        return res.status(400).send('Invalid ObjectId format');
+    }
+
     try {
-        const user = await User.findById(req.params.id).exec();
+        const user = await User.findById(id).exec();
         
         if (!user) {
             return res.status(404).send('User not found');
@@ -19,15 +30,19 @@ router.get('/:id', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
+    const { id } = req.params;
     const { username, email, dob, gender, bio, gotoLanguage } = req.body;
 
+    // Validate ObjectId
+    if (!isValidObjectId(id)) {
+        return res.status(400).send('Invalid ObjectId format');
+    }
+
     try {
-        let user = await User.findById(req.params.id);
+        let user = await User.findById(id);
         if (!user) {
             return res.status(404).json({ msg: 'User not found' });
         }
-
-        console.log('User:', user);
 
         user.username = username || user.username;
         user.email = email || user.email;
@@ -46,8 +61,15 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+
+    // Validate ObjectId
+    if (!isValidObjectId(id)) {
+        return res.status(400).send('Invalid ObjectId format');
+    }
+
     try {
-        const user = await User.findById(req.params.id);
+        const user = await User.findById(id);
         if (!user) {
             return res.status(404).json({ msg: 'User not found' });
         }

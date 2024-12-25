@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #F6F4F0, #4DA1A9);
+    background: linear-gradient(135deg, #48C9B0, #1F3A57);
 }
 
 .login-page {
@@ -19,11 +19,10 @@
     width: 90%;
     max-width: 400px;
     text-align: center;
-    border: 2px solid #ccc;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
-    background: linear-gradient(135deg, #4DA1A9, #F6F4F0);
+    background: radial-gradient(circle, #48C9B0, #1F3A57);
 }
 
 .login-page > h1 {
@@ -31,14 +30,13 @@
     font-size: 2.2rem;
     font-weight: bold;
     color: #2E5077;
-    border-bottom: 1px solid #4B8A8D;
+    border-bottom: 1px solid #ffffff;
     padding-bottom: 10px;
 }
 
 
 .login-page:hover {
-    border-color: #4DA1A9;
-    transform: scale(1.02);
+    transform: scale(1.03);
 }
 
 .credentials {
@@ -62,7 +60,7 @@
     border-color: #4DA1A9;
 }
 
-.credentials > a {
+.forgot-password-link {
     color: red;
     margin-left: 10px;
     font-size: 0.9rem;
@@ -110,4 +108,11 @@
     font-size: 0.9rem;
     font-weight: bold;
     padding: 0px;
+}
+
+.credentials > label  {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
 }
