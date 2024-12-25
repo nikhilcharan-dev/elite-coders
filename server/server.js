@@ -4,10 +4,12 @@ import express from 'express';
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
+import topicRoutes from './routes/topics.js'
 import quoteRoutes from './routes/quotes.js';
 import infoRoutes from './routes/credentials.js';
 import questionRoutes from './routes/questions.js';
 import cheatsheetRouter from './routes/cheatsheet.js';
+
 
 
 
@@ -34,6 +36,7 @@ app.use('/api/oauth', authRoutes);
 app.use('/api/random', quoteRoutes);
 app.use('/api/users', infoRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/topics', topicRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/cheatsheets', cheatsheetRouter);
 
