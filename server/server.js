@@ -11,7 +11,7 @@ import infoRoutes from './routes/credentials.js';
 import questionRoutes from './routes/questions.js';
 import cheatsheetRouter from './routes/cheatsheet.js';
 
-
+// .env file config
 dotenv.config();
 
 const app = express();
@@ -32,14 +32,15 @@ const corsOptions = {
     credentials: true,
 };
 
-// Use CORS middleware
+// CORS middleware
 app.use(cors(corsOptions));
 
 // middleware
 app.use(cors());
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '10mb' })); // limiting size
 app.use(express.urlencoded({ limit: '10mb', extended: true })); 
 
+// home
 app.route('/').get((req, res) => {
     const welcome = `
     <h1> Welcome to Backend Server </h1>
@@ -48,6 +49,7 @@ app.route('/').get((req, res) => {
     return res.send(welcome);
 });
 
+// routes
 app.use('/api/oauth', authRoutes);
 app.use('/api/random', quoteRoutes);
 app.use('/api/users', infoRoutes);
@@ -59,6 +61,5 @@ app.use('/api/cheatsheets', cheatsheetRouter);
 
 
 app.listen(PORT, () => {
-    console.log(`Server is running at Port: http://localhost:${PORT}`);
     connectDB();
 });

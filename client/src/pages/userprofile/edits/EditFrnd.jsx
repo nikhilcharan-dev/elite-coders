@@ -14,8 +14,11 @@ const EditFrnd = ({ onClose, user }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const friendData = await axios.get(`${BASE_URL}/api/friends/`, { } ,{ headers: { Authorization: `Bearer ${token}` } });
-                console.log(token);
+                const friendData = await axios.get(`${BASE_URL}/api/friends`, {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
                 const friendRequestData = await axios.get(`${BASE_URL}/api/friends/friend-requests`, {
                     headers: {
                         "Authorization": `Bearer ${token}`
@@ -40,7 +43,11 @@ const EditFrnd = ({ onClose, user }) => {
 
     const handleSendFriendRequest = async (username) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/friends/send-request/${username}`, { user }, { headers: { Authorization: `Bearer ${token}` } });
+            const response = await axios.post(`${BASE_URL}/api/friends/send-request/${username}`,  {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
             alert(response.data.message);
         } catch (error) {
             console.error("Error sending friend request:", error);
@@ -50,7 +57,11 @@ const EditFrnd = ({ onClose, user }) => {
 
     const handleAcceptRequest = async (username) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/friends/accept-request/${username}`, { user }, { headers: { Authorization: `Bearer ${token}` } });
+            const response = await axios.post(`${BASE_URL}/api/friends/accept-request/${username}`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
             setFriendRequests(friendRequests.filter(req => req.user.username !== username));
             setFriends([...friends, { username }]);
             alert(response.data.message);
@@ -62,7 +73,11 @@ const EditFrnd = ({ onClose, user }) => {
 
     const handleRejectRequest = async (username) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/friends/reject-request/${username}`, { user }, { headers: { Authorization: `Bearer ${token}` } });
+            const response = await axios.post(`${BASE_URL}/api/friends/reject-request/${username}`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
             setFriendRequests(friendRequests.filter(req => req.user.username !== username));
             alert(response.data.message);
         } catch (error) {
@@ -73,7 +88,11 @@ const EditFrnd = ({ onClose, user }) => {
 
     const handleRemoveFriend = async (username) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/friends/remove-friend/${username}`, {}, { headers: { Authorization: `Bearer ${token}` } });
+            const response = await axios.post(`${BASE_URL}/api/friends/remove-friend/${username}`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
             setFriends(friends.filter(friend => friend.username !== username));
             alert(response.data.message);
         } catch (error) {

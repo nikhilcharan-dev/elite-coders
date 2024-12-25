@@ -3,17 +3,16 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { DayProvider } from './ui/daycontext/DayContext';
 
 import Home from './pages/home/Home';
-import Learn from './pages/learn/Learn';
 import Spinner from './pages/spinner/Spinner';
 import Compete from './pages/compete/Compete';
 import LoginPage from "./ui/loginpage/LoginPage";
-import Practice from './pages/practise/Practise';
-import CheatSheet from './pages/cspage/CheatSheet';
 import Adventurer from './pages/adventurer/Adventurer';
 import UserProfile from './pages/userprofile/UserProfile';
 import RegisterPage from "./ui/registerpage/RegisterPage";
-import CheatSheetDetail from './pages/cspage/CheatSheetDetail';
-import ProfilePhotoUpload from './pages/demo/ProfilePhotUpload';
+const CheatSheetDetail = React.lazy(() => import('./pages/cspage/CheatSheetDetail'))
+const Learn = React.lazy(() => import('./pages/learn/Learn'));
+const Practice = React.lazy(() => import('./pages/practise/Practise'));
+const CheatSheet = React.lazy(() => import('./pages/cspage/CheatSheet'));
 
 // testing components
 import PopTest from './pages/demo/PopTest';
@@ -34,7 +33,6 @@ const routes = [
 
 	{ path: '*', element: <Adventurer /> },
 	{ path: '/test', element: <PopTest /> },
-	{ path: '/photo', element: <ProfilePhotoUpload /> }
 ];
 
 function App() {
