@@ -15,7 +15,6 @@ const NavBar = ({ edited }) => {
     const isLoggedIn = localStorage.getItem('token') ? true : false;
 
     let userData = JSON.parse(localStorage.getItem('userData')) || {};
-    console.log(userData);
 
     var profileImage = userData.profilePhoto ||
                 (userData.gender === 'Male' ? boy :

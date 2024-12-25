@@ -36,7 +36,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // middleware
-app.use(cors());
+// app.use(cors());
 app.use(express.json({ limit: '10mb' })); // limiting size
 app.use(express.urlencoded({ limit: '10mb', extended: true })); 
 

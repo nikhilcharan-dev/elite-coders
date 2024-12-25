@@ -6,7 +6,6 @@ const EditFrnd = ({ onClose, user }) => {
     const [friends, setFriends] = useState([]);
     const [friendRequests, setFriendRequests] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [searchQuery, setSearchQuery] = useState('');
     const BASE_URL = import.meta.env.VITE_BASE_URL;
 
     const token = localStorage.getItem('token');
@@ -15,16 +14,12 @@ const EditFrnd = ({ onClose, user }) => {
         const fetchData = async () => {
             try {
                 const friendData = await axios.get(`${BASE_URL}/api/friends`, {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
+                    headers: { Authorization: `Bearer ${token}` },
                 });
                 const friendRequestData = await axios.get(`${BASE_URL}/api/friends/friend-requests`, {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
+                    headers: { Authorization: `Bearer ${token}` },
                 });
-                
+
                 setFriends(friendData.data.friends);
                 setFriendRequests(friendRequestData.data.receivedRequests);
                 setLoading(false);
@@ -37,30 +32,10 @@ const EditFrnd = ({ onClose, user }) => {
         fetchData();
     }, [user]);
 
-    const handleSearchChange = (e) => {
-        setSearchQuery(e.target.value);
-    };
-
-    const handleSendFriendRequest = async (username) => {
-        try {
-            const response = await axios.post(`${BASE_URL}/api/friends/send-request/${username}`,  {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            });
-            alert(response.data.message);
-        } catch (error) {
-            console.error("Error sending friend request:", error);
-            alert('Error sending friend request');
-        }
-    };
-
     const handleAcceptRequest = async (username) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/friends/accept-request/${username}`, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+            const response = await axios.post(`${BASE_URL}/api/friends/accept-request/${username}`, null, {
+                headers: { Authorization: `Bearer ${token}` },
             });
             setFriendRequests(friendRequests.filter(req => req.user.username !== username));
             setFriends([...friends, { username }]);
@@ -73,10 +48,8 @@ const EditFrnd = ({ onClose, user }) => {
 
     const handleRejectRequest = async (username) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/friends/reject-request/${username}`, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+            const response = await axios.post(`${BASE_URL}/api/friends/reject-request/${username}`, null, {
+                headers: { Authorization: `Bearer ${token}` },
             });
             setFriendRequests(friendRequests.filter(req => req.user.username !== username));
             alert(response.data.message);
@@ -88,10 +61,8 @@ const EditFrnd = ({ onClose, user }) => {
 
     const handleRemoveFriend = async (username) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/friends/remove-friend/${username}`, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+            const response = await axios.post(`${BASE_URL}/api/friends/remove-friend/${username}`, null, {
+                headers: { Authorization: `Bearer ${token}` },
             });
             setFriends(friends.filter(friend => friend.username !== username));
             alert(response.data.message);
@@ -114,21 +85,6 @@ const EditFrnd = ({ onClose, user }) => {
         <div className="modal-overlay">
             <div className="modal-content">
                 <h3>Manage Friends</h3>
-
-                {/* Search bar for sending friend requests */}
-                <div className="search-friends">
-                    <input
-                        type="text"
-                        placeholder="Search by username..."
-                        value={searchQuery}
-                        onChange={handleSearchChange}
-                    />
-                    {searchQuery && (
-                        <button onClick={() => handleSendFriendRequest(searchQuery)}>
-                            Send Friend Request
-                        </button>
-                    )}
-                </div>
 
                 {/* Friend Requests */}
                 <div className="friend-requests">
