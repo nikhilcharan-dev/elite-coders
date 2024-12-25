@@ -12,13 +12,28 @@ import questionRoutes from './routes/questions.js';
 import cheatsheetRouter from './routes/cheatsheet.js';
 
 
-
-
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// origin whitelist
+const allowedOrigins = ['http://localhost:5173', 'https://elite-coders-nikirus-projects.vercel.app/'];
+
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true,
+};
+
+// Use CORS middleware
+app.use(cors(corsOptions));
 
 // middleware
 app.use(cors());
