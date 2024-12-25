@@ -22,6 +22,7 @@ const allowedOrigins = ['http://localhost:5173', 'https://elite-coders-nikirus-p
 
 const corsOptions = {
     origin: (origin, callback) => {
+        console.log("Origin:", origin);
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
@@ -31,6 +32,7 @@ const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
 };
+
 
 // CORS middleware
 app.use(cors(corsOptions));
