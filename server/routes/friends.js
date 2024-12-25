@@ -16,7 +16,7 @@ const findUserByUsername = async (username) => {
     }
 };
 
-router.get('/friends', authMiddleware, async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
     const currentUserId = req.user.id;
 
     try {

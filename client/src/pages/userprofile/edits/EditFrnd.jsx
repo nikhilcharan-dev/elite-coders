@@ -14,7 +14,7 @@ const EditFrnd = ({ onClose, user }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const friendData = await axios.get(`${BASE_URL}/api/friends/friends`, { } ,{ headers: { Authorization: `Bearer ${user.token}` } });
+                const friendData = await axios.get(`${BASE_URL}/api/friends/`, { } ,{ headers: { Authorization: `Bearer ${user.token}` } });
                 console.log(token);
                 const friendRequestData = await axios.get(`${BASE_URL}/api/friends/friend-requests`, {
                     headers: {
