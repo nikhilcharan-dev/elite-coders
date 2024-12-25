@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import Edit from "./Edit";
-import Mail from "./Mail";
+import EditUser from "./edits/EditUser";
+import EditMail from "./edits/EditMail";
 import Navbar from "../../ui/navbar/NavBar";
 import Spinner from "../spinner/Spinner";
 
@@ -103,14 +103,14 @@ const UserProfile = () => {
 					<button className="edit-btn" onClick={() => setShowEdit(true)}>
 						<img src={edit} alt='e' />
 						Edit Profile</button>
-					{showEdit && <Edit onClose={() => setShowEdit(false)} user={user} />}
+					{showEdit && <EditUser onClose={() => setShowEdit(false)} user={user} />}
 				</div>
 
 				{/* Right Section */}
 				<div className="profile-right">
 
 					{/* Mail Component Button */}
-					{showMail && <Mail onClose={() => setShowMail(false)} />}
+					{showMail && <EditMail onClose={() => setShowMail(false)} />}
 					<div className="top-buttons">
 						<button className="mail-btn" onClick={() => setShowMail(true)}>
 							<img src={email} alt="Mail" />

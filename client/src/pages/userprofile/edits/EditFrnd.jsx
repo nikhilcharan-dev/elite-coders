@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-const Edit = ({ onClose, user }) => {
+import './EditFrnd.css';
+
+const EditFrnd = () => {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
@@ -13,4 +15,4 @@ const Edit = ({ onClose, user }) => {
     );
 };
 
-export default Edit;
+export default EditFrnd;

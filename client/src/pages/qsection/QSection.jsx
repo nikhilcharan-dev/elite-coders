@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ThemedButton from '../../ui/button/Button';
+
+import refresh from '../assests/refresh.png';
+
 import './QSection.css';
 
 
-const Questions = ({ loading, setLoading, questions, onRandomQuestion, onRecommendQuestion }) => {
+const Questions = ({ loading, setLoading, questions, handleRefresh, onRandomQuestion, onRecommendQuestion }) => {
     const [user, setUser] = useState({});
     const userId = localStorage.getItem('id');
 
@@ -45,7 +49,10 @@ const Questions = ({ loading, setLoading, questions, onRandomQuestion, onRecomme
             <h3>Questions</h3>
 
             {/* Random Question Button */}
-            <button className="random-btn" onClick={onRandomQuestion}>Get Random Question</button>
+            <div className="buttons">
+                <button className="random-btn" onClick={onRandomQuestion}>Get Random Question</button>
+                <ThemedButton link={refresh} type={'refresh'} onClick={handleRefresh} />
+            </div>
 
             {loading && <div className="loading-spinner"></div>}
 

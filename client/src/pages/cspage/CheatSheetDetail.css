@@ -33,8 +33,13 @@
     margin-top: 0px;
 }
 
+.cheatsheet-detail > p > strong {
+    font-size: 25px;;
+}
+
 .actions {
     display: flex;
     flex-direction: row;
+    height: 40px;
     gap: 20px;
 }

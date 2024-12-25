@@ -2,14 +2,25 @@
 	align-items: center;
 	background-color: white;
 	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 10px rgba(218, 106, 106, 0.1);
 	padding: 20px;
 }
 
 .questions-section h3 {
+	margin: 0;
+	padding: 3px;
+	font-size: 30px;
 	text-align: center;
-	font-size: 24px;
-	margin-bottom: 20px;
+	font-weight: bolder;
+}
+
+.buttons {
+	display: flex;
+	padding: 0px;
+	align-items: center;
+	justify-content: center;
+	margin: 20px 0;
+	gap: 20px;
 }
 
 .random-btn {
@@ -20,7 +31,6 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin: 20px auto;
     display: block;
     transition: background-color 0.3s;
 }

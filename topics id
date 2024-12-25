@@ -1,0 +1,99 @@
+Topics uploaded successfully:
+  1. Variables - ID: 676b196b2a87247d5197c8f3
+  2. Data Types - ID: 676b196b2a87247d5197c8f4
+  3. Operators - ID: 676b196b2a87247d5197c8f5
+  4. Control Flow - ID: 676b196b2a87247d5197c8f6
+  5. Functions - ID: 676b196b2a87247d5197c8f7
+  6. Strings - ID: 676b196b2a87247d5197c8f8
+  7. Recursion - ID: 676b196b2a87247d5197c8f9
+  8. Sorting Algorithms - ID: 676b196b2a87247d5197c8fa
+  9. Binary Search - ID: 676b196b2a87247d5197c8fb
+  10. Stacks - ID: 676b196b2a87247d5197c8fc
+
+
+
+1. Queues - ID: 676b36c63607f18c79693c5b
+  2. Linked Lists - ID: 676b36c63607f18c79693c5c
+  3. Trees - ID: 676b36c63607f18c79693c5d
+  4. Graphs - ID: 676b36c63607f18c79693c5e
+  5. Dynamic Programming - ID: 676b36c63607f18c79693c5f
+  6. Backtracking - ID: 676b36c63607f18c79693c60
+  7. Bit Manipulation - ID: 676b36c63607f18c79693c61
+  8. File Handling - ID: 676b36c63607f18c79693c62
+  9. OOP (Object-Oriented Programming) - ID: 676b36c63607f18c79693c63
+  10. Multithreading - ID: 676b36c63607f18c79693c64
+  11. Lambda Functions - ID: 676b36c63607f18c79693c65
+  12. Regular Expressions - ID: 676b36c63607f18c79693c66
+  13. Dijkstra's Algorithm - ID: 676b36c63607f18c79693c67
+  14. Kruskal's Algorithm - ID: 676b36c63607f18c79693c68
+  15. Merge Sort - ID: 676b36c63607f18c79693c69
+  16. Quick Sort - ID: 676b36c63607f18c79693c6a
+  17. Binary Search - ID: 676b36c63607f18c79693c6b
+  18. Knuth-Morris-Pratt (KMP) - ID: 676b36c63607f18c79693c6c
+  19. Rabin-Karp Algorithm - ID: 676b36c63607f18c79693c6d
+  20. Z algorithm - ID: 676b36c63607f18c79693c6e
+  21. Counting Sort - ID: 676b36c63607f18c79693c6f
+  22. Sieve of Eratosthenes - ID: 676b36c63607f18c79693c70
+  23. Matrix Exponentiation - ID: 676b36c63607f18c79693c71
+  24. Dinic's Algorithm - ID: 676b36c63607f18c79693c72
+  25. Segment Tree - ID: 676b36c63607f18c79693c73
+  26. Disjoint Set - ID: 676b36c63607f18c79693c74
+  27. Trie - ID: 676b36c63607f18c79693c75
+  28. Prefix & Suffix Array - ID: 676b36c63607f18c79693c76
+  29. Hash Tables - ID: 676b36c63607f18c79693c77
+  30. Pointers and References - ID: 676b36c63607f18c79693c78
+  31. Version Control (Git) - ID: 676b36c63607f18c79693c79
+  32. Arrays - ID: 676b36c63607f18c79693c7a
+  33. Exceptions - ID: 676b36c63607f18c79693c7b
+  34. Debugging - ID: 676b36c63607f18c79693c7c
+  35. BST - ID: 676b36c63607f18c79693c7d
+  36. Generic Trees - ID: 676b36c63607f18c79693c7e
+  37. Bubble Sort - ID: 676b36c63607f18c79693c7f
+  38. Big O Notation - ID: 676b36c63607f18c79693c80
+  39. Space Complexity - ID: 676b36c63607f18c79693c81
+  40. Database - ID: 676b36c63607f18c79693c82
+  41. NoSQL - ID: 676b36c63607f18c79693c83
+  42. HTML5 & CSS - ID: 676b36c63607f18c79693c84
+  43. CSR vs SSR - ID: 676b36c63607f18c79693c85
+  44. React JS - ID: 676b36c63607f18c79693c86
+  45. Vite React - ID: 676b36c63607f18c79693c87
+  46. Node.js - ID: 676b36c63607f18c79693c88
+  47. Express.js - ID: 676b36c63607f18c79693c89
+  48. RESTful APIs - ID: 676b36c63607f18c79693c8a
+  49. Greedy Algorithms - ID: 676b36c63607f18c79693c8b
+  50. Divide and Conquer - ID: 676b36c63607f18c79693c8c
+  51. Modular Arithmetic - ID: 676b36c63607f18c79693c8d
+  52. Sliding Window - ID: 676b36c63607f18c79693c8e
+  53. Two Pointers Technique - ID: 676b36c63607f18c79693c8f
+  54. Topological Sorting - ID: 676b36c63607f18c79693c90
+  55. Game Theory - ID: 676b36c63607f18c79693c91
+  56. Number Theory - ID: 676b36c63607f18c79693c92
+  57. Kadanes Algorithm - ID: 676b36c63607f18c79693c93
+  58. N-Queens - ID: 676b36c63607f18c79693c94
+  59. DP on Trees - ID: 676b36c63607f18c79693c95
+  60. Euler Tour Technique - ID: 676b36c63607f18c79693c96
+  61. Binary Search (on Answer) - ID: 676b36c63607f18c79693c97
+  62. A* - ID: 676b36c63607f18c79693c98
+  63. Binary Lifting - ID: 676b36c63607f18c79693c99
+  64. Dynamic Connectivity - ID: 676b36c63607f18c79693c9a
+  65. Prime Factorization - ID: 676b36c63607f18c79693c9b
+  66. Boyer-Moore Algorithm - ID: 676b36c63607f18c79693c9c
+  67. Boyer-Moore Majority Voting Algorithm - ID: 676b36c63607f18c79693c9d
+  68. Chinese Remainder Theorem - ID: 676b36c63607f18c79693c9e
+  69. Sqrt Decomposition - ID: 676b36c63607f18c79693c9f
+  70. Link/Cut Tree - ID: 676b36c63607f18c79693ca0
+  71. Hungarian Algorithm - ID: 676b36c63607f18c79693ca1
+  72. Dantzig's Simplex Algorithm - ID: 676b36c63607f18c79693ca2
+  73. Centroid Decomposition - ID: 676b36c63607f18c79693ca3
+  74. Persistent Data Structures - ID: 676b36c63607f18c79693ca4
+  75. Fenwick Tree - ID: 676b36c63607f18c79693ca5
+  76. Min-Cost Max Flow - ID: 676b36c63607f18c79693ca6
+  77. Treap (Tree + Heap) - ID: 676b36c63607f18c79693ca7
+  78. Li Chao Tree - ID: 676b36c63607f18c79693ca8
+  79. Dual Segment Tree - ID: 676b36c63607f18c79693ca9
+  80. Katz Algorithm for Tree Diameter - ID: 676b36c63607f18c79693caa
+  81. Suffix Automaton - ID: 676b36c63607f18c79693cab
+  82. Fermat’s Little Theorem - ID: 676b36c63607f18c79693cac
+  83. Möbius Inversion - ID: 676b36c63607f18c79693cad
+  84. Advanced Sieve Techniques - ID: 676b36c63607f18c79693cae
+  85. Euler's Totient Function (phi function) - ID: 676b36c63607f18c79693caf

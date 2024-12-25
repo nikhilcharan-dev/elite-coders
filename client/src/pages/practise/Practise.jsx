@@ -42,6 +42,10 @@ const Practice = () => {
         setLoading(false);
     };
 
+    const handleRefresh = () => {
+        setQuestions(allQuestions);
+    }
+
     const handleRandomQuestion = () => {
         const randomQuestion = allQuestions[Math.floor(Math.random() * allQuestions.length)];
         setQuestions([randomQuestion]);
@@ -60,6 +64,7 @@ const Practice = () => {
                 loading={loading}
                 setLoading={setLoading}
                 questions={questions}
+                handleRefresh={handleRefresh}
                 onRandomQuestion={handleRandomQuestion}
                 onRecommendQuestion={handleRecommendQuestion}
             />

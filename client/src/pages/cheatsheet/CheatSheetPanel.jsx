@@ -6,16 +6,16 @@ import './CheatSheetPanel.css';
 
 const cheatsheets = [
 	{
-		id: '67681a3b36178cfa62acc18e',
-		profilePhoto: 'https://example.com/photo1.jpg',
-		name: 'Dynamic Programming Cheatsheet',
-		quote: 'Master the art of breaking problems into subproblems.',
-	},
-	{
 		id: 2,
 		profilePhoto: 'https://example.com/photo2.jpg',
 		name: 'Graph Theory Cheatsheet',
 		quote: 'Graphs are everywhere. Master them here.',
+	},
+	{
+		id: '67681a3b36178cfa62acc18e',
+		profilePhoto: 'https://example.com/photo1.jpg',
+		name: 'Dynamic Programming Cheatsheet',
+		quote: 'Master the art of breaking problems into subproblems.',
 	},
 	{
 		id: 3,

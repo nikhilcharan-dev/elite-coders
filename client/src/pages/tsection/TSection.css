@@ -1,0 +1,173 @@
+.questions-section {
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    perspective: 1000px;
+}
+
+.questions-section h3 {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    color: #4B8A8D;
+    padding: 30px;
+}
+
+.questions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.Tquestion-card {
+    background: linear-gradient(135deg, #A1D8F1, #D3A9F7);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.Tquestion-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.Tquestion-card h4 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rcd-btn {
+    background-color: #4ecdc4;
+    color: white;
+    padding: 8px 16px;
+    width: 100%;
+    align-self: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.rcd-btn,
+.gfg-btn,
+.yt-btn {
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.rcd-btn:hover {
+    background-color: #3bafa3;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    margin: 10px;
+    height: 50px;
+    width: 50px;
+    border: 8px solid transparent;
+    border-top: 9px solid #4ecdc4;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.link-btns {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.gfg-btn, .yt-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    all: unset;
+}
+
+.gfg-btn {
+    color: white;
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.gfg-btn > a > img {
+    height: 30px;
+    width: 30px;
+
+    border-radius: 3px;
+    background-color: white;
+}
+
+.yt-btn {
+    height: 20px;
+    width: 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.yt-btn > a > img {
+    height: 30px;
+    width: 30px;
+
+    border-radius: 3px;
+    background-color: white;
+}
+
+.gfg-btn > a > img,
+.yt-btn > a > img {
+    transition: transform 0.3s ease;
+}
+
+.gfg-btn > a > img:hover {
+    transform: translateY(-5px) scale(1.105);
+    background-color: rgb(19, 140, 19);
+}
+
+.yt-btn > a > img:hover {
+    transform: translateY(-5px) scale(1.105);
+    background-color: red;
+}
+
+.gfg-btn > a > img:active,
+.yt-btn > a > img:active {
+    transform: translateY(-5px) scale(1.05);
+}

@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-const Mail = ({ onClose }) => {
+import './EditMail.css';
+
+const EditMail = ({ onClose }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
@@ -13,4 +15,4 @@ const Mail = ({ onClose }) => {
     );
 };
 
-export default Mail;
+export default EditMail;

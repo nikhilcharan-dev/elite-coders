@@ -10,7 +10,6 @@ import dislike from '../assests/dislike.png';
 import liked from '../assests/liked.png';
 import disliked from '../assests/disliked.png';
 import home from '../assests/home.png';
-import refresh from '../assests/refresh.png';
 
 import './CheatSheetDetail.css';
 
@@ -23,8 +22,8 @@ const CheatSheetDetail = () => {
     const [loading, setLoading] = useState(false);
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
-    const [isLiked, setIsLiked] = useState(false);  // Track like state
-    const [isDisliked, setIsDisliked] = useState(false);  // Track dislike state
+    const [isLiked, setIsLiked] = useState(false);
+    const [isDisliked, setIsDisliked] = useState(false);
 
     useEffect(() => {
         const fetchCheatsheet = async () => {
@@ -102,7 +101,6 @@ const CheatSheetDetail = () => {
             <p><strong>Quote:</strong> {cheatsheet.quote}</p>
             <div className="actions">
                 <ThemedButton link={home} onClick={() => navigate('/')} />
-                <ThemedButton link={refresh} type={'refresh'} onClick={handleRefresh} />
                 <ThemedButton 
                     link={isLiked ? liked : like} 
                     count={likes} 
