@@ -16,7 +16,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
         dob: user?.dob || '',
         gender: user?.gender || 'Other',
         language: user?.language || 'Assembly',
-        bio: (user.bio === 'Elite Coder') ? "Tell us something about yourself Elite Coder..." : user.bio,
+        bio: user.bio,
     });
 
     useEffect(() => {
