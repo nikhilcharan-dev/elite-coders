@@ -27,6 +27,8 @@ router.put('/:id', async (req, res) => {
             return res.status(404).json({ msg: 'User not found' });
         }
 
+        console.log('User:', user);
+
         user.username = username || user.username;
         user.email = email || user.email;
         user.dob = dob || user.dob;

@@ -22,6 +22,7 @@ const UserProfile = () => {
 	const [loading, setLoading] = useState(true);
 	const [showEdit, setShowEdit] = useState(false);
 	const [showMail, setShowMail] = useState(false);
+	const [edited, setEdited] = useState(false);
 	
 	const navigate = useNavigate();
 	const userId = localStorage.getItem("id");
@@ -42,7 +43,7 @@ const UserProfile = () => {
 		if (userId) {
 			fetchUserData();
 		}
-	}, [userId]);
+	}, [userId, edited]);
 
 	let profileImage = def;
 	if (user) {
@@ -68,7 +69,7 @@ const UserProfile = () => {
 
 	return (
 		<section className="user-profile">
-			<Navbar />
+			<Navbar edited={edited}/>
 
 			{/* Main Layout */}
 			<div className="profile-layout">
@@ -103,7 +104,7 @@ const UserProfile = () => {
 					<button className="edit-btn" onClick={() => setShowEdit(true)}>
 						<img src={edit} alt='e' />
 						Edit Profile</button>
-					{showEdit && <EditUser onClose={() => setShowEdit(false)} user={user} />}
+					{showEdit && <EditUser onClose={() => setShowEdit(false)} user={user} onEdit={() => setEdited(!edited)} />}
 				</div>
 
 				{/* Right Section */}

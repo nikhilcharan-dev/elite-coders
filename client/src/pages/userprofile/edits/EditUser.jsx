@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import './EditUser.css';
 
-const EditUser = ({ onClose, user }) => {
+const EditUser = ({ onClose, user, onEdit }) => {
     const [profilePhoto, setProfilePhoto] = useState(user.profilePhoto || '');
     const [file, setFile] = useState(null);
     const [formData, setFormData] = useState({
@@ -40,7 +40,10 @@ const EditUser = ({ onClose, user }) => {
                 `${import.meta.env.VITE_BASE_URL}/api/users/uploadProfilePhoto`,
                 { userId: user._id, profilePhoto: base64Image }
             );
-
+            localStorage.setItem('userData', JSON.stringify(response.data));
+            alert('Profile photo uploaded successfully');
+            onEdit();
+            onClose();
             setProfilePhoto(response.data.profilePhoto);
         } catch (error) {
             console.error('Error uploading profile photo:', error);
@@ -65,8 +68,9 @@ const EditUser = ({ onClose, user }) => {
         e.preventDefault();
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = await axios.put(`${BASE_URL}/api/users/${user.id}`, formData);
-            alert(`User updated successfully: ${res.data.message}`);
+            const res = await axios.put(`${BASE_URL}/api/users/${user._id}`, formData);
+            alert(`User updated successfully`);
+            onEdit();
             onClose();
         } catch (error) {
             console.error('Error updating user:', error);

@@ -9,7 +9,7 @@ import girl from '../img/default-girl.jpg';
 
 import './NavBar.css';
 
-function NavBar() {
+const NavBar = ({ edited }) => {
     const loginPage = '/login';
     const navigate = useNavigate();
     const isLoggedIn = localStorage.getItem('token') ? true : false;
@@ -23,7 +23,14 @@ function NavBar() {
                         userData.gender === 'Other' ? def : user);
     
     let profilePage = isLoggedIn? `/user/id=${localStorage.getItem('id')}` : loginPage;
-
+    
+    useEffect(() => {
+        userData = JSON.parse(localStorage.getItem('userData')) || {};
+        profileImage = userData.profilePhoto ||
+                (userData.gender === 'Male' ? boy :
+                    userData.gender === 'Female' ? girl : 
+                        userData.gender === 'Other' ? def : user);
+    }, [edited]);
 
     useEffect(() => {
         if(!isLoggedIn) {
