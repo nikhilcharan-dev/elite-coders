@@ -65,11 +65,6 @@ app.use('/api/friends', friendRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/cheatsheets', cheatsheetRouter);
 
-app.use('*', (req, res) => {
-    return res.status(404).json({ message: 'Route not found' });
-});
-
-
 app.listen(PORT, () => {
     connectDB();
 });
