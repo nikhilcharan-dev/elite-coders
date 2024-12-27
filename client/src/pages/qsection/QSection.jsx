@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from '@api';
 import ThemedButton from '../../ui/button/Button';
 
 import refresh from '../assests/refresh.png';
@@ -14,9 +14,7 @@ const Questions = ({ loading, setLoading, questions, handleRefresh, onRandomQues
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const BASE_URL = import.meta.env.VITE_BASE_URL;
-                const res = await axios.get(`${BASE_URL}/api/users/${userId}`);
-                console.log(`${BASE_URL}/api/users/${userId}`)
+                const res = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/users/${userId}`);
                 setUser(res.data);
             } catch (error) {
                 console.error("Error fetching user:", error);
@@ -30,8 +28,7 @@ const Questions = ({ loading, setLoading, questions, handleRefresh, onRandomQues
     const handleSolve = async (question) => {
         setLoading(true);
         try {
-            const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = await axios.post(`${BASE_URL}/api/questions/solve`, {
+            const res = await Axios.post(`${import.meta.env.VITE_BASE_URL}/api/questions/solve`, {
                 userId,
                 questionId: question._id,
             });

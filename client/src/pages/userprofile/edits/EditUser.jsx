@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import Axios from '@api';
 
 import edit from '../../assests/photo-edit.png'
 
@@ -31,7 +31,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
-        if (selectedFile && selectedFile.size <= 10 * 1024 * 1024) { // Max size 10MB
+        if (selectedFile && selectedFile.size <= 10 * 1024 * 1024) { // Max size 10MB set in backend
             setFile(selectedFile);
         } else {
             alert('File size exceeds 10MB. Please upload a smaller file.');
@@ -46,7 +46,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
 
         try {
             const base64Image = await convertFileToBase64(file);
-            const response = await axios.post(
+            const response = await Axios.post(
                 `${import.meta.env.VITE_BASE_URL}/api/users/uploadProfilePhoto`,
                 { userId: user._id, profilePhoto: base64Image }
             );
@@ -78,7 +78,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
         e.preventDefault();
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = await axios.put(`${BASE_URL}/api/users/${user._id}`, formData);
+            const res = await Axios.put(`${BASE_URL}/api/users/${user._id}`, formData);
             alert(`User updated successfully`);
             onEdit();
             onClose();
@@ -92,7 +92,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
         if (!window.confirm('Are you sure you want to delete this user?')) return;
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            await axios.delete(`${BASE_URL}/api/users/${user.id}`);
+            await Axios.delete(`${BASE_URL}/api/users/${user.id}`);
             alert('User deleted successfully');
             onClose();
         } catch (error) {

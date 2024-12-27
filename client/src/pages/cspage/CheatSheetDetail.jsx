@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import Axios from '@api';
 import { useParams, useNavigate } from 'react-router-dom';
 import Spinner from '../spinner/Spinner';
 import Questions from '../qsection/QSection';
@@ -29,11 +29,11 @@ const CheatSheetDetail = () => {
         const fetchCheatsheet = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${name}`);
+                const response = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${name}`);
                 setCheatsheet(response.data);
 
                 const ids = response.data.questions;
-                const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/questions/filter/byIds`, { ids });
+                const res = await Axios.post(`${import.meta.env.VITE_BASE_URL}/api/questions/filter/byIds`, { ids });
                 localStorage.setItem('questions', JSON.stringify(res.data));
                 setQuestions(res.data);
                 setLikes(response.data.likes);
@@ -49,7 +49,7 @@ const CheatSheetDetail = () => {
 
     const handleLike = async () => {
         try {
-            const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${cheatsheet._id}/like`, { userId });
+            const res = await Axios.post(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${cheatsheet._id}/like`, { userId });
             setLikes(res.data.likes);
             setIsLiked(true);
             setIsDisliked(false);
@@ -60,7 +60,7 @@ const CheatSheetDetail = () => {
 
     const handleDislike = async () => {
         try {
-            const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${cheatsheet._id}/dislike`, { userId });
+            const res = await Axios.post(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${cheatsheet._id}/dislike`, { userId });
             setDislikes(res.data.dislikes);
             setIsLiked(false); // Like should be reset if disliked
             setIsDisliked(true);

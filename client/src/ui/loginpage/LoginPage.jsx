@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import Axios from "@api";
 
 import Popup from "../../pages/popup/Popup";
 
@@ -14,6 +14,15 @@ function LoginPage() {
     const [profilePage, setProfilePage] = useState("");
     const [errPass, setErrPass] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleLogin = () => {
+            if(localStorage.getItem("token")) {
+                navigate(`/user/id=${localStorage.getItem("id")}`);
+            }
+        }
+        handleLogin();
+    }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -31,7 +40,7 @@ function LoginPage() {
         
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = await axios.post(`${BASE_URL}/api/oauth/login`, {
+            const res = await Axios.post(`${BASE_URL}/api/oauth/login`, {
                 usernameOrEmail: user,
                 password: password
             });

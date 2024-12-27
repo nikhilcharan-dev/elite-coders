@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import Axios from "@api";
 
 import EditUser from "./edits/EditUser";
 import EditMail from "./edits/EditMail";
@@ -32,9 +32,9 @@ const UserProfile = () => {
 
 	useEffect(() => {
 		const fetchUserData = async () => {
+			setLoading(true);
 			try {
-				const BASE_URL = import.meta.env.VITE_BASE_URL;
-				const response = await axios.get(`${BASE_URL}/api/users/${userId}`);
+				const response = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/users/${userId}`);
 				setUser(response.data);
 				setLoading(false);
 			} catch (error) {

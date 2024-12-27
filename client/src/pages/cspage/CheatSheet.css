@@ -4,9 +4,21 @@
 }
 
 .page {
+	top: 0;
+    left: 0;
     height: 100vh;
-    min-height: fit-content;
     width: 100%;
+    min-height: fit-content;
+	background: linear-gradient(135deg, #F6F4F0, #4DA1A9);
+}
+
+.page > h2 {
+	top: 0;
+    left: 0;
+	font-size: 2rem;
+	color: #333;
+	text-align: center;
+	padding: 20px 0;
 }
 
 .cheatsheet-cards {
@@ -27,6 +39,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-between;
 	text-align: center;
 	transition: transform 0.3s, box-shadow 0.3s;
 }

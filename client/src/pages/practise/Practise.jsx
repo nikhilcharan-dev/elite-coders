@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from '@api';
 
 import CheatSheetPanel from '../cheatsheet/CheatSheetPanel';
 import Filter from '../filter/Filter';
@@ -16,9 +16,7 @@ const Practice = () => {
         const fetchQuestions = async () => {
             setLoading(true);
             setQuestions([]);
-            const BASE_URL = import.meta.env.VITE_BASE_URL;
-            console.log('BASE_URL:', BASE_URL);
-            const res = await axios.get(`${BASE_URL}/api/questions`);
+            const res = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/questions`);
             setQuestions(res.data);
             setAllQuestions(res.data);
             setLoading(false);
@@ -32,8 +30,7 @@ const Practice = () => {
         try {
             setLoading(true);
             setQuestions([]);
-            const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = await axios.post(`${BASE_URL}/api/questions/filter`, { ...filters });
+            const res = await Axios.post(`${import.meta.env.VITE_BASE_URL}/api/questions/filter`, { ...filters });
             filtered = res.data;
         } catch(err) {
             console.error('Error filtering questions:', err);

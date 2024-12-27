@@ -4,6 +4,7 @@ import authMiddleware from './authmiddleware.js';
 
 const router = express.Router();
 
+//searching frnd by name
 const findUserByUsername = async (username) => {
     try {
         const user = await User.findOne({ username });
@@ -16,6 +17,7 @@ const findUserByUsername = async (username) => {
     }
 };
 
+// getting friend
 router.get('/', authMiddleware, async (req, res) => {
     const currentUserId = req.user.id;
 
@@ -25,6 +27,19 @@ router.get('/', authMiddleware, async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error.' });
+    }
+});
+
+// search user
+router.get('/', async (req, res) => {
+    try {
+        const searchQuery = req.query.search;
+        const users = await User.find({
+            username: { $regex: searchQuery, $options: 'i' }
+        });
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching users' });
     }
 });
 

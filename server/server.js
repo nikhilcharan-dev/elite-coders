@@ -18,11 +18,15 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // origin whitelist
-const allowedOrigins = ['http://localhost:5173', 'https://elite-coders-nikirus-projects.vercel.app', 'https://elite-coders-xii.vercel.app'];
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://elite-coders-nikirus-projects.vercel.app',
+    'https://elite-coders-xii.vercel.app'
+    ];
 
+// checking request origin
 const corsOptions = {
     origin: (origin, callback) => {
-        console.log("Origin:", origin);
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
@@ -31,7 +35,7 @@ const corsOptions = {
     },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
-};
+};1
 
 
 // CORS middleware
@@ -55,11 +59,15 @@ app.route('/').get((req, res) => {
 app.use('/api/oauth', authRoutes);
 app.use('/api/random', quoteRoutes);
 app.use('/api/users', infoRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/meta', userRoutes);
 app.use('/api/topics', topicRoutes);
 app.use('/api/friends', friendRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/cheatsheets', cheatsheetRouter);
+
+app.use('*', (req, res) => {
+    return res.status(404).json({ message: 'Route not found' });
+});
 
 
 app.listen(PORT, () => {

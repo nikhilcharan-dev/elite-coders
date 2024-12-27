@@ -16,6 +16,7 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     try {
+        
         const newUser = new User({
             username,
             email,
@@ -44,7 +45,7 @@ router.post('/login', async (req, res) => {
         user = await User.findOne({ username: usernameOrEmail });
     }
 
-    if(!user) return res.status(400).json({ message: 'User not found' });
+    if(!user) return res.status(404).json({ message: 'User not found' });
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
@@ -52,9 +53,26 @@ router.post('/login', async (req, res) => {
         return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '2h' });
+    // setting token(accessToken)  
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
     res.status(200).json({ message: 'Login Successfull', token, userData: user });
+});
+
+router.get('/refresh', async (req, res) => {
+    const { refreshToken } = req.body;
+
+    if(!refreshToken) return res.status(401).json({ message: 'Token Required' });
+
+    try {
+        const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
+        // signing new token
+        res.json({
+            token: jwt.sign({ id: decoded.id}, process.env.JWT_SECRET, { expiresIn: '7d' })
+        });
+    } catch(err) {
+        res.status(403).json({ message: 'Invalid token' });
+    }
 });
 
 export default router;

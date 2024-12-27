@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import Axios from "@api";
 
 import Popup from "../../pages/popup/Popup";
 
@@ -43,7 +43,7 @@ function RegisterPage() {
         
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = await axios.post(`${BASE_URL}/api/oauth/register`, {
+            const res = await Axios.post(`${BASE_URL}/api/oauth/register`, {
                 email,
                 username,
                 password

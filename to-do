@@ -1,0 +1,31 @@
+
+ ----- Front-end ------
+setting auth for api request @api/auth/axiosInstance
+
+context for making locally stored user data available throughtout the react components
+
+setting up social page
+
+implementing recommend feature
+
+filtering / removing unneccessary api calls 
+
+
+
+ ----- Back-end ------
+refactor routes in server
+
+cross check any data-leak
+
+make end-points accesible only through front-end
+
+
+ ----- DataBase ------
+complete cheatsheet section
+
+collect data and populate questions and topics
+
+
+
+ ----- UI ------
+add popups and remove alerts 

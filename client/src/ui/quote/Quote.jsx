@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import Axios from '@api';
 import './Quote.css';
 
 function Quote() {
@@ -10,7 +10,7 @@ function Quote() {
         const fetchJoke = async () => {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
             try {
-                const response = await axios.get(`${BASE_URL}/api/random/quote`);
+                const response = await Axios.get(`${BASE_URL}/api/random/quote`);
                 setQuote(response.data.quote);
             } catch (err) {
                 setQuote('Great Things Take Time');

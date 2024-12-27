@@ -1,0 +1,171 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    min-width: 500px;
+    max-width: fit-content;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content > h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Friend Requests */
+.friend-requests {
+    margin-bottom: 20px;
+}
+
+.friend-requests > h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.friend-requests > ul {
+    list-style: none;
+    padding: 0;
+}
+
+.friend-requests > ul > li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.accept-btn, .reject-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.accept-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.reject-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Friends List */
+.friends-list {
+    overflow-y: auto;
+    min-width: fit-content;
+}
+
+.friends-list > h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.friends-list > ul {
+    list-style: none;
+    padding: 0;
+}
+
+.friends-list > ul > li {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.frnd-info {
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: center;
+    gap: 10px;
+}
+
+.frnd-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.rm-btn {
+    all: unset;
+    
+    border: none;
+    border-radius: 4px;
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+
+}
+
+.rm-btn:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ddd;
+    border-top: 4px solid #333;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Close Button */
+.close {
+    display: block;
+    margin: 10px auto 0;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.close:hover {
+    background-color: #000000;
+}

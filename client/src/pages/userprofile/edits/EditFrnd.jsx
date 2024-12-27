@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from '@api';
 import './EditFrnd.css';
 
 const EditFrnd = ({ onClose, user }) => {
@@ -13,15 +13,16 @@ const EditFrnd = ({ onClose, user }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const friendData = await axios.get(`${BASE_URL}/api/friends`, {
+                const friendData = await Axios.get(`${BASE_URL}/api/friends`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
-                const friendRequestData = await axios.get(`${BASE_URL}/api/friends/friend-requests`, {
+                const friendRequestData = await Axios.get(`${BASE_URL}/api/friends/friend-requests`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
                 setFriends(friendData.data.friends);
                 setFriendRequests(friendRequestData.data.receivedRequests);
+                console.log(friendData.data);
                 setLoading(false);
             } catch (err) {
                 console.error("Error fetching data:", err);
@@ -34,7 +35,7 @@ const EditFrnd = ({ onClose, user }) => {
 
     const handleAcceptRequest = async (username) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/friends/accept-request/${username}`, null, {
+            const response = await Axios.post(`${BASE_URL}/api/friends/accept-request/${username}`, null, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setFriendRequests(friendRequests.filter(req => req.user.username !== username));
@@ -48,7 +49,7 @@ const EditFrnd = ({ onClose, user }) => {
 
     const handleRejectRequest = async (username) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/friends/reject-request/${username}`, null, {
+            const response = await Axios.post(`${BASE_URL}/api/friends/reject-request/${username}`, null, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setFriendRequests(friendRequests.filter(req => req.user.username !== username));
@@ -61,7 +62,7 @@ const EditFrnd = ({ onClose, user }) => {
 
     const handleRemoveFriend = async (username) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/friends/remove-friend/${username}`, null, {
+            const response = await Axios.post(`${BASE_URL}/api/friends/remove-friend/${username}`, null, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setFriends(friends.filter(friend => friend.username !== username));
@@ -96,8 +97,8 @@ const EditFrnd = ({ onClose, user }) => {
                             {friendRequests.map((request) => (
                                 <li key={request.user.username}>
                                     {request.user.username}
-                                    <button onClick={() => handleAcceptRequest(request.user.username)}>Accept</button>
-                                    <button onClick={() => handleRejectRequest(request.user.username)}>Reject</button>
+                                    <button className='accept-btn' onClick={() => handleAcceptRequest(request.user.username)}>Accept</button>
+                                    <button className='reject-btn' onClick={() => handleRejectRequest(request.user.username)}>Reject</button>
                                 </li>
                             ))}
                         </ul>
@@ -112,9 +113,13 @@ const EditFrnd = ({ onClose, user }) => {
                     ) : (
                         <ul>
                             {friends.map((friend) => (
-                                <li key={friend.username}>
-                                    {friend.username}
-                                    <button onClick={() => handleRemoveFriend(friend.username)}>Remove</button>
+                                <li key={friend.username} className='friends-card'>
+                                    <div className='frnd-info'>
+                                        {/* add link from here to profile pending!!!! */}
+                                        <img src={friend.profilePhoto} alt={friend.username} className='frnd-img'/>
+                                        <h1>{friend.username}</h1>
+                                    </div>
+                                    <button className='rm-btn' onClick={() => handleRemoveFriend(friend.username)}>Remove</button>
                                 </li>
                             ))}
                         </ul>
@@ -122,7 +127,7 @@ const EditFrnd = ({ onClose, user }) => {
                 </div>
 
                 {/* Close Button */}
-                <button onClick={onClose}>Close</button>
+                <button onClick={onClose} className='close'>Close</button>
             </div>
         </div>
     );

@@ -1,18 +1,18 @@
 import React, { Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { DayProvider } from './ui/daycontext/DayContext';
 
 // pages & comps
 import Home from './pages/home/Home';
+import Social from './pages/social/Social';
 import Spinner from './pages/spinner/Spinner';
 import Compete from './pages/compete/Compete';
 import LoginPage from "./ui/loginpage/LoginPage";
 import Adventurer from './pages/adventurer/Adventurer';
-import UserProfile from './pages/userprofile/UserProfile';
 import RegisterPage from "./ui/registerpage/RegisterPage";
 const Learn = React.lazy(() => import('./pages/learn/Learn'));
 const Practice = React.lazy(() => import('./pages/practise/Practise'));
-const CheatSheet = React.lazy(() => import('./pages/cspage/CheatSheet'));
+const CheatSheet = React.lazy(() => import('./pages/cspage/CheatSheet.jsx'));
+const UserProfile = React.lazy(() => import('./pages/userprofile/UserProfile'));
 const CheatSheetDetail = React.lazy(() => import('./pages/cspage/CheatSheetDetail'))
 
 // testing components
@@ -23,9 +23,9 @@ import './App.css';
 const routes = [
 	{ path: '/', element: <Home /> },
 	{ path: '/learn', element: <Learn/> },
-	{ path: '/practise', element: <Practice /> },
+	{ path: '/practice', element: <Practice /> },
 	{ path: '/compete', element: <Compete /> },
-	{ path: '/social', element: <Adventurer /> },
+	{ path: '/social', element: <Social /> },
 	{ path: '/user/:id', element: <UserProfile /> },
 	{ path: '/login', element: <LoginPage /> },
 	{ path: '/register', element: <RegisterPage /> },
@@ -43,9 +43,7 @@ function App() {
 	
 	return (
 		<Suspense fallback={<Spinner />}>
-			<DayProvider>
-				<RouterProvider router={router} />
-			</DayProvider>
+			<RouterProvider router={router} />
 		</Suspense>
 	);
 };

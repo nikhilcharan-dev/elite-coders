@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from '@api';
 
 import gfg from '../assests/gfg.png';
 import yt from '../assests/youtube.png';
@@ -13,8 +13,7 @@ const TSection = ({ questions, loading }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const BASE_URL = import.meta.env.VITE_BASE_URL;
-                const res = await axios.get(`${BASE_URL}/api/users/${userId}`);
+                const res = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/users/${userId}`);
                 setUser(res.data);
             } catch (error) {
                 console.error('Error fetching user:', error);
@@ -24,17 +23,9 @@ const TSection = ({ questions, loading }) => {
         if(!userId) fetchUser();
     }, []);
 
-    const handleRecommend = async (question) => {
-        try {
-            const BASE_URL = import.meta.env.VITE_BASE_URL;
-            await axios.post(`${BASE_URL}/api/recommend`, {
-                userId,
-                topic: question.name,
-            });
-            alert(`Recommended "${question.name}" successfully!`);
-        } catch (error) {
-            console.error('Error recommending question:', error);
-        }
+    const handleRecommend = (question) => {
+        // Pending !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        console.log('Recommend Question:', question);
     };
 
     return (

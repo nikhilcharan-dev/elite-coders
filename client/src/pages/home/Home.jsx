@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 
 import NavBar from "../../ui/navbar/NavBar";
 import Quote from "../../ui/quote/Quote";

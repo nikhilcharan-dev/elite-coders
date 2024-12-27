@@ -59,7 +59,7 @@ const NavBar = ({ edited }) => {
                     <Link to="/learn">Learn</Link>
                 </li>
                 <li>
-                    <Link to="/practise">Practise</Link>
+                    <Link to="/practice">Practice</Link>
                 </li>
                 <li>
                     <Link to="/compete">Compete</Link>

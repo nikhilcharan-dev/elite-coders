@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
+import Axios from '@api';
 import Spinner from '../spinner/Spinner';
 
 import './CheatSheet.css';
@@ -14,7 +14,7 @@ const CheatSheet = () => {
             try {
                 setLoading(true);
                 const BASE_URL = import.meta.env.VITE_BASE_URL;
-                const res = await axios.get(`${BASE_URL}/api/cheatsheets`);
+                const res = await Axios.get(`${BASE_URL}/api/cheatsheets`);
                 setCheatsheets(res.data);
             } catch (err) {
                 console.error('Error fetching cheatsheets:', err);
@@ -25,8 +25,6 @@ const CheatSheet = () => {
 
         fetchCheatsheets();
     }, []);
-
-    if(cheatsheets) console.log(cheatsheets);
 
     return (
         <div className="cheatsheet-section page">

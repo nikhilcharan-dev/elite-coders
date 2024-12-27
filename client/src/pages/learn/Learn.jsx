@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from '@api';
 import CheatsheetPanel from '../cheatsheet/CheatSheetPanel';
 import TSection from '../tsection/TSection';
 
@@ -15,7 +15,7 @@ const Learn = () => {
         const fetchQuestions = async () => {
             setLoading(true);
             try {
-                const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/topics/`);
+                const res = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/topics/`);
                 setQuestions(res.data);
                 setAllQuestions(res.data);
             } catch(err) {
