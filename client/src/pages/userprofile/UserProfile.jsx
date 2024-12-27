@@ -34,7 +34,7 @@ const UserProfile = () => {
 		const fetchUserData = async () => {
 			setLoading(true);
 			try {
-				const response = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/users/${userId}`);
+				const response = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/meta/${userId}`);
 				setUser(response.data);
 				setLoading(false);
 			} catch (error) {

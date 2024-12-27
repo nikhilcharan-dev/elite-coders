@@ -78,7 +78,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
         e.preventDefault();
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = await Axios.put(`${BASE_URL}/api/users/${user._id}`, formData);
+            const res = await Axios.put(`${BASE_URL}/api/meta/${user._id}`, formData);
             alert(`User updated successfully`);
             onEdit();
             onClose();
@@ -92,7 +92,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
         if (!window.confirm('Are you sure you want to delete this user?')) return;
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            await Axios.delete(`${BASE_URL}/api/users/${user.id}`);
+            await Axios.delete(`${BASE_URL}/api/meta/${user.id}`);
             alert('User deleted successfully');
             onClose();
         } catch (error) {

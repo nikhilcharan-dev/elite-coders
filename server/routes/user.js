@@ -7,6 +7,7 @@ const router = express.Router();
 // Middleware to check if ObjectId is valid
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
+// getting user
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -29,6 +30,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// editing user data
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { username, email, dob, gender, bio, gotoLanguage } = req.body;
@@ -60,6 +62,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// deleting user
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
 

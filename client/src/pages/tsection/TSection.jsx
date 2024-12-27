@@ -13,7 +13,7 @@ const TSection = ({ questions, loading }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/users/${userId}`);
+                const res = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/meta/${userId}`);
                 setUser(res.data);
             } catch (error) {
                 console.error('Error fetching user:', error);

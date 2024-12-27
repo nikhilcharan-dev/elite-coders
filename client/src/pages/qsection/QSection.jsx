@@ -7,21 +7,21 @@ import refresh from '../assests/refresh.png';
 import './QSection.css';
 
 
-const Questions = ({ loading, setLoading, questions, handleRefresh, onRandomQuestion, onRecommendQuestion }) => {
+const Questions = ({ loading, setLoading, questions, onRefresh, onRandomQuestion, onRecommendQuestion }) => {
     const [user, setUser] = useState({});
     const userId = localStorage.getItem('id');
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/users/${userId}`);
+                const res = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/meta/${userId}`);
                 setUser(res.data);
             } catch (error) {
                 console.error("Error fetching user:", error);
             }
         };
         
-        fetchUser();
+        if(!userId) fetchUser();
     }, []);
 
 
@@ -48,7 +48,7 @@ const Questions = ({ loading, setLoading, questions, handleRefresh, onRandomQues
             {/* Random Question Button */}
             <div className="buttons">
                 <button className="random-btn" onClick={onRandomQuestion}>Get Random Question</button>
-                <ThemedButton link={refresh} type={'refresh'} onClick={handleRefresh} />
+                <ThemedButton link={refresh} type={'refresh'} onClick={onRefresh} />
             </div>
 
             {loading && <div className="loading-spinner"></div>}

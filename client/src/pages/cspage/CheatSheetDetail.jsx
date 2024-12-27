@@ -52,7 +52,7 @@ const CheatSheetDetail = () => {
             const res = await Axios.post(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${cheatsheet._id}/like`, { userId });
             setLikes(res.data.likes);
             setIsLiked(true);
-            setIsDisliked(false);
+            setIsDisliked(false); // Dislike reset if liked
         } catch (error) {
             console.error("Error liking cheatsheet:", error);
         }
@@ -62,7 +62,7 @@ const CheatSheetDetail = () => {
         try {
             const res = await Axios.post(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${cheatsheet._id}/dislike`, { userId });
             setDislikes(res.data.dislikes);
-            setIsLiked(false); // Like should be reset if disliked
+            setIsLiked(false); // Like reset if disliked
             setIsDisliked(true);
         } catch (error) {
             console.error("Error disliking cheatsheet:", error.message);
@@ -122,6 +122,7 @@ const CheatSheetDetail = () => {
                 questions={questions}
                 onRandomQuestion={handleRandomQuestion}
                 onRecommendQuestion={handleRecommendQuestion}
+                onRefresh={handleRefresh}
             />
         </div>
     );
