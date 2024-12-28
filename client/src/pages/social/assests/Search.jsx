@@ -24,19 +24,29 @@ const Search = () => {
 
     return (
         <div className="search-container">
-            <h1>Search for Friends</h1>
+            {/* Search Bar at the top with an image button */}
             <div className="search-bar">
                 <input
                     type="text"
                     placeholder="Search by name"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    className="search-input"
                 />
-                <button onClick={handleSearch} disabled={isLoading}>
-                    {isLoading ? 'Searching...' : 'Search'}
+                <button 
+                    onClick={handleSearch} 
+                    disabled={isLoading} 
+                    className="search-button"
+                >
+                    <img 
+                        src="/path/to/search-icon.png" 
+                        alt="Search" 
+                        className="search-icon" 
+                    />
                 </button>
             </div>
 
+            {/* Display search results */}
             <div className="results-container">
                 {searchResults.length > 0 ? (
                     searchResults.map((user) => (
@@ -48,9 +58,11 @@ const Search = () => {
                             />
                             <div className="user-info">
                                 <h3>{user.username}</h3>
+                                <p>{user.bio}</p>
                                 <Link to={`/profile/${user._id}`} className="view-profile">
                                     View Profile
                                 </Link>
+                                <button className="send-request-button">Send Request</button>
                             </div>
                         </div>
                     ))
