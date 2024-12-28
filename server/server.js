@@ -11,7 +11,7 @@ import infoRoutes from './routes/credentials.js';
 import questionRoutes from './routes/questions.js';
 import cheatsheetRouter from './routes/cheatsheet.js';
 
-// .env file config
+// setting up env
 dotenv.config();
 
 const app = express();
@@ -20,8 +20,8 @@ const PORT = process.env.PORT || 5000;
 // origin whitelist
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://elite-coders-nikirus-projects.vercel.app',
-    'https://elite-coders-xii.vercel.app'
+    'https://elite-coders-xii.vercel.app',
+    'https://elite-coders-nikirus-projects.vercel.app'
     ];
 
 // checking request origin
@@ -42,7 +42,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // middleware
-// app.use(cors());
 app.use(express.json({ limit: '10mb' })); // limiting size
 app.use(express.urlencoded({ limit: '10mb', extended: true })); 
 

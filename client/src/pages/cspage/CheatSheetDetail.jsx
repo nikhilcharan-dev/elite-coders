@@ -5,6 +5,7 @@ import Spinner from '../spinner/Spinner';
 import Questions from '../qsection/QSection';
 import ThemedButton from '../../ui/button/Button';
 
+// images 
 import like from '../assests/like.png';
 import dislike from '../assests/dislike.png';
 import liked from '../assests/liked.png';
@@ -15,8 +16,8 @@ import './CheatSheetDetail.css';
 
 const CheatSheetDetail = () => {
     const { name } = useParams();
-    const userId = localStorage.getItem('id');
     const navigate = useNavigate();
+    const userId = localStorage.getItem('id');
     const [cheatsheet, setCheatsheet] = useState(null);
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(false);

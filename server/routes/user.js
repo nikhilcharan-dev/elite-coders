@@ -4,14 +4,14 @@ import mongoose from 'mongoose';
 
 const router = express.Router();
 
-// Middleware to check if ObjectId is valid
+//checking if ObjectId is valid
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 // getting user
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
 
-    // Validate ObjectId
+    // checking ObjectId
     if (!isValidObjectId(id)) {
         return res.status(400).send('Invalid ObjectId format');
     }
@@ -35,7 +35,7 @@ router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { username, email, dob, gender, bio, gotoLanguage } = req.body;
 
-    // Validate ObjectId
+    // checking ObjectId
     if (!isValidObjectId(id)) {
         return res.status(400).send('Invalid ObjectId format');
     }
@@ -66,7 +66,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
 
-    // Validate ObjectId
+    // checking ObjectId
     if (!isValidObjectId(id)) {
         return res.status(400).send('Invalid ObjectId format');
     }
