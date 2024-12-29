@@ -65,5 +65,6 @@ app.use('/api/questions', questionRoutes);
 app.use('/api/cheatsheets', cheatsheetRouter);
 
 app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
     connectDB();
 });

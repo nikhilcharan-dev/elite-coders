@@ -12,8 +12,8 @@
 .search-input {
     padding: 10px;
     width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #000000;
+    border-radius: 50px;
 }
 
 .search-button {
@@ -24,8 +24,8 @@
 }
 
 .search-icon {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
 }
 
 .results-container {
@@ -48,8 +48,8 @@
 }
 
 .user-photo {
-    width: 50px;
-    height: 50px;
+    width: 25%;
+    height: 25%;
     border-radius: 50%;
 }
 
@@ -58,7 +58,7 @@
     margin-left: 15px;
 }
 
-.send-request-button {
+.send-request-button, .view-profile {
     padding: 8px 12px;
     background-color: #4CAF50;
     color: white;
@@ -75,4 +75,45 @@
     text-align: center;
     color: #888;
     font-size: 18px;
+}
+
+.search-popover {
+    position: absolute;
+    top: 30%; /* Adjust based on your design */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 600px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.view-profile {
+    padding: 8px 12px;
+    background-color: #4376cf;
+    margin-right: 20px;
+}
+
+.popover-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.no-results {
+    text-align: center;
+    color: #666;
+    padding: 20px;
 }

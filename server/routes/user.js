@@ -7,6 +7,34 @@ const router = express.Router();
 //checking if ObjectId is valid
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
+// searching by name
+router.get('/search', async (req, res) => {
+    const { query } = req.query;
+
+    const search = query;
+
+    console.log('Search:', search);
+    
+    if (!search) {
+        return res.status(400).json({ message: 'Search query cannot be empty' });
+    }
+
+    try {
+        const users = await User.find({
+            username: { $regex: search, $options: 'i' },
+        }).select('username profilePhoto bio _id gender');
+
+        if (!users.length) {
+            return res.status(404).json({ message: 'No users found' });
+        }
+
+        res.json(users);
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        res.status(500).send('Server Error');
+    }
+});
+
 // getting user
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
@@ -82,68 +110,6 @@ router.delete('/:id', async (req, res) => {
         res.json({ msg: 'User removed' });
     } catch (error) {
         console.error(error);
-        res.status(500).send('Server Error');
-    }
-});
-
-// searching by name
-router.get('/search', async (req, res) => {
-    const { search } = req.query;
-    
-    if (!search) {
-        return res.status(400).json({ message: 'Search query cannot be empty' });
-    }
-
-    try {
-        const users = await User.find({
-            username: { $regex: search, $options: 'i' },
-        }).select('username profilePhoto bio _id');
-
-        if (!users.length) {
-            return res.status(404).json({ message: 'No users found' });
-        }
-
-        res.json(users);
-    } catch (error) {
-        console.error('Error fetching users:', error);
-        res.status(500).send('Server Error');
-    }
-});
-
-router.post('/friend-request', async (req, res) => {
-    const { senderId, recipientId } = req.body;
-
-
-    if (!isValidObjectId(senderId) || !isValidObjectId(recipientId)) {
-        return res.status(400).send('Invalid ObjectId format');
-    }
-
-    try {
-        if (senderId === recipientId) {
-            return res.status(400).json({ message: 'You cannot send a friend request to yourself' });
-        }
-
-        const existingRequest = await FriendRequest.findOne({
-            sender: senderId,
-            recipient: recipientId,
-            status: 'pending',
-        });
-
-        if (existingRequest) {
-            return res.status(400).json({ message: 'Friend request already sent' });
-        }
-
-        const newRequest = new FriendRequest({
-            sender: senderId,
-            recipient: recipientId,
-            status: 'pending',
-        });
-
-        await newRequest.save();
-
-        res.json({ message: 'Friend request sent successfully' });
-    } catch (error) {
-        console.error('Error sending friend request:', error);
         res.status(500).send('Server Error');
     }
 });

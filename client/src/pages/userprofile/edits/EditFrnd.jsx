@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Axios from '@api';
+
+import def from '../../assests/default-other.jpg';
+import boy from '../../assests/default-boy.jpg';
+import girl from '../../assests/default-girl.jpg';
+
 import './EditFrnd.css';
 
 const EditFrnd = ({ onClose, user }) => {
@@ -35,9 +40,7 @@ const EditFrnd = ({ onClose, user }) => {
 
     const handleAcceptRequest = async (username) => {
         try {
-            const response = await Axios.post(`${BASE_URL}/api/friends/accept-request/${username}`, null, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const response = await Axios.post(`${BASE_URL}/api/friends/accept-request/${username}`);
             setFriendRequests(friendRequests.filter(req => req.user.username !== username));
             setFriends([...friends, { username }]);
             alert(response.data.message);
@@ -73,6 +76,17 @@ const EditFrnd = ({ onClose, user }) => {
         }
     };
 
+    const getProfilePhoto = (user) => {
+        let profileImage = def;
+        if (user) {
+            profileImage = user.profilePhoto ||
+                (user.gender === 'Male' ? boy :
+                    user.gender === 'Female' ? girl : def);
+        }
+
+        return profileImage;
+    }
+
     if (loading) return (
         <div className="modal-overlay">
             <div className="modal-content">
@@ -96,6 +110,7 @@ const EditFrnd = ({ onClose, user }) => {
                         <ul>
                             {friendRequests.map((request) => (
                                 <li key={request.user.username}>
+                                    <img src={getProfilePhoto(request.user)} alt={request.user.username}/>
                                     {request.user.username}
                                     <button className='accept-btn' onClick={() => handleAcceptRequest(request.user.username)}>Accept</button>
                                     <button className='reject-btn' onClick={() => handleRejectRequest(request.user.username)}>Reject</button>
@@ -116,7 +131,7 @@ const EditFrnd = ({ onClose, user }) => {
                                 <li key={friend.username} className='friends-card'>
                                     <div className='frnd-info'>
                                         {/* add link from here to profile pending!!!! */}
-                                        <img src={friend.profilePhoto} alt={friend.username} className='frnd-img'/>
+                                        <img src={getProfilePhoto(friend)} alt={friend.username} className='frnd-img'/>
                                         <h1>{friend.username}</h1>
                                     </div>
                                     <button className='rm-btn' onClick={() => handleRemoveFriend(friend.username)}>Remove</button>
