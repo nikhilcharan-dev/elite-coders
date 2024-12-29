@@ -23,10 +23,17 @@ const userSchema = new mongoose.Schema({
     recommendedQuestions: {
         type: [{
             senderId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-            questionLink: { type: String, required: true },
+            questionLink: { type: mongoose.Schema.Types.ObjectId, ref: "questionbanks", required: true }
         }],
         default: [],
     },
+    recommendedTopics: {
+    type: [{
+        senderId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+        topicId: { type: mongoose.Schema.Types.ObjectId, ref: "Topic", required: true },
+    }],
+    default: [],
+},
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

@@ -10,6 +10,7 @@ const Social = () => {
         <div className="social-container">
             <NavBar />
             <Search />
+            
         </div>
     );
 };
