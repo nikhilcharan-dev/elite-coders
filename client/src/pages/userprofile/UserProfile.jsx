@@ -26,6 +26,7 @@ const UserProfile = () => {
 	const [showFrnd, setShowFrnd] = useState(false);
 	const [showMail, setShowMail] = useState(false);
 	const [edited, setEdited] = useState(false);
+	const [recommendedQuestions, setRecommendedQuestions] = useState([]);
 
 	const navigate = useNavigate();
 	const userId = localStorage.getItem("id");
@@ -34,7 +35,7 @@ const UserProfile = () => {
 		const fetchUserData = async () => {
 			setLoading(true);
 			try {
-				const response = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/meta/${userId}`);
+				const response = await Axios.get(`/api/meta/${userId}`);
 				setUser(response.data);
 				setLoading(false);
 			} catch (error) {
@@ -47,6 +48,36 @@ const UserProfile = () => {
 			fetchUserData();
 		}
 	}, [userId, edited]);
+
+	useEffect(() => {
+		const fetchRecommendedQuestions = async () => {
+		  if (user && user.recommendedQuestions) {
+			const updatedQuestions = await Promise.all(
+			  user.recommendedQuestions.map(async (recommendation) => {
+				const senderResponse = await Axios.get(
+				  `/api/meta/${recommendation.senderId}`
+				);
+				const questionResponse = await Axios.get(
+				  `/api/questions/${recommendation.questionId}`
+				);
+	
+				return {
+				  senderUsername: senderResponse.data.username,
+				  senderProfilePhoto: senderResponse.data.profilePhoto,
+				  questionName: questionResponse.data.name,
+				  questionTopic: questionResponse.data.topic,
+				  questionLink: questionResponse.data.link,
+				  questionId: recommendation.questionId,
+				};
+			  })
+			);
+	
+			setRecommendedQuestions(updatedQuestions);
+		  }
+		};
+	
+		fetchRecommendedQuestions();
+	  }, [user]);
 
 	let profileImage = def;
 	if (user) {
@@ -62,6 +93,12 @@ const UserProfile = () => {
 		navigate("/login");
 	}
 
+	const handleSolve = (questionLink) => {
+		if (questionLink) {
+		  window.open(questionLink, "_blank");
+		}
+	};
+
 	if (loading) {
 		return <Spinner />;
 	}
@@ -69,6 +106,7 @@ const UserProfile = () => {
 	if (!user) {
 		return <div>User not found</div>;
 	}
+
 
 	return (
 		<section className="user-profile">
@@ -155,14 +193,38 @@ const UserProfile = () => {
 			{/* Bottom Section: Recommended Questions */}
 			<div className="recommendations">
 				<h3>Recommended Questions</h3>
-				{user.recommendedQuestions && user.recommendedQuestions.length > 0 ? (
-					<ul>
-						{user.recommendedQuestions.map((question, index) => (
-							<li key={index}>{question}</li>
-						))}
-					</ul>
+				{recommendedQuestions && recommendedQuestions.length > 0 ? (
+				<ul>
+					{recommendedQuestions.map((question, index) => (
+					<div key={index} className="question-card">
+						{/* Sender Profile Section */}
+						<div className="sender-info">
+						<img
+							className="sender-profile-img"
+							src={question.senderProfilePhoto || def} // Default profile photo if senderProfilePhoto doesn't exist
+							alt="Sender Profile"
+						/>
+						<p className="sender-username">{question.senderUsername || "Unknown"}</p>
+						</div>
+
+						{/* Question Details */}
+						<div className="question-details">
+						<h4 className="question-name">{question.questionName}</h4>
+						<p className="question-topic">
+							<strong>Topic:</strong> {question.questionTopic || "Not Specified"}
+						</p>
+						<button
+							className="solve-btn"
+							onClick={() => handleSolve(question.questionLink)}
+						>
+							Solve
+						</button>
+						</div>
+					</div>
+					))}
+				</ul>
 				) : (
-					<p>No questions recommended yet.</p>
+				<p>No new questions recommended.</p>
 				)}
 			</div>
 		</section>

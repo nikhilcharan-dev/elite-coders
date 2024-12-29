@@ -52,6 +52,7 @@
     justify-content: center;
     max-height: 600px;
     overflow-y: auto;
+    margin-top: 50px; /* Make space for the popover */
 }
 
 .question-card {
@@ -85,13 +86,6 @@
 .platform {
     display: flex;
     align-items: center;
-    margin: 0px;
-    padding: 0px;
-}
-
-.platform > * {
-    margin: 0px;
-    padding: 0px;
 }
 
 .icon {
@@ -108,7 +102,7 @@
 .recommend-btn,
 .solve-btn,
 .solved-btn {
-    background-color: #ff7eb3;
+    background-color: #4ECDC4;
     color: white;
     padding: 8px 16px;
     border: none;
@@ -119,99 +113,89 @@
     transition: background-color 0.3s;
 }
 
-.recommend-btn:hover,
 .solve-btn:hover,
 .solved-btn:hover {
     background-color: #ff758f;
 }
 
 .solve-btn {
-    background-color: #4ECDC4;
-    margin-right: 10px;
+    background-color: #ff758f;
 }
 
 .solved-btn {
-    background-color: #ff7e7e;
-    margin-right: 10px;
+    background-color: #6c757d;
 }
 
-.solve-btn:hover,
-.solved-btn:hover {
-    color: white;
-}
-
-.link {
-    color: white;
-    text-decoration: none;
-}
-
-.loading-spinner {
-    display: flex;
-    justify-self: center;
-    align-self: center;
-    margin: 10px;
-    height: 50px;
-    width: 50px;
-    border: 8px solid transparent;
-    border-top: 9px solid #4ECDC4;
-    border-radius: 50%;
-    animation: spin 1.5s linear infinite;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Popover styles */
 .popover {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 250px;
-    max-height: 200px;
-    overflow-y: auto;
     position: absolute;
-    z-index: 100;
+    left: 50%;
+    border-radius: 5px;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 300px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
 
+.popover h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.popover ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 .friend-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid #ddd;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 2px solid #4ECDC4;
+}
+
+.friend-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
 }
 
 .recommend-btn {
+    background-color: #4ECDC4;
     color: white;
     padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
+    font-size: 14px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
+}
+
+.no-margin {
+	margin: 0;
 }
 
 .recommend-btn:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
 }
 
 .close-btn {
     margin-top: 10px;
-    background-color: #f44336;
+    padding: 5px 15px;
+    background-color: #dc3545;
     color: white;
-    padding: 5px 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
 }
 
 .close-btn:hover {
-    background-color: #e53935;
+    background-color: #c82333;
 }

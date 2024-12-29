@@ -1,9 +1,7 @@
 import express from "express";
-import mongoose from "mongoose";
 import User from "../models/user.js";
 import Question from "../models/question.js";
 
-import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
@@ -13,6 +11,16 @@ router.get("/", async (req, res) => {
         res.status(200).json(questions);
     } catch (error) {
         console.error("Error fetching questions:", error.message);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+router.get("/:id", async (req, res) => {
+    try {
+        const question = await Question.findById(req.params.id);
+        res.status(200).json(question);
+    } catch (error) {
+        console.error("Error fetching question by ID:", error.message);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
