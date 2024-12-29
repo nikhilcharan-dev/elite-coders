@@ -61,7 +61,7 @@ router.get('/:id', async (req, res) => {
 // editing user data
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const { username, email, dob, gender, bio, gotoLanguage } = req.body;
+    const { username, email, dob, gender, bio, language } = req.body;
 
     // checking ObjectId
     if (!isValidObjectId(id)) {
@@ -79,7 +79,7 @@ router.put('/:id', async (req, res) => {
         user.dob = dob || user.dob;
         user.gender = gender || user.gender;
         user.bio = bio || user.bio;
-        user.gotoLanguage = gotoLanguage || user.gotoLanguage;
+        user.gotoLanguage = language || user.gotoLanguage;
 
         await user.save();
 

@@ -35,27 +35,48 @@ router.post('/send-request/:username', authMiddleware, async (req, res) => {
         console.log('Current user:', currentUser._id);
         console.log('Target user:', targetUser._id);
 
-        if (currentUser._id.toString() == targetUser._id.toString()) {
-            console.log('You cannot send a friend request to yourself.');
+        if (currentUser._id.toString() === targetUser._id.toString()) {
             return res.status(400).json({ message: 'You cannot send a friend request to yourself.' });
         }
-
 
         if (currentUser.friends.includes(targetUser._id)) {
             return res.status(400).json({ message: 'You are already friends.' });
         }
 
+        // cheking if the target user already sent a request to the current user
+        const alreadyReceived = currentUser.friendRequests.find(
+            (req) => req.user.toString() === targetUser._id.toString() && req.type === 'received'
+        );
+
+        if (alreadyReceived) {
+            // makingg them friends
+            currentUser.friends.push(targetUser._id);
+            targetUser.friends.push(currentUser._id);
+
+            // removing the friend requests for both
+            currentUser.friendRequests = currentUser.friendRequests.filter(
+                (req) => req.user.toString() !== targetUser._id.toString() || req.type !== 'received'
+            );
+            targetUser.friendRequests = targetUser.friendRequests.filter(
+                (req) => req.user.toString() !== currentUser._id.toString() || req.type !== 'sent'
+            );
+
+            await currentUser.save();
+            await targetUser.save();
+
+            return res.status(200).json({ message: 'You are now friends.' });
+        }
+
+        // checking if a request was already sent by the current user
         const alreadySent = currentUser.friendRequests.some(
             (req) => req.user.toString() === targetUser._id.toString() && req.type === 'sent'
         );
-        const alreadyReceived = targetUser.friendRequests.some(
-            (req) => req.user.toString() === currentUserId && req.type === 'received'
-        );
 
-        if (alreadySent || alreadyReceived) {
-            return res.status(400).json({ message: 'Friend request already sent or received.' });
+        if (alreadySent) {
+            return res.status(400).json({ message: 'Friend request already sent.' });
         }
 
+        // sending req if not send already
         currentUser.friendRequests.push({ user: targetUser._id, type: 'sent', status: 'pending' });
         targetUser.friendRequests.push({ user: currentUserId, type: 'received', status: 'pending' });
 
@@ -69,50 +90,10 @@ router.post('/send-request/:username', authMiddleware, async (req, res) => {
     }
 });
 
-// accepting a friend request
-router.post('/accept-request/:username', authMiddleware, async (req, res) => {
-    try {
-        const { username } = req.params;
-        const currentUserId = req.user.id;
-
-        const currentUser = await User.findById(currentUserId);
-        const targetUser = await findUserByUsername(username);
-
-        const receivedRequest = currentUser.friendRequests.find(
-            (req) =>
-                req.user.toString() === targetUser._id.toString() &&
-                req.type === 'received' &&
-                req.status === 'pending'
-        );
-
-        if (!receivedRequest) {
-            return res.status(400).json({ message: 'No pending friend request from this user.' });
-        }
-
-        currentUser.friends.push(targetUser._id);
-        targetUser.friends.push(currentUserId);
-
-        currentUser.friendRequests = currentUser.friendRequests.filter(
-            (req) => req.user.toString() !== targetUser._id.toString() || req.type !== 'received'
-        );
-        targetUser.friendRequests = targetUser.friendRequests.filter(
-            (req) => req.user.toString() !== currentUserId || req.type !== 'sent'
-        );
-
-        await currentUser.save();
-        await targetUser.save();
-
-        res.status(200).json({ message: 'Friend request accepted.' });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Server error.' });
-    }
-});
 
 // rejecting a friend request
 router.post('/reject-request/:username', authMiddleware, async (req, res) => {
     try {
-        console.log('rejecting request');
         const { username } = req.params;
         const currentUserId = req.user.id;
 
@@ -149,9 +130,13 @@ router.post('/reject-request/:username', authMiddleware, async (req, res) => {
 
 // geting pending friend requests
 router.get('/friend-requests', authMiddleware, async (req, res) => {
+    console.log('getting all requests');
     try {
         const currentUserId = req.user.id;
         const currentUser = await User.findById(currentUserId).populate('friendRequests.user', 'username profilePhoto');
+
+        console.log(currentUser.friendRequests)
+
 
         if (!currentUser) {
             return res.status(404).json({ message: 'User not found.' });
@@ -161,7 +146,11 @@ router.get('/friend-requests', authMiddleware, async (req, res) => {
             (req) => req.type === 'received' && req.status === 'pending'
         );
 
-        res.status(200).json({ receivedRequests });
+        const sentRequests = currentUser.friendRequests.filter(
+            (req) => req.type === 'sent' && req.status === 'pending'
+        );
+
+        res.status(200).json({ receivedRequests, sentRequests });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error.' });
@@ -196,6 +185,42 @@ router.post('/remove-friend/:username', authMiddleware, async (req, res) => {
         res.status(400).json({ message: 'Error removing friend. '});
     }
 });
+
+router.post('/unsend-request/:username', authMiddleware, async (req, res) => {
+    try {
+        const { username } = req.params;
+        const currentUserId = req.user.id;
+
+        const currentUser = await User.findById(currentUserId);
+        const targetUser = await findUserByUsername(username);
+
+        const sentRequest = currentUser.friendRequests.find(
+            (req) =>
+                req.user.toString() === targetUser._id.toString() &&
+                req.type === 'sent' &&
+                req.status === 'pending'
+        );
+
+        if (!sentRequest) {
+            return res.status(400).json({ message: 'No pending friend request to this user.' });
+        }
+
+        currentUser.friendRequests = currentUser.friendRequests.filter(
+            (req) => req.user.toString() !== targetUser._id.toString() || req.type !== 'sent'
+        );
+
+        targetUser.friendRequests = targetUser.friendRequests.filter(
+            (req) => req.user.toString() !== currentUserId || req.type !== 'received'
+        );
+
+        await currentUser.save();
+        await targetUser.save();
+
+        res.status(200).json({ message: 'Friend request unsent.' });
+    } catch(err) {
+        res.status(400).json({ message: 'Error unsending request.' });
+    }
+})
 
 
 export default router;

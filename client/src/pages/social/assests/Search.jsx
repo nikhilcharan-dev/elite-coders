@@ -38,7 +38,7 @@ const Search = () => {
 
         try {
             const response = await Axios.post(
-                `http://localhost:5010/api/friends/send-request/${username}`
+                `/api/friends/send-request/${username}`
             );
             setRequestStatus((prev) => ({ ...prev, [username]: 'success' }));
             console.log(response.data.message);

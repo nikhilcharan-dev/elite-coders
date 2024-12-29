@@ -3,6 +3,10 @@ import Axios from '@api';
 
 import edit from '../../assests/photo-edit.png'
 
+import def from '../../assests/default-other.jpg';
+import boy from '../../assests/default-boy.jpg';
+import girl from '../../assests/default-girl.jpg';
+
 import './EditUser.css';
 
 const EditUser = ({ onClose, user, onEdit }) => {
@@ -14,20 +18,23 @@ const EditUser = ({ onClose, user, onEdit }) => {
         username: user?.username || '',
         email: user?.email || '',
         dob: user?.dob || '',
-        gender: user?.gender || 'Other',
-        language: user?.language || 'Assembly',
+        gender: user.gender? user.gender : 'Other',
+        language: user.gotoLanguage? user.gotoLanguage : 'Assembly',
         bio: user.bio,
     });
+
+    console.log(formData)
 
     useEffect(() => {
         setProfilePhoto(user.profilePhoto);
     }, [user]);
 
-    useEffect(() => {
-        if (imgRef.current) {
-            const rect = imgRef.current.getBoundingClientRect();
-        }
-    }, []);
+    let profileImage = def;
+    if (user) {
+        profileImage = user.profilePhoto ||
+            (user.gender === 'Male' ? boy :
+                user.gender === 'Female' ? girl : def);
+    }
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -47,7 +54,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
         try {
             const base64Image = await convertFileToBase64(file);
             const response = await Axios.post(
-                `${import.meta.env.VITE_BASE_URL}/api/users/uploadProfilePhoto`,
+                `/api/users/uploadProfilePhoto`,
                 { userId: user._id, profilePhoto: base64Image }
             );
             localStorage.setItem('userData', JSON.stringify(response.data));
@@ -78,8 +85,10 @@ const EditUser = ({ onClose, user, onEdit }) => {
         e.preventDefault();
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            const res = await Axios.put(`${BASE_URL}/api/meta/${user._id}`, formData);
+            console.log(formData)
+            const res = await Axios.put(`api/meta/${user._id}`, formData);
             alert(`User updated successfully`);
+            console.log(res)
             onEdit();
             onClose();
         } catch (error) {
@@ -92,7 +101,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
         if (!window.confirm('Are you sure you want to delete this user?')) return;
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
-            await Axios.delete(`${BASE_URL}/api/meta/${user.id}`);
+            await Axios.delete(`/api/meta/${user.id}`);
             alert('User deleted successfully');
             onClose();
         } catch (error) {
@@ -186,11 +195,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
             </div>
             <div className="profile-photo-section">
                 <div className="profile-photo-container">
-                    {profilePhoto ? (
-                        <img src={profilePhoto} ref={imgRef} alt="Profile" className="photo" />
-                    ) : (
-                        <div className="no-photo" ref={imgRef}>No photo</div>
-                    )}
+                    <img src={profileImage} ref={imgRef} alt="Profile" className="photo" />
                     <button className="edit-photo-btn" onClick={() => fileInputRef.current.click()}>
                         <img src={edit} alt="Edit" className="edit-img" />
                     </button>

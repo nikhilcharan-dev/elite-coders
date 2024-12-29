@@ -1,0 +1,95 @@
+.user-profile {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #F9E4D4, #4ECDC4);
+    padding: 20px;
+}
+
+.profile-layout {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Left Section */
+.profile-left {
+    flex: 1;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-details {
+    margin-bottom: 20px;
+}
+
+.profile-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-btn {
+    align-self: flex-end;
+    padding: 10px;
+    background-color: #4ECDC4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.edit-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.edit-btn:hover {
+    transform: scale(1.1);
+    background-color: #3bafa3;
+}
+
+/* Right Section */
+.profile-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.achievements {
+    flex: 2;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    font-style: italic;
+    color: gray;
+}
+
+.recommendations {
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.recommendations-header {
+    font-size: 20px;
+    margin-bottom: 15px;
+}

@@ -1,3 +1,4 @@
+/* Modal Overlay */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -11,6 +12,7 @@
     z-index: 1000;
 }
 
+/* Modal Content */
 .modal-content {
     background: white;
     border-radius: 8px;
@@ -27,60 +29,9 @@
     color: #333;
 }
 
-/* Friend Requests */
-.friend-requests {
-    margin-bottom: 20px;
-}
-
-.friend-requests > h4 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #555;
-}
-
-.friend-requests > ul {
-    list-style: none;
-    padding: 0;
-}
-
-.friend-requests > ul > li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
-}
-
-.friend-requests > ul > li > img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.accept-btn, .reject-btn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.accept-btn {
-    background-color: #4caf50;
-    color: white;
-}
-
-.reject-btn {
-    background-color: #f44336;
-    color: white;
-}
-
 /* Friends List */
 .friends-list {
+    margin-bottom: 20px;
     overflow-y: auto;
     min-width: fit-content;
 }
@@ -124,20 +75,108 @@
 }
 
 .rm-btn {
-    all: unset;
-    
+    padding: 5px 10px;
     border: none;
     border-radius: 4px;
     background-color: #f44336;
     color: white;
     cursor: pointer;
     font-size: 14px;
-
 }
 
 .rm-btn:hover {
     background-color: #d32f2f;
     transform: scale(1.05);
+}
+
+/* Friend Requests Section */
+.friend-requests {
+    margin-bottom: 20px;
+}
+
+.friend-requests > h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.friend-requests > ul {
+    list-style: none;
+    padding: 0;
+}
+
+.friend-requests > ul > li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.friend-requests > ul > li > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.accept-btn, .reject-btn, .unsend-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.accept-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.accept-btn:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+}
+
+.reject-btn, .unsend-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.reject-btn:hover, .unsend-btn:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+/* Toggle Buttons */
+.toggle-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.toggle-section > button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ddd;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.toggle-section > button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.toggle-section > button:hover {
+    background-color: #0069d9;
+    color: white;
 }
 
 /* Loading Spinner */

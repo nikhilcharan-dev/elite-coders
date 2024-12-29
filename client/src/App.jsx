@@ -14,6 +14,7 @@ const Practice = React.lazy(() => import('./pages/practise/Practise'));
 const CheatSheet = React.lazy(() => import('./pages/cspage/CheatSheet.jsx'));
 const UserProfile = React.lazy(() => import('./pages/userprofile/UserProfile'));
 const CheatSheetDetail = React.lazy(() => import('./pages/cspage/CheatSheetDetail'))
+const FriendProfile = React.lazy(()	=> import('./pages/friendprofile/FriendProfile'));
 
 // testing components
 import PopTest from './pages/demo/PopTest';
@@ -29,6 +30,8 @@ const routes = [
 	{ path: '/user/:id', element: <UserProfile /> },
 	{ path: '/login', element: <LoginPage /> },
 	{ path: '/register', element: <RegisterPage /> },
+
+	{ path: '/profile/:id', element: <FriendProfile /> },
 
 	{ path: '/cheatsheets', element: <CheatSheet /> },
 	{ path: '/cheatsheets/:name', element: <CheatSheetDetail /> },
