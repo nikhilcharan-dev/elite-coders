@@ -1,26 +1,27 @@
 .questions-section {
-	align-items: center;
-	background-color: white;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(218, 106, 106, 0.1);
-	padding: 20px;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(218, 106, 106, 0.1);
+    padding: 20px;
+    position: relative;
 }
 
 .questions-section h3 {
-	margin: 0;
-	padding: 3px;
-	font-size: 30px;
-	text-align: center;
-	font-weight: bolder;
+    margin: 0;
+    padding: 3px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bolder;
 }
 
 .buttons {
-	display: flex;
-	padding: 0px;
-	align-items: center;
-	justify-content: center;
-	margin: 20px 0;
-	gap: 20px;
+    display: flex;
+    padding: 0px;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 20px;
 }
 
 .random-btn {
@@ -36,126 +37,181 @@
 }
 
 .random-btn:hover {
-	transform: scale(1.03);
-	background-color: #3bafa3;
+    transform: scale(1.03);
+    background-color: #3bafa3;
 }
 
 .random-btn:active {
-	transform: scale(1.01);
+    transform: scale(1.01);
 }
 
 .questions-list {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 20px;
-	justify-content: center;
-	max-height: 600px;
-	overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-height: 600px;
+    overflow-y: auto;
 }
 
 .question-card {
-	background: linear-gradient(135deg, #A1D8F1, #D3A9F7);
-	padding: 15px;
-	border-radius: 8px;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-	width: fit-content;
-	transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    background: linear-gradient(135deg, #A1D8F1, #D3A9F7);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    transition: transform 0.3s ease-in-out;
+    min-width: 200px;
+    max-width: 300px;
 }
 
 .question-card:hover {
-	transform: scale(1.03);
+    transform: scale(1.03);
 }
 
 .question-card h4 {
-	margin: 0;
-	font-size: 20px;
+    margin: 0;
+    font-size: 20px;
 }
 
 .question-card p {
-	margin: 5px 0;
+    margin: 5px 0;
 }
 
 .platform {
-	display: flex;
-	align-items: center;
-	margin: 0px;
-	padding: 0px;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
 }
 
 .platform > * {
-	margin: 0px;
-	padding: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .icon {
-	height: 15px;
-	width: 15px;
-	object-fit: cover;
-	border-radius: 2px;
-	padding: 2px;
-	margin-left: 5px;
-	margin-right: 5px;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    height: 15px;
+    width: 15px;
+    object-fit: cover;
+    border-radius: 2px;
+    padding: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .recommend-btn,
-	.solve-btn,
-	.solved-btn {
-	background-color: #ff7eb3;
-	color: white;
-	padding: 8px 16px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 14px;
-	margin-top: 10px;
-	transition: background-color 0.3s;
+.solve-btn,
+.solved-btn {
+    background-color: #ff7eb3;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
 }
 
 .recommend-btn:hover,
-	.solve-btn:hover,
-	.solved-btn:hover {
-	background-color: #ff758f;
+.solve-btn:hover,
+.solved-btn:hover {
+    background-color: #ff758f;
 }
 
 .solve-btn {
-	background-color: #4ECDC4;
-	margin-right: 10px;
+    background-color: #4ECDC4;
+    margin-right: 10px;
 }
 
 .solved-btn {
-	background-color: #ff7e7e;
-	margin-right: 10px;
+    background-color: #ff7e7e;
+    margin-right: 10px;
 }
 
 .solve-btn:hover,
-	.solved-btn:hover {
-	color: white;
+.solved-btn:hover {
+    color: white;
 }
 
 .link {
-	color: white;
-	text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 .loading-spinner {
-	display: flex;
-	justify-self: center;
-	align-self: center;
-	margin: 10px;
-	height: 50px;
-	width: 50px;
-	border: 8px solid transparent;
-	border-top: 9px solid #4ECDC4;
-	border-radius: 50%;
-	animation: spin 1.5s linear infinite;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    margin: 10px;
+    height: 50px;
+    width: 50px;
+    border: 8px solid transparent;
+    border-top: 9px solid #4ECDC4;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
 }
 
 @keyframes spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Popover styles */
+.popover {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 100;
+}
+
+.friend-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.recommend-btn {
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.recommend-btn:hover {
+    background-color: #45a049;
+}
+
+.close-btn {
+    margin-top: 10px;
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #e53935;
 }

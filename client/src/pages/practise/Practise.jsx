@@ -48,9 +48,17 @@ const Practice = () => {
         setQuestions([randomQuestion]);
     };
 
-    const handleRecommendQuestion = (question) => {
-        // Pending !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        console.log('Recommend Question:', question);
+    const handleRecommendQuestion = async (questionId, receiverId) => {
+        try {
+            await Axios.post(`/api/recommend/question`, {
+                senderId: localStorage.getItem('id'),
+                receiverId,
+                questionId,
+            });
+            alert('Recommendation sent!');
+        } catch (error) {
+            console.error("Error sending recommendation:", error);
+        }
     };
 
     return (

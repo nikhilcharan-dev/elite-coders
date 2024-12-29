@@ -5,7 +5,7 @@ import Topic from '../models/topic.js';
 
 const router = express.Router();
 
-router.post('/recommend-question', async (req, res) => {
+router.post('/question', async (req, res) => {
     const { senderId, receiverId, questionId } = req.body;
 
     try {
@@ -32,7 +32,7 @@ router.post('/recommend-question', async (req, res) => {
     }
 });
 
-router.post('/recommend-topic', async (req, res) => {
+router.post('/topic', async (req, res) => {
     const { senderId, receiverId, topicId } = req.body;
 
     try {

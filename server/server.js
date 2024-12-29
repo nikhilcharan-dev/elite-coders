@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 5000;
 
 // origin whitelist
 const allowedOrigins = [
-    'http://localhost:5173',
+    'http://localhost:5173', // testing
     'https://elite-coders-xii.vercel.app',
     'https://elite-coders-nikirus-projects.vercel.app'
     ];
