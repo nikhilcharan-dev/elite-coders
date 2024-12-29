@@ -1,14 +1,7 @@
 
  ----- Front-end ------
-context for making locally stored user data available throughtout the react components
 
-check api request to backend [search.jsx]
 setting up social page
-
-implementing recommend feature
-
-filtering / removing unneccessary api calls 
-
 
 
  ----- Back-end ------

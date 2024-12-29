@@ -52,7 +52,6 @@ const Questions = ({ loading, setLoading, questions, onRefresh, onRandomQuestion
     const handleRecommendQuestion = (friendId) => {
         if (friendId && selectedQuestion) {
             onRecommendQuestion(selectedQuestion, friendId);
-            alert(`Recommendation sent to ${friendId}!`);
             setIsPopoverVisible(false);
         } else {
             alert("Please select a friend and question.");

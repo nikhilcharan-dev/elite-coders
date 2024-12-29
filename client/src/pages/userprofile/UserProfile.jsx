@@ -51,33 +51,35 @@ const UserProfile = () => {
 
 	useEffect(() => {
 		const fetchRecommendedQuestions = async () => {
-		  if (user && user.recommendedQuestions) {
-			const updatedQuestions = await Promise.all(
-			  user.recommendedQuestions.map(async (recommendation) => {
-				const senderResponse = await Axios.get(
-				  `/api/meta/${recommendation.senderId}`
+			if (user && user.recommendedQuestions) {
+				const updatedQuestions = await Promise.all(
+					user.recommendedQuestions.map(async (recommendation) => {
+						const senderResponse = await Axios.get(
+							`/api/meta/${recommendation.senderId}`
+						);
+						console.log(recommendation);
+						const questionResponse = await Axios.get(
+							`/api/questions/${recommendation.questionLink}`
+						);
+
+						return {
+							senderId: recommendation.senderId,
+							senderUsername: senderResponse.data.username,
+							senderProfilePhoto: senderResponse.data.profilePhoto,
+							questionName: questionResponse.data.name,
+							questionTopic: questionResponse.data.topics.join(', '),
+							questionLink: questionResponse.data.link,
+							questionDifficulty: questionResponse.data.difficulty,
+						};
+					})
 				);
-				const questionResponse = await Axios.get(
-				  `/api/questions/${recommendation.questionId}`
-				);
-	
-				return {
-				  senderUsername: senderResponse.data.username,
-				  senderProfilePhoto: senderResponse.data.profilePhoto,
-				  questionName: questionResponse.data.name,
-				  questionTopic: questionResponse.data.topic,
-				  questionLink: questionResponse.data.link,
-				  questionId: recommendation.questionId,
-				};
-			  })
-			);
-	
-			setRecommendedQuestions(updatedQuestions);
-		  }
+
+				setRecommendedQuestions(updatedQuestions);
+			}
 		};
-	
+
 		fetchRecommendedQuestions();
-	  }, [user]);
+	}, [user]);
 
 	let profileImage = def;
 	if (user) {
@@ -95,7 +97,7 @@ const UserProfile = () => {
 
 	const handleSolve = (questionLink) => {
 		if (questionLink) {
-		  window.open(questionLink, "_blank");
+			window.open(questionLink, "_blank");
 		}
 	};
 
@@ -152,7 +154,7 @@ const UserProfile = () => {
 				<div className="profile-right">
 
 					{/* Mail Component Button */}
-					{showMail && <EditMail onClose={() => setShowMail(false) } />}
+					{showMail && <EditMail onClose={() => setShowMail(false)} />}
 					<div className="top-buttons">
 						<div className="left-btns">
 							<button className="frnds-btn" onClick={() => setShowFrnd(true)}>
@@ -170,7 +172,7 @@ const UserProfile = () => {
 
 
 					{/* Top Section: Friends and Requests */}
-					{showFrnd && <EditFrnd onClose={() => setShowFrnd(false)} user={user} onEdit={() => setEdited(!edited)}/>}
+					{showFrnd && <EditFrnd onClose={() => setShowFrnd(false)} user={user} onEdit={() => setEdited(!edited)} />}
 					<div className="friends-info-container">
 						<div className="friends-info-box">
 							<h4>Friends</h4>
@@ -194,37 +196,43 @@ const UserProfile = () => {
 			<div className="recommendations">
 				<h3>Recommended Questions</h3>
 				{recommendedQuestions && recommendedQuestions.length > 0 ? (
-				<ul>
-					{recommendedQuestions.map((question, index) => (
-					<div key={index} className="question-card">
-						{/* Sender Profile Section */}
-						<div className="sender-info">
-						<img
-							className="sender-profile-img"
-							src={question.senderProfilePhoto || def} // Default profile photo if senderProfilePhoto doesn't exist
-							alt="Sender Profile"
-						/>
-						<p className="sender-username">{question.senderUsername || "Unknown"}</p>
-						</div>
+					<ul>
+						{recommendedQuestions.map((question, index) => (
+							<div key={index} className="question-card">
+								{/* Sender Profile Section */}
+								<div className="sender-info">
+									<img
+										className="sender-img"
+										src={question.senderProfilePhoto || def}
+										alt="Sender Profile"
+									/>
+									<p className="sender-username"> Sender Name: <strong>{question.senderUsername || "Unknown"} </strong></p>
+									<button className="view-profile" onClick={() => navigate(`/profile/${question.senderId}`)}>
+										view profile
+									</button>
+								</div>
 
-						{/* Question Details */}
-						<div className="question-details">
-						<h4 className="question-name">{question.questionName}</h4>
-						<p className="question-topic">
-							<strong>Topic:</strong> {question.questionTopic || "Not Specified"}
-						</p>
-						<button
-							className="solve-btn"
-							onClick={() => handleSolve(question.questionLink)}
-						>
-							Solve
-						</button>
-						</div>
-					</div>
-					))}
-				</ul>
+								{/* Question Details */}
+								<div className="question-details">
+									<h4 className="question-name">{question.questionName}</h4>
+									<p className="question-topic">
+										<strong>Topic:</strong> {question.questionTopic || "Not Specified"}
+									</p>
+									<p className="question-difficulty">
+										<strong>Difficulty:</strong> {question.questionDifficulty || "Not Specified"}
+									</p>
+									<button
+										className="solve-btn"
+										onClick={() => handleSolve(question.questionLink)}
+									>
+										Solve
+									</button>
+								</div>
+							</div>
+						))}
+					</ul>
 				) : (
-				<p>No new questions recommended.</p>
+					<p>No new questions recommended.</p>
 				)}
 			</div>
 		</section>

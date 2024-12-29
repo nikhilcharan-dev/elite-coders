@@ -87,7 +87,7 @@
     top: 30%; /* Adjust based on your design */
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
+    width: fit-content;
     max-width: 600px;
     background: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -105,6 +105,7 @@
 .popover-content {
     max-height: 400px;
     overflow-y: auto;
+    padding: 10px;
 }
 
 .close-button {
@@ -121,4 +122,18 @@
     text-align: center;
     color: #666;
     padding: 20px;
+}
+
+.loading {
+    transition: all 0.5s;
+    animation: search 0.5s infinite alternate;
+}
+
+@keyframes search {
+    0% {
+        transform: scale(1.05) translateY(-5px);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
 }

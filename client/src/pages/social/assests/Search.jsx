@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from '@api';
 import { Link } from 'react-router-dom';
 
@@ -15,6 +15,7 @@ const Search = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [showPopover, setShowPopover] = useState(false);
     const [requestStatus, setRequestStatus] = useState({});
+    const [className, setClassName] = useState('search-button');
 
     const handleSearch = async () => {
         if (!searchQuery.trim()) return;
@@ -48,6 +49,14 @@ const Search = () => {
         }
     };
 
+    useEffect(() => {
+        if(isLoading) {
+            setClassName('search-button loading');
+        } else {
+            setClassName('search-button');
+        }
+    }, [isLoading])
+
     const getGender = (user) => {
         let profileImage = def;
         if (user) {
@@ -77,7 +86,7 @@ const Search = () => {
                 <button
                     onClick={handleSearch}
                     disabled={isLoading}
-                    className="search-button"
+                    className={className}
                 >
                     <img
                         src={search}
