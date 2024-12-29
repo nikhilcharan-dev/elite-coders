@@ -7,7 +7,7 @@ import girl from '../../assests/default-girl.jpg';
 
 import './EditFrnd.css';
 
-const EditFrnd = ({ onClose, user }) => {
+const EditFrnd = ({ onClose, user, onEdit }) => {
     const [friends, setFriends] = useState([]);
     const [friendRequests, setFriendRequests] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -48,32 +48,31 @@ const EditFrnd = ({ onClose, user }) => {
             console.error("Error accepting friend request:", error);
             alert('Error accepting friend request');
         }
+        onEdit();
     };
 
     const handleRejectRequest = async (username) => {
         try {
-            const response = await Axios.post(`${BASE_URL}/api/friends/reject-request/${username}`, null, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const response = await Axios.post(`http://localhost:5010/api/friends/reject-request/${username}`);
             setFriendRequests(friendRequests.filter(req => req.user.username !== username));
             alert(response.data.message);
         } catch (error) {
             console.error("Error rejecting friend request:", error);
             alert('Error rejecting friend request');
         }
+        onEdit();
     };
 
     const handleRemoveFriend = async (username) => {
         try {
-            const response = await Axios.post(`${BASE_URL}/api/friends/remove-friend/${username}`, null, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const response = await Axios.post(`${BASE_URL}/api/friends/remove-friend/${username}`);
             setFriends(friends.filter(friend => friend.username !== username));
             alert(response.data.message);
         } catch (error) {
             console.error("Error removing friend:", error);
             alert('Error removing friend');
         }
+        onEdit();
     };
 
     const getProfilePhoto = (user) => {

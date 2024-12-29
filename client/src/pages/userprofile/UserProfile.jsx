@@ -114,7 +114,7 @@ const UserProfile = () => {
 				<div className="profile-right">
 
 					{/* Mail Component Button */}
-					{showMail && <EditMail onClose={() => setShowMail(false)} />}
+					{showMail && <EditMail onClose={() => setShowMail(false) } />}
 					<div className="top-buttons">
 						<div className="left-btns">
 							<button className="frnds-btn" onClick={() => setShowFrnd(true)}>
@@ -132,7 +132,7 @@ const UserProfile = () => {
 
 
 					{/* Top Section: Friends and Requests */}
-					{showFrnd && <EditFrnd onClose={() => setShowFrnd(false)} user={user} />}
+					{showFrnd && <EditFrnd onClose={() => setShowFrnd(false)} user={user} onEdit={() => setEdited(!edited)}/>}
 					<div className="friends-info-container">
 						<div className="friends-info-box">
 							<h4>Friends</h4>

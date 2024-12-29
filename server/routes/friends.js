@@ -28,13 +28,18 @@ router.post('/send-request/:username', authMiddleware, async (req, res) => {
     try {
         const { username } = req.params;
         const currentUserId = req.user.id;
+        
+        const currentUser = await User.findById(currentUserId);
+        const targetUser = await findUserByUsername(username);
 
-        if (req.user.username === username) {
+        console.log('Current user:', currentUser._id);
+        console.log('Target user:', targetUser._id);
+
+        if (currentUser._id.toString() == targetUser._id.toString()) {
+            console.log('You cannot send a friend request to yourself.');
             return res.status(400).json({ message: 'You cannot send a friend request to yourself.' });
         }
 
-        const currentUser = await User.findById(currentUserId);
-        const targetUser = await findUserByUsername(username);
 
         if (currentUser.friends.includes(targetUser._id)) {
             return res.status(400).json({ message: 'You are already friends.' });
@@ -107,6 +112,7 @@ router.post('/accept-request/:username', authMiddleware, async (req, res) => {
 // rejecting a friend request
 router.post('/reject-request/:username', authMiddleware, async (req, res) => {
     try {
+        console.log('rejecting request');
         const { username } = req.params;
         const currentUserId = req.user.id;
 

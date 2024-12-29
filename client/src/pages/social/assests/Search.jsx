@@ -14,14 +14,14 @@ const Search = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [showPopover, setShowPopover] = useState(false);
-    const [requestStatus, setRequestStatus] = useState({}); // Track request status per user
+    const [requestStatus, setRequestStatus] = useState({});
 
     const handleSearch = async () => {
         if (!searchQuery.trim()) return;
         setIsLoading(true);
         try {
             const response = await Axios.get(
-                `http://localhost:5010/api/meta/search?query=${searchQuery}`
+                `/api/meta/search?query=${searchQuery}`
             );
             setSearchResults(response.data);
             setShowPopover(true);
@@ -43,7 +43,7 @@ const Search = () => {
             setRequestStatus((prev) => ({ ...prev, [username]: 'success' }));
             console.log(response.data.message);
         } catch (error) {
-            console.error('Error sending friend request:', error);
+            alert(error.response.data.message);
             setRequestStatus((prev) => ({ ...prev, [username]: 'error' }));
         }
     };
