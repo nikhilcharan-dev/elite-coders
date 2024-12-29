@@ -12,7 +12,7 @@ const findUserByUsername = async (username) => {
 };
 
 // gettig current user's friends
-router.get('/friends', authMiddleware, async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
     try {
         const currentUserId = req.user.id;
         const currentUser = await User.findById(currentUserId).populate('friends', 'username profilePhoto');
