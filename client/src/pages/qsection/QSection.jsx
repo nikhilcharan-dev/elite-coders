@@ -59,8 +59,13 @@ const Questions = ({ loading, setLoading, questions, onRefresh, onRandomQuestion
     };
 
     const handleRecommendButtonClick = (e, question) => {
+        if(userFriends.length > 0) {
+            setUserFriends(user.friends);
+        } else {
+            alert('You have no friends to recommend to.');
+        }
         setSelectedQuestion(question._id);
-        setIsPopoverVisible(true); // Show the popover
+        setIsPopoverVisible(true);
     };
 
     return (

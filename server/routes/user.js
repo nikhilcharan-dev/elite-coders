@@ -7,6 +7,15 @@ const router = express.Router();
 //checking if ObjectId is valid
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
+router.get('/minions', async (req, res) => {
+    try {
+        const count = await User.countDocuments({});
+        return res.json(count);
+    } catch(err) {
+        return res.status(500).json({ message: 'Server Error' });
+    }
+});
+
 // searching by name
 router.get('/search', async (req, res) => {
     const { query } = req.query;

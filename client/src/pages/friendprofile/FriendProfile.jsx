@@ -5,17 +5,19 @@ import Axios from "@api";
 import Navbar from "../../ui/navbar/NavBar";
 import Spinner from "../spinner/Spinner";
 
-import edit from '../assests/edit.png';
-import log from '../assests/log-out.png';
 import def from '../assests/default-other.jpg';
 import boy from '../assests/default-boy.jpg';
 import girl from '../assests/default-girl.jpg';
+import gfg from '../assests/gfg.png';
+import youtube from '../assests/youtube.png';
 
 import "./FriendProfile.css";
 
 const UserProfile = () => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [recommendedQuestions, setRecommendedQuestions] = useState([]);
+	const [recommendedTopics, setRecommendedTopics] = useState([]);
 
 	const navigate = useNavigate();
 	const userId = useParams().id;
@@ -37,6 +39,65 @@ const UserProfile = () => {
 			fetchUserData();
 		}
 	}, [userId]);
+
+	useEffect(() => {
+		const fetchRecommendedQuestions = async () => {
+			if (user && user.recommendedQuestions) {
+				const updatedQuestions = await Promise.all(
+					user.recommendedQuestions.map(async (recommendation) => {
+						const senderResponse = await Axios.get(
+							`/api/meta/${recommendation.senderId}`
+						);
+						const questionResponse = await Axios.get(
+							`/api/questions/${recommendation.questionLink}`
+						);
+
+						return {
+							senderId: recommendation.senderId,
+							senderUsername: senderResponse.data.username,
+							senderProfilePhoto: senderResponse.data.profilePhoto,
+							questionName: questionResponse.data.name,
+							questionTopic: questionResponse.data.topics.join(', '),
+							questionLink: questionResponse.data.link,
+							questionDifficulty: questionResponse.data.difficulty,
+						};
+					})
+				);
+
+				setRecommendedQuestions(updatedQuestions);
+			}
+		};
+
+		const fetchRecommendedTopics = async () => {
+			if (user && user.recommendedTopics) {
+				const updatedTopics = await Promise.all(
+					user.recommendedTopics.map(async (recommendation) => {
+						const senderResponse = await Axios.get(
+							`/api/meta/${recommendation.senderId}`
+						);
+						const topicResponse = await Axios.get(
+							`http://localhost:5010/api/topics/${recommendation.topicId}`
+						);
+
+						return {
+							senderId: recommendation.senderId,
+							senderUsername: senderResponse.data.username,
+							senderProfilePhoto: senderResponse.data.profilePhoto,
+							topicName: topicResponse.data.name,
+							topicDescription: topicResponse.data.description,
+						};
+					})
+				);
+
+				setRecommendedTopics(updatedTopics);
+				console.log(updatedTopics);
+			}
+		}
+
+		fetchRecommendedQuestions();
+		fetchRecommendedTopics();
+
+	}, [user]);
 
 	let profileImage = def;
 	if (user) {
@@ -103,14 +164,80 @@ const UserProfile = () => {
 			{/* Bottom Section: Recommended Questions */}
 			<div className="recommendations">
 				<h3>Recommended Questions</h3>
-				{user.recommendedQuestions && user.recommendedQuestions.length > 0 ? (
+				{recommendedQuestions && recommendedQuestions.length > 0 ? (
 					<ul>
-						{user.recommendedQuestions.map((question, index) => (
-							<li key={index}>{question}</li>
+						{recommendedQuestions.map((question, index) => (
+							<div key={index} className="question-card">
+								{/* Sender Profile Section */}
+								<div className="sender-info">
+									<img
+										className="sender-img"
+										src={question.senderProfilePhoto || def}
+										alt="Sender Profile"
+									/>
+									<p className="sender-username"> Sender Name: <strong>{question.senderUsername || "Unknown"} </strong></p>
+									<button className="view-profile" onClick={() => navigate(`/profile/${question.senderId}`)}>
+										view profile
+									</button>
+								</div>
+
+								{/* Question Details */}
+								<div className="question-details">
+									<h4 className="question-name">{question.questionName}</h4>
+									<p className="question-topic">
+										<strong>Topic:</strong> {question.questionTopic || "Not Specified"}
+									</p>
+									<p className="question-difficulty">
+										<strong>Difficulty:</strong> {question.questionDifficulty || "Not Specified"}
+									</p>
+									<button
+										className="solve-btn"
+										onClick={() => handleSolve(question.questionLink)}
+									>
+										Solve
+									</button>
+								</div>
+							</div>
 						))}
 					</ul>
 				) : (
-					<p>No questions recommended yet.</p>
+					<p>No new Questions recommended.</p>
+				)}
+			</div>
+
+			{/* Recommended Topics */}
+			<div className="recommendations">
+				<h3>Recommended Topics</h3>
+				{recommendedTopics && recommendedTopics.length > 0 ? (
+					<ul>
+						{recommendedTopics.map((question, index) => (
+							<div key={index} className="question-card">
+								{/* Sender Profile Section */}
+								<div className="sender-info">
+									<img
+										className="sender-img"
+										src={question.senderProfilePhoto || def}
+										alt="Sender Profile"
+									/>
+									<p className="sender-username"> Sender Name: <strong>{question.senderUsername || "Unknown"} </strong></p>
+									<button className="view-profile" onClick={() => navigate(`/profile/${question.senderId}`)}>
+										view profile
+									</button>
+								</div>
+
+								{/* Question Details */}
+								<div className="topic-details">
+									<h4 className="topic-name">{question.topicName}</h4>
+									<div className="topic-links">
+										<img onClick={() => handleSolve(question.youtubeLink)} src={youtube} alt="Youtube.png" />
+										<img onClick={() => handleSolve(question.gfgLink)} src={gfg} alt="GFG.png" />
+									</div>
+								</div>
+							</div>
+						))}
+					</ul>
+				) : (
+					<p>No new Topics recommended.</p>
 				)}
 			</div>
 		</section>

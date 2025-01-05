@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Axios from '@api';
 import { Link } from 'react-router-dom';
 
-import def from '../../assests/default-other.jpg';
-import boy from '../../assests/default-boy.jpg';
-import girl from '../../assests/default-girl.jpg';
-import search from '../../assests/search.png';
+import def from '../../../assests/default-other.jpg';
+import boy from '../../../assests/default-boy.jpg';
+import girl from '../../../assests/default-girl.jpg';
+import search from '../../../assests/search.png';
 
 import './Search.css';
 
@@ -16,6 +16,7 @@ const Search = () => {
     const [showPopover, setShowPopover] = useState(false);
     const [requestStatus, setRequestStatus] = useState({});
     const [className, setClassName] = useState('search-button');
+    const [userCount, setUserCount] = useState(0);
 
     const handleSearch = async () => {
         if (!searchQuery.trim()) return;
@@ -57,6 +58,15 @@ const Search = () => {
         }
     }, [isLoading])
 
+    useEffect(() => {
+        const fetchUserCount = async () => {
+            const userCount = await Axios.get('http://localhost:5010/api/meta/minions');
+            console.log('User Count:', userCount.data);
+            setUserCount(userCount.data);
+        };
+        fetchUserCount();
+    }, []);
+
     const getGender = (user) => {
         let profileImage = def;
         if (user) {
@@ -74,6 +84,10 @@ const Search = () => {
 
     return (
         <div className="search-container">
+            {/* Users Count */}
+            <div className='user-count'>
+                <h2>Elite Coders: <strong>{userCount}</strong></h2>
+            </div>
             {/* Search Bar */}
             <div className="search-bar">
                 <input

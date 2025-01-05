@@ -18,7 +18,7 @@ const Learn = () => {
                 const res = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/topics/`);
                 setQuestions(res.data);
                 setAllQuestions(res.data);
-            } catch(err) {
+            } catch (err) {
                 console.log(err.data.message);
             }
             setLoading(false);
@@ -27,10 +27,23 @@ const Learn = () => {
         fetchQuestions();
     }, []);
 
+    const handleRecommendQuestion = async (questionId, receiverId) => {
+        try {
+            await Axios.post(`/api/recommend/topic`, {
+                senderId: localStorage.getItem('id'),
+                receiverId,
+                topicId: questionId,
+            });
+            alert('Recommendation sent!');
+        } catch (error) {
+            console.error("Error sending recommendation:", error);
+        }
+    };
+
 
     const handleFilter = (filters) => {
         setLoading(true);
-        if(filters.length === 0) {
+        if (filters.length === 0) {
             setQuestions(allQuestions);
             return;
         }
@@ -45,12 +58,13 @@ const Learn = () => {
     return (
         <div className='learn-section'>
             <CheatsheetPanel />
-            <Filter 
+            <Filter
                 onFilter={handleFilter}
             />
-            <TSection 
-                questions={questions}
+            <TSection
                 loading={loading}
+                questions={questions}
+                onRecommendQuestion={handleRecommendQuestion}
             />
         </div>
     );
@@ -60,9 +74,9 @@ const Filter = ({ onFilter }) => {
     const [filter, setFilter] = useState('');
 
     const handleTopicChange = (e) => {
-		const { value } = e.target;
-		setFilter(() => value);
-	};
+        const { value } = e.target;
+        setFilter(() => value);
+    };
 
     const handleFilter = (e) => {
         e.preventDefault();
@@ -81,7 +95,7 @@ const Filter = ({ onFilter }) => {
             <form onSubmit={handleFilter}>
                 <div className='filter-item'>
                     <label>Topic</label>
-                    <input 
+                    <input
                         type='text'
                         name='topics'
                         value={filter}
@@ -91,7 +105,7 @@ const Filter = ({ onFilter }) => {
                 </div>
                 <div className='filter-btns'>
                     <button type="submit" className="filter-btn">Apply Filters</button>
-                    <button onClick={handleRefresh}className='filter-btn'>Reset</button>
+                    <button onClick={handleRefresh} className='filter-btn'>Reset</button>
                 </div>
             </form>
         </div>

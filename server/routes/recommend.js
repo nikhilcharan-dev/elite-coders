@@ -33,6 +33,8 @@ router.post('/question', async (req, res) => {
 });
 
 router.post('/topic', async (req, res) => {
+
+    console.log('Recommend topic:', req.body);
     const { senderId, receiverId, topicId } = req.body;
 
     try {

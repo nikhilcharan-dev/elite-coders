@@ -33,8 +33,11 @@ router.post('/add', async (req, res) => {
 router.get('/:id', async (req, res) => {
 	const { id } = req.params;
 
+	console.log(id);
+
 	try {
 		const topic = await Topic.findById(id);
+		console.log(topic)
 		if (!topic) {
 			return res.status(404).json({ message: 'Topic not found' });
 		}

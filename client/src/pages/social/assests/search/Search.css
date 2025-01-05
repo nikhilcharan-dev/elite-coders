@@ -4,6 +4,7 @@
 
 .search-bar {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
@@ -84,7 +85,7 @@
 
 .search-popover {
     position: absolute;
-    top: 30%; /* Adjust based on your design */
+    top: 30%;
     left: 50%;
     transform: translateX(-50%);
     width: fit-content;
@@ -136,4 +137,9 @@
     100% {
         transform: scale(1) translateY(0);
     }
+}
+
+.user-count > h2 {
+    margin: 0px;
+    padding: 5px;
 }
