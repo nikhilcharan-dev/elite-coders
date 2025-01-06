@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import RCard from '../../../../ui/rcard/RCard';
+
 import './Resources.css';
 
 const resources = [
@@ -34,6 +36,7 @@ const resources = [
     }
 ];
 
+
 const Resources = () => {
 
     const navigate = useNavigate();
@@ -48,15 +51,10 @@ const Resources = () => {
             <div className='resource-content'>
                 {resources.map((resources, index) => {
                     return (
-                        <div key={index} className='resource-card' onCanPlayThrough={() => handleClick(link)}>
-                            <img src={resources.bcLink} alt={resources.title} className='background-logo'/>
-                            <img src={resources.logo} alt={resources.title} className='resource-logo'/>
-                            <h3>{resources.title.toUpperCase()}</h3>
-                            <p>{resources.description}</p>
-                        </div>
+                        <RCard index {...resources} />
                 )})}
             </div>
-            <button className='expander' onClick={() => navigate('meta/social/resources')}>
+            <button className='expander' onClick={() => navigate('meta/resources')}>
                 More
             </button>
         </div>
@@ -64,14 +62,3 @@ const Resources = () => {
 };
 
 export default Resources;
-
-// {
-//     title: 'Quizlet',
-//     description: 'Free Quizlet Plus for 7 Days',
-//     link: 'https://freeforstudents.org/go/quizlet-plus'
-// },
-// {
-//     title: 'Notion',
-//     description: 'Free Productivity and Note-Taking App',
-//     link: 'https://freeforstudents.org/go/notion-edu'
-// }

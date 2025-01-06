@@ -23,60 +23,6 @@
     justify-content: center;
 }
 
-.resource-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 10px;
-    gap: 5px;
-    min-height: 400px;
-    max-width: 300px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(218, 106, 106, 0.1);
-    overflow: hidden;
-
-    transition: all 0.4s ease-in-out;
-}
-
-.resource-card > h3 {
-    margin: 0;
-    padding: 3px;
-    padding-top: 18%;
-    font-size: 15px;
-    text-align: center;
-    font-weight: bolder;
-    color: rgb(100, 194, 226);
-}
-
-.background-logo {
-    height: 200px;
-    width: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin: 10px;
-}
-
-.resource-logo {
-    position: absolute;
-    bottom: 35%;
-    height: 100px;
-    width: 100px;
-    border-radius: 10px;
-    object-fit: contain;
-    padding: 5px 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    background-color: rgb(255, 255, 255);
-}
-
-.resource-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
 .expander {
     margin: 10px 5px 5px 10px;
     padding: 10px 30px;

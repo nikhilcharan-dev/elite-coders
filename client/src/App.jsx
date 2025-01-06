@@ -11,6 +11,7 @@ import Adventurer from './pages/adventurer/Adventurer';
 import RegisterPage from "./ui/registerpage/RegisterPage";
 const Learn = React.lazy(() => import('./pages/learn/Learn'));
 const Practice = React.lazy(() => import('./pages/practise/Practise'));
+const Resource = React.lazy(() => import('./pages/resources/Resource'));
 const CheatSheet = React.lazy(() => import('./pages/cspage/CheatSheet.jsx'));
 const UserProfile = React.lazy(() => import('./pages/userprofile/UserProfile'));
 const CheatSheetDetail = React.lazy(() => import('./pages/cspage/CheatSheetDetail'))
@@ -26,10 +27,12 @@ const routes = [
 	{ path: '/learn', element: <Learn/> },
 	{ path: '/practice', element: <Practice /> },
 	{ path: '/compete', element: <Compete /> },
-	{ path: '/social', element: <Social /> },
 	{ path: '/user/:id', element: <UserProfile /> },
 	{ path: '/login', element: <LoginPage /> },
 	{ path: '/register', element: <RegisterPage /> },
+	
+	{ path: '/social', element: <Social /> },
+	{ path: '/social/meta/resources', element: <Resource /> },
 
 	{ path: '/profile/:id', element: <FriendProfile /> },
 

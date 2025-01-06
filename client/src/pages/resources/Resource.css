@@ -1,0 +1,17 @@
+.resource-container {
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(218, 106, 106, 0.1);
+    padding: 20px;
+    margin: 20px;
+    position: relative;
+}
+
+.resource-container h2 {
+    margin: 0;
+    padding: 3px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bolder;
+}
