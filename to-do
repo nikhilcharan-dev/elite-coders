@@ -2,14 +2,9 @@
  ----- Front-end ------
 
 setting up social page
+ -- refactor how results appear
 
-
- ----- Back-end ------
-refactor routes in server
-
-cross check any data-leak
-
-make end-points accesible only through front-end
+complete recommendation for cheatsheets
 
 
  ----- DataBase ------

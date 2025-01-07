@@ -13,6 +13,7 @@ import disliked from '../assests/disliked.png';
 import home from '../assests/home.png';
 
 import './CheatSheetDetail.css';
+import Like from '../../ui/like/Like';
 
 const CheatSheetDetail = () => {
     const { name } = useParams();
@@ -102,19 +103,15 @@ const CheatSheetDetail = () => {
             <p><strong>Quote:</strong> {cheatsheet.quote}</p>
             <div className="actions">
                 <ThemedButton link={home} onClick={() => navigate('/')} />
-                <ThemedButton 
-                    link={isLiked ? liked : like} 
+                <Like
                     count={likes} 
                     onClick={handleLike} 
-                    isActive={isLiked} 
-                    type="like"
+                    text="Likes"
                 />
-                <ThemedButton 
-                    link={isDisliked ? disliked : dislike} 
+                <Like 
                     count={dislikes} 
                     onClick={handleDislike} 
-                    isActive={isDisliked} 
-                    type="dislike"
+                    text="Dislikes"
                 />
             </div>
             <Questions

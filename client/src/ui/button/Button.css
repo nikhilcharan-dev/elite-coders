@@ -9,8 +9,6 @@
     cursor: pointer;
     height: 20px;
     width: max-content;
-    border-right: 1px solid #000000;
-    border-left: 1px solid #000000;
     border-width: 2px;
 }
 
