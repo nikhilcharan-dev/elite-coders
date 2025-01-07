@@ -22,7 +22,8 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
     'http://localhost:5173', // testing
     'https://elite-coders-xii.vercel.app',
-    'https://elite-coders-nikirus-projects.vercel.app'
+    'https://elite-coders-nikirus-projects.vercel.app',
+    'https://glorious-barnacle-wr7q94q565p5h96p6-5173.app.github.dev'
     ];
 
 // checking request origin
