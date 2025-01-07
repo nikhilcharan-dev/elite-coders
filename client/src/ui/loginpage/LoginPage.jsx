@@ -47,6 +47,7 @@ function LoginPage() {
 
             setPopup(true);
             // cookies
+            sessionStorage.setItem("token", res.data.token);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("id", res.data.userData._id);
             localStorage.setItem('userData', JSON.stringify(res.data.userData));

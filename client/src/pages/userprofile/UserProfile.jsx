@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useDeferredValue, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "@api";
 
@@ -33,6 +33,17 @@ const UserProfile = () => {
 
 	const navigate = useNavigate();
 	const userId = localStorage.getItem("id");
+
+	useEffect(() => {
+		if(sessionStorage.getItem('token')) {
+			const token = sessionStorage.getItem('token');
+			localStorage.setItem('token', token);
+		} else {
+			localStorage.clear();
+			sessionStorage.clear();
+			navigate('/login');
+		}
+	}, []);
 
 	useEffect(() => {
 		const fetchUserData = async () => {

@@ -12,7 +12,7 @@ import './NavBar.css';
 const NavBar = ({ edited }) => {
     const loginPage = '/login';
     const navigate = useNavigate();
-    const isLoggedIn = localStorage.getItem('token') ? true : false;
+    let isLoggedIn = sessionStorage.getItem('token') ? true : false;
 
     let userData = JSON.parse(localStorage.getItem('userData')) || {};
 
@@ -32,6 +32,7 @@ const NavBar = ({ edited }) => {
     }, [edited]);
 
     useEffect(() => {
+        isLoggedIn = sessionStorage.getItem('token') ? true : false;
         if(!isLoggedIn) {
             profileImage = user;
             navigate(loginPage);
