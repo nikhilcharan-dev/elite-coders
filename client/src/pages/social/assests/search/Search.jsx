@@ -60,7 +60,9 @@ const Search = () => {
 
     useEffect(() => {
         const fetchUserCount = async () => {
-            const userCount = await Axios.get('http://localhost:5010/api/meta/minions');
+            const userCount = await Axios.get(
+                `/api/meta/minions`
+            );
             console.log('User Count:', userCount.data);
             setUserCount(userCount.data);
         };
