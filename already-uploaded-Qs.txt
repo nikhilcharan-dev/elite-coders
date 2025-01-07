@@ -1,0 +1,23 @@
+// gfg already uploaded question
+0/1 knapsack 
+Shortest Path in Undirected
+Unique Subsets
+Spirally traversing a matrix
+Facing the sun
+Max Circular Subarray Sum
+Min Chars to Add for Palindrome
+
+
+
+// Leetcode
+3397. Maximum Number of Distinct Elements After Operations
+233. Number of Digit One
+769. Max Chunks To Make Sorted
+2485. Find the Pivot Integer
+3232. Find if Digit Game Can Be Won
+605. Can Place Flowers
+1578. Minimum Time to Make Rope Colorful
+179. Largest Number
+1422. Maximum Score After Splitting a String
+141. Linked List Cycle
+135. Candy

@@ -48,8 +48,9 @@ async function collectQuestionData() {
 
     // Save the question to the database
     try {
-        await newQuestion.save();
-        console.log('Question saved successfully!');
+        const question = await newQuestion.save();
+        console.log(`Question saved successfully: ${question.name} -> Id: ${question._id}`);
+        return question._id;
     } catch (err) {
         console.error('Error saving question:', err);
     }
@@ -60,11 +61,16 @@ async function collectQuestions() {
     try {
         await connectDB();  // Connect to the database once
         const numQuestions = readlineSync.questionInt('Enter the number of questions you want to collect: ');
+        batch = []
         
         // Loop to collect and save questions
         for (let i = 0; i < numQuestions; i++) { // 100 questions
             console.log(`Collecting question ${i + 1}/${numQuestions}`);
-            await collectQuestionData();  // Wait for each question to be saved before continuing
+            batch.push(await collectQuestionData());  // Wait for each question to be saved before continuing
+        }
+        console.log("\n\n");
+        for(let i = 0; i < batch.length; i++) {
+            console.log(`${batch[i]}, `);
         }
     } catch (err) {
         console.error('Error during question collection:', err);
