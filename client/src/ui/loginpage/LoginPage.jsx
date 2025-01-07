@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Axios from "@api";
 
 import Popup from "../../pages/popup/Popup";
+import Loader from "../loader/Loader";
 
 import './LoginPage.css';
 
@@ -12,6 +13,7 @@ function LoginPage() {
     const [error, setError] = useState("");
     const [popup, setPopup] = useState(false);
     const [profilePage, setProfilePage] = useState("");
+    const [loading, setLoading] = useState(false);
     const [errPass, setErrPass] = useState(false);
     const navigate = useNavigate();
 
@@ -39,6 +41,7 @@ function LoginPage() {
         setError("");
         
         try {
+            setLoading(true);
             const BASE_URL = import.meta.env.VITE_BASE_URL;
             const res = await Axios.post(`${BASE_URL}/api/oauth/login`, {
                 usernameOrEmail: user,
@@ -58,6 +61,7 @@ function LoginPage() {
                 setErrPass(true);
             }
         }
+        setLoading(false);
     };
     
     const handleAfterLogin = () => {
@@ -77,6 +81,8 @@ function LoginPage() {
                     }>' Welcome back '</p>
                 </Popup>
             )}
+
+            {loading && <Loader/>}
 
             <section className="login-page">
                 <h1>Login</h1>

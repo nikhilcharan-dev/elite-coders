@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Axios from "@api";
 
 import Popup from "../../pages/popup/Popup";
+import Loader from "../loader/Loader";
 
 import './RegisterPage.css';
 
@@ -11,6 +12,7 @@ function RegisterPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const [popup, setPopup] = useState(false);
     const [login, setLogin] = useState("");
     const navigate = useNavigate();
@@ -42,6 +44,7 @@ function RegisterPage() {
         setError("");
         
         try {
+            setLoading(true);
             const BASE_URL = import.meta.env.VITE_BASE_URL;
             const res = await Axios.post(`${BASE_URL}/api/oauth/register`, {
                 email,
@@ -55,6 +58,7 @@ function RegisterPage() {
         } catch(err) {
             setError(err.response?.data?.message || 'An unexpected error occurred');
         }
+        setLoading(false);
     };
 
     const handleAfterRegister = () => {
@@ -74,6 +78,8 @@ function RegisterPage() {
                     }>A new Journey Begins....</p>
                 </Popup>
             )}
+
+            {loading && <Loader /> }
             <section className="register-page">
                 <h1>Register</h1>
                 <form className="credentials" onSubmit={handleRegister}>
