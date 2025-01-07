@@ -6,6 +6,8 @@ Spirally traversing a matrix
 Facing the sun
 Max Circular Subarray Sum
 Min Chars to Add for Palindrome
+Rat in a Maze Problem - I
+M-Coloring Problem
 
 
 
@@ -21,3 +23,14 @@ Min Chars to Add for Palindrome
 1422. Maximum Score After Splitting a String
 141. Linked List Cycle
 135. Candy
+238. Product of Array Except Self
+560. Subarray Sum Equals K
+287. Find the Duplicate Number
+567. Permutation in String
+443. String Compression
+131. Palindrome Partitioning
+2596. Check Knight Tour Configuration
+142. Linked List Cycle II
+430. Flatten a Multilevel Doubly Linked List
+138. Copy List with Random Pointer
+912. Sort an Array

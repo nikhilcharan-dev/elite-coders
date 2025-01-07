@@ -61,7 +61,7 @@ async function collectQuestions() {
     try {
         await connectDB();  // Connect to the database once
         const numQuestions = readlineSync.questionInt('Enter the number of questions you want to collect: ');
-        batch = []
+        let batch = []
         
         // Loop to collect and save questions
         for (let i = 0; i < numQuestions; i++) { // 100 questions
