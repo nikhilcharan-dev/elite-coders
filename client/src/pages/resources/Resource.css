@@ -1,17 +1,26 @@
-.resource-container {
+.resource-page {
+    justify-content: center;
     align-items: center;
-    background-color: rgb(255, 255, 255);
+    background-color: wheat;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(218, 106, 106, 0.1);
     padding: 20px;
-    margin: 20px;
     position: relative;
 }
 
-.resource-container h2 {
-    margin: 0;
+.resource-page > h1 {
     padding: 3px;
     font-size: 30px;
     text-align: center;
     font-weight: bolder;
+    margin: 20px 10px;
+}
+
+.resource-content {
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(218, 106, 106, 0.1);
+    max-height: 60vh;
+    overflow-y: auto;
 }
