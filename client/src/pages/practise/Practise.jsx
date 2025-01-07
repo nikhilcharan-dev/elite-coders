@@ -69,7 +69,7 @@ const Practice = () => {
                 loading={loading}
                 setLoading={setLoading}
                 questions={questions}
-                handleRefresh={handleRefresh}
+                onRefresh={handleRefresh}
                 onRandomQuestion={handleRandomQuestion}
                 onRecommendQuestion={handleRecommendQuestion}
             />
