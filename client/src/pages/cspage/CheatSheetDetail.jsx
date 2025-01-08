@@ -6,10 +6,6 @@ import Questions from '../qsection/QSection';
 import ThemedButton from '../../ui/button/Button';
 
 // images 
-import like from '../assests/like.png';
-import dislike from '../assests/dislike.png';
-import liked from '../assests/liked.png';
-import disliked from '../assests/disliked.png';
 import home from '../assests/home.png';
 
 import './CheatSheetDetail.css';
@@ -24,8 +20,6 @@ const CheatSheetDetail = () => {
     const [loading, setLoading] = useState(false);
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
-    const [isLiked, setIsLiked] = useState(false);
-    const [isDisliked, setIsDisliked] = useState(false);
 
     useEffect(() => {
         const fetchCheatsheet = async () => {

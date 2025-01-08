@@ -21,12 +21,14 @@ const FriendProfile = React.lazy(()	=> import('./pages/friendprofile/FriendProfi
 import PopTest from './pages/demo/PopTest';
 import Loader from './ui/loader/Loader.jsx';
 import Like from './ui/like/Like.jsx';
+import Intro from './ui/intro/Intro.jsx';
 
 
 import './App.css';
 
 const routes = [
 	{ path: '/', element: <Home /> },
+	{ path: '/intro', element: <Intro /> },
 	{ path: '/learn', element: <Learn/> },
 	{ path: '/practice', element: <Practice /> },
 	{ path: '/compete', element: <Compete /> },
@@ -43,7 +45,7 @@ const routes = [
 	{ path: '/cheatsheets/:name', element: <CheatSheetDetail /> },
 
 	{ path: '*', element: <Adventurer /> },
-	{ path: '/test', element: <Like /> },
+	{ path: '/test', element: <Intro /> },
 ];
 
 function App() {

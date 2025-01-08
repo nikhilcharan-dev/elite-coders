@@ -10,7 +10,7 @@ import girl from '../img/default-girl.jpg';
 import './NavBar.css';
 
 const NavBar = ({ edited }) => {
-    const loginPage = '/login';
+    const loginPage = '/intro';
     const navigate = useNavigate();
     let isLoggedIn = sessionStorage.getItem('token') ? true : false;
 
