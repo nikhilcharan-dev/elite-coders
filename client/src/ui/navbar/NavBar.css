@@ -5,13 +5,13 @@ nav {
     justify-content: space-around;
 }
 
-.logo {
+.Logo {
     display: flex;
     align-items: center;
     margin-right: 250px;
 }
 
-.logo > h1 {
+.Logo > h1 {
     font-size: 30px;
     font-weight: 400;
     margin: auto 10px;
@@ -54,6 +54,6 @@ nav > ul > li:hover {
     padding-bottom: 10px;
 }
 
-.logo > a {
+.Logo > a {
     justify-content: center;
 }

@@ -46,9 +46,9 @@ const NavBar = ({ edited }) => {
 
     return (
         <nav>
-            <div className="logo">
+            <div className="Logo">
                 <a href="/">
-                    <img id="logo" src={elite} alt="logo" />
+                    <img id="Logo" src={elite} alt="logo" />
                 </a>
                 <h1>Elite Coders</h1>
             </div>
