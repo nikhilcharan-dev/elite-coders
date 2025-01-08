@@ -1,7 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
 
+
+/* Font searching */
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./src/ui/fonts/CustomFont.ttf') format('truetype'),
+       url('./src/ui/fonts/CustomFont.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*  font-family: 'Cedarville Cursive', cursive; */
+
 .quote {
-  font-family: 'Cedarville Cursive', cursive;
+ font-family: 'Cedarville Cursive', cursive;
   font-weight: bolder;
 }
 

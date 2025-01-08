@@ -46,28 +46,34 @@ const CheatSheetDetail = () => {
     const handleLike = async () => {
         try {
             const res = await Axios.post(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${cheatsheet._id}/like`, { userId });
+            console.log("Response:", res.data); // Log the response
             setLikes(res.data.likes);
-            setIsLiked(true);
-            setIsDisliked(false); // Dislike reset if liked
         } catch (error) {
-            console.error("Error liking cheatsheet:", error);
+            if(error.response.data.message === "You have already liked this cheatsheet") {
+                alert("You have already liked this cheatsheet");
+                setLikes(likes - 1);
+            }
+            console.error("Error liking cheatsheet:", error.response ? error.response.data : error);
         }
     };
+    
 
     const handleDislike = async () => {
         try {
             const res = await Axios.post(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${cheatsheet._id}/dislike`, { userId });
             setDislikes(res.data.dislikes);
-            setIsLiked(false); // Like reset if disliked
-            setIsDisliked(true);
         } catch (error) {
-            console.error("Error disliking cheatsheet:", error.message);
+            if(error.response.data.message === "You have already disliked this cheatsheet") {
+                alert("You have already liked this cheatsheet");
+                setLikes(likes - 1);
+            }
+            console.error("Error disliking cheatsheet:", error.response.data);
         }
     };
 
     const handleRefresh = () => {
         setQuestions(JSON.parse(localStorage.getItem('questions')));
-    }
+    };
 
     const handleRandomQuestion = () => {
         const curQuestions = JSON.parse(localStorage.getItem('questions'));
@@ -97,16 +103,18 @@ const CheatSheetDetail = () => {
             <p><strong>Quote:</strong> {cheatsheet.quote}</p>
             <div className="actions">
                 <ThemedButton link={home} onClick={() => navigate('/')} />
-                <Like
-                    count={likes} 
-                    onClick={handleLike} 
-                    text="Likes"
-                />
-                <Like 
-                    count={dislikes} 
-                    onClick={handleDislike} 
-                    text="Dislikes"
-                />
+                    <Like
+                        count={likes} 
+                        onClick={handleLike} 
+                        text="Likes"
+                        id="likeButton"
+                    />
+                    <Like 
+                        count={dislikes} 
+                        onClick={handleDislike} 
+                        text="Dislikes"
+                        id="dislikeButton"
+                    />
             </div>
             <Questions
                 loading={loading}
