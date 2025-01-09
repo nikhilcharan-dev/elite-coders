@@ -28,6 +28,7 @@ const CheatSheetDetail = () => {
                 const response = await Axios.get(`${import.meta.env.VITE_BASE_URL}/api/cheatsheets/${name}`);
                 setCheatsheet(response.data);
 
+                console.log(response.data);
                 const ids = response.data.questions;
                 const res = await Axios.post(`${import.meta.env.VITE_BASE_URL}/api/questions/filter/byIds`, { ids });
                 localStorage.setItem('questions', JSON.stringify(res.data));

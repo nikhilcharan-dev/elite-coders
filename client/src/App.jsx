@@ -25,6 +25,7 @@ import Intro from './ui/intro/Intro.jsx';
 
 
 import './App.css';
+import CodeBlooded from './pages/ashok/CodeBlooded.jsx';
 
 const routes = [
 	{ path: '/', element: <Home /> },
@@ -46,6 +47,8 @@ const routes = [
 
 	{ path: '*', element: <Adventurer /> },
 	{ path: '/test', element: <Intro /> },
+
+	{ path: '/codeblooded/curated', element: <CodeBlooded />}
 ];
 
 function App() {
