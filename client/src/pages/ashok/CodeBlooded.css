@@ -12,12 +12,13 @@
 }
 
 .code-logo {
-    margin: 10px;
-    height: 10%;
-    width: 15%;
+    margin: 7px;
+    height: 100%;
+    width: 14%;
     object-fit: contain;
     border-radius: 30px;
-    animation: glow 3s ease-in-out infinite;
+    animation: glow 2s forwards infinite;
+    transition: all 0.3s ease-in-out;
 }
 
 @keyframes glow {
@@ -49,7 +50,7 @@
 }
 
 .button-group > button.is-active {
-    color: #DC143C;
+    color: #c71639;
 }
 
 .button-group > button:hover {

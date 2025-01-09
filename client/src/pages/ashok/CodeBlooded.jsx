@@ -11,8 +11,8 @@ const CodeBlooded = () => {
         width: '50%',
     });
 
-    const dsa = "< Data Structures & Algorithms />";
-    const cp = "< Competitive Programming />";
+    const dsa = "< Data Structures & Algorithms >";
+    const cp = "< Competitive Programming >";
 
     useEffect(() => {
         if (showSection === 'dsa') {
@@ -34,7 +34,7 @@ const CodeBlooded = () => {
             setTimeout(() => {
                 setBorderStyle({
                     width: '50%',
-                    transform: 'translateX(105%)',
+                    transform: 'translateX(104%)',
                 });
             }, 300);
         }
