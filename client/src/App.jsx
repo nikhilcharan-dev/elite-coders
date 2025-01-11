@@ -6,7 +6,6 @@ import Home from './pages/home/Home';
 import Social from './pages/social/Social';
 import Spinner from './pages/spinner/Spinner';
 import Compete from './pages/compete/Compete';
-import LoginPage from "./ui/loginpage/LoginPage";
 import Adventurer from './pages/adventurer/Adventurer';
 import RegisterPage from "./ui/registerpage/RegisterPage";
 const Learn = React.lazy(() => import('./pages/learn/Learn'));
@@ -22,19 +21,20 @@ import PopTest from './pages/demo/PopTest';
 import Loader from './ui/loader/Loader.jsx';
 import Like from './ui/like/Like.jsx';
 import Intro from './ui/intro/Intro.jsx';
+import LoginRegisterPage from './ui/test/LoginRegisterPage.jsx';
 
 
 import './App.css';
 import CodeBlooded from './pages/ashok/CodeBlooded.jsx';
 
 const routes = [
-	{ path: '/', element: <Home /> },
-	{ path: '/intro', element: <Intro /> },
+	{ path: '/home', element: <Home /> },
+	{ path: '/', element: <Intro /> },
 	{ path: '/learn', element: <Learn/> },
 	{ path: '/practice', element: <Practice /> },
 	{ path: '/compete', element: <Compete /> },
 	{ path: '/user/:id', element: <UserProfile /> },
-	{ path: '/login', element: <LoginPage /> },
+	{ path: '/login', element: <LoginRegisterPage /> },
 	{ path: '/register', element: <RegisterPage /> },
 	
 	{ path: '/social', element: <Social /> },
@@ -47,7 +47,7 @@ const routes = [
 
 	{ path: '*', element: <Adventurer /> },
 	{ path: '/test', element: <Intro /> },
-
+	{ path: '/test1', element: <LoginRegisterPage /> },
 	{ path: '/codeblooded/curated', element: <CodeBlooded />}
 ];
 

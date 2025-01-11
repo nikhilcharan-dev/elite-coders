@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Axios from "@api";
 
 import Popup from "../../pages/popup/Popup";
-import Loader from "../loader/Loader";
+// import Loader from "../loader/Loader";
+
+import { DotLoader as Loader } from "react-spinners";
 
 import './LoginPage.css';
 

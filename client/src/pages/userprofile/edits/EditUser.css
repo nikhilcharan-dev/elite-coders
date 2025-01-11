@@ -147,7 +147,7 @@
     background-color: #007bff;
 }
 
-.button-group {
+.buttons {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;

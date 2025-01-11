@@ -21,17 +21,18 @@ const Search = () => {
     const handleSearch = async () => {
         if (!searchQuery.trim()) return;
         setIsLoading(true);
+        setSearchResults([]);
         try {
             const response = await Axios.get(
                 `/api/meta/search?query=${searchQuery}`
             );
             setSearchResults(response.data);
-            setShowPopover(true);
         } catch (error) {
             console.error('Error fetching users:', error);
         } finally {
             setIsLoading(false);
         }
+        setShowPopover(true);
     };
 
     const handleSendRequest = async (username) => {

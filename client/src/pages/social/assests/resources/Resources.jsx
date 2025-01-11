@@ -41,18 +41,11 @@ const Resources = () => {
 
     const navigate = useNavigate();
 
-    const handleClick = (link) => {
-        window(link, "_blank");
-    }
-
     return (
         <div className='resource-container'>
             <h1>Resources</h1>
             <div className='resource-content'>
-                {resources.map((resources, index) => {
-                    return (
-                        <RCard index {...resources} />
-                )})}
+                {resources.map((resources, index) => <RCard key={index} {...resources} /> )}
             </div>
             <button className='expander' onClick={() => navigate('meta/resources')}>
                 More

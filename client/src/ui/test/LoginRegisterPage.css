@@ -1,0 +1,279 @@
+.login-register-container {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: #ffffff;
+    color: #00113e;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.brand-title-container {
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+    animation: pop 2s ease-in forwards;
+}
+
+.brand-logo {
+    width: 130px;
+    height: 130px;
+    border-radius: 20px;
+    object-fit: contain;
+    animation: rotate 5s linear infinite;
+}
+
+.brand-title {
+    font-size: 3rem;
+    color: #00113e;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+@keyframes pop {
+    0% {
+        transform: translateY(25vh);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.form-row {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 90%;
+    height: 80%;
+    background: #bdc2cd;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.form-card {
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    color: #00113e;
+}
+
+.form-card > h2 {
+    font-weight: bolder;
+    font-size: 40px;
+    text-align: center;
+}
+
+.login-card, .register-card {
+    background: #edf2fa;
+    color: #194a7a;
+}
+
+.cred-form > label {
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.cred-form > label > input {
+    margin-top: 5px;
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #3f4c6e;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #00113e;
+}
+
+.cred-form > button {
+    padding: 0.8rem 2rem;
+    background-color: #3f4c6e;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cred-form > button:hover {
+    background-color: #00113e;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background: #00113e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    z-index: 2;
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.slider-login {
+    transform: translateX(0%);
+}
+
+.slider-register {
+    transform: translateX(100%);
+}
+
+.slider > button {
+    margin-top: 1rem;
+    background: #bdc2cd;
+    color: #00113e;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.slider button:hover {
+    background: #7e879e;
+}
+
+.error-message {
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 500px) {
+    .login-register-container {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100vw;
+        background: #F5EFE7;
+        color: #333;
+    }
+
+    .form-row {
+        flex-direction: column;
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+
+    .form-card {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .form-card > h2 {
+        all: unset;
+        height: 100%;
+        width: 80%;
+        text-align: center;
+        font-size: 1.6rem;
+        font-weight: bold;
+        padding: 10px;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .cred-form > label {
+        margin-bottom: 0.1rem;
+        width: 100%;
+    }
+    
+    .cred-form > label > input {
+        margin-top: 5px;
+        width: 80%;
+        padding: 0.8rem;
+        margin-right: 10px;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .slider {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 50%;
+        background: #3E5879;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s ease;
+        z-index: 2;
+        border-radius: 10px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .slider-login {
+        height: 46%;
+        transform: translateY(0%);
+    }
+
+    .slider-register {
+        transform: translateY(100%);
+    }
+
+    .login-register-container > h2 {
+        font-size: 1.5rem;
+    }
+
+    .cred-form > button {
+        width: 50%;
+    }
+
+    .slider > button {
+        margin-top: 1rem;
+        background: #f8fafc;
+        color: #333;
+        padding: 0.6rem 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    .slider button:hover {
+        background: #e8e8e8;
+    }
+}

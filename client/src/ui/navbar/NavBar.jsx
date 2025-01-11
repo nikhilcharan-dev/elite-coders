@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import elite from '../img/star.png';
@@ -12,37 +12,32 @@ import './NavBar.css';
 const NavBar = ({ edited }) => {
     const loginPage = '/intro';
     const navigate = useNavigate();
-    let isLoggedIn = sessionStorage.getItem('token') ? true : false;
+    
+    const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('token') ? true : false);
+    const [profileImage, setProfileImage] = useState(def);
+    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')) || {});
 
-    let userData = JSON.parse(localStorage.getItem('userData')) || {};
-
-    var profileImage = userData.profilePhoto ||
+    useEffect(() => {
+        const setImage = () => {
+            const image = userData.profilePhoto || 
                 (userData.gender === 'Male' ? boy :
                     userData.gender === 'Female' ? girl : 
                         userData.gender === 'Other' ? def : user);
-    
-    let profilePage = isLoggedIn? `/user/id=${localStorage.getItem('id')}` : loginPage;
-    
-    useEffect(() => {
-        userData = JSON.parse(localStorage.getItem('userData')) || {};
-        profileImage = userData.profilePhoto ||
-                (userData.gender === 'Male' ? boy :
-                    userData.gender === 'Female' ? girl : 
-                        userData.gender === 'Other' ? def : user);
-    }, [edited]);
+            setProfileImage(image);
+        };
+
+        if (isLoggedIn) {
+            setImage();
+        }
+    }, [edited, isLoggedIn, userData]);
 
     useEffect(() => {
-        isLoggedIn = sessionStorage.getItem('token') ? true : false;
-        if(!isLoggedIn) {
-            profileImage = user;
+        if (!isLoggedIn || localStorage.length === 0) {
             navigate(loginPage);
         }
+    }, [isLoggedIn, navigate]);
 
-        if(localStorage.length === 0) {
-            navigate(loginPage);
-        }
-    }, []);
-
+    let profilePage = isLoggedIn ? `/user/id=${localStorage.getItem('id')}` : loginPage;
 
     return (
         <nav>
@@ -69,7 +64,7 @@ const NavBar = ({ edited }) => {
                     <Link to="/social">Social</Link>
                 </li>
                 <li>
-                    <Link to={isLoggedIn ? profilePage : loginPage}>
+                    <Link to={profilePage}>
                         <img id="user" src={profileImage} alt="profile" />
                     </Link>
                 </li>
@@ -79,3 +74,4 @@ const NavBar = ({ edited }) => {
 }
 
 export default NavBar;
+    

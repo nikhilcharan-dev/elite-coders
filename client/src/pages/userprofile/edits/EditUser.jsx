@@ -83,6 +83,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
+        onEdit();
         try {
             const BASE_URL = import.meta.env.VITE_BASE_URL;
             console.log(formData)
@@ -180,7 +181,7 @@ const EditUser = ({ onClose, user, onEdit }) => {
                         placeholder="Tell us something about yourself..."
                     ></textarea>
 
-                    <div className="button-group">
+                    <div className="buttons">
                         <button type="submit" className="save-btn">
                             Save Changes
                         </button>
