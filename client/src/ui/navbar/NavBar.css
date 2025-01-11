@@ -3,6 +3,7 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    transition: all 0.3s ease;
 }
 
 .Logo {
@@ -11,38 +12,94 @@ nav {
     margin-right: 250px;
 }
 
-.Logo > h1 {
+.Logo > h1 > a{
     font-size: 30px;
-    font-weight: 400;
     margin: auto 10px;
+    color: black;
 }
 
 nav > ul {
     gap: 1.3rem;
     display: flex;
     list-style: none;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     align-items: center;
+    justify-content: center;
     flex-direction: row;
-}
-
-nav > ul > li > a {
-    padding: 10px;
-    text-decoration: none;
-    color: black;
+    position: relative;
 }
 
 nav > ul > li {
-    transition: all 0.3s ease-in-out;;
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+nav > ul > li > span,
+nav > ul > li > a {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease-in-out;
 }
 
 nav > ul > li:hover {
-    text-decoration: solid;
     transform: scale(1.1);
-
 }
 
-#user{
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: transparent;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+    animation: dropdown-enter 0.5s ease forwards;
+}
+
+li:hover > .dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: dropdown-enter 0.5s ease forwards;
+}
+
+@keyframes dropdown-enter {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+li:hover > .dropdown {
+    animation: dropdown-enter 0.5s ease forwards;
+}
+
+.dropdown > li > a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.5s ease-in;
+}
+
+.dropdown > li > a:hover {
+    background-color: white;
+}
+
+#user {
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -56,4 +113,68 @@ nav > ul > li:hover {
 
 .Logo > a {
     justify-content: center;
+}
+
+.Logo > a >  h1 {
+    font-weight: bold;
+}
+
+.codeblood-link {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: black;
+    font-weight: normal;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    background: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.codeblood-link:hover {
+    animation: fire-fill 1.5s ease-in-out forwards, pulse 2s ease-in-out infinite;
+    box-shadow: 0 8px 20px rgba(255, 69, 0, 0.8), 
+                0 0 30px rgba(255, 99, 71, 0.8);
+}
+
+.codeblood-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, white, red 30%, white 70%);
+    z-index: -1;
+    transition: 0.4s ease-in-out;
+}
+
+.codeblood-link:hover::before {
+    left: 0;
+    transition: 0.4s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.8);
+    }
+    50% {
+        box-shadow: 0 8px 30px rgba(255, 0, 0, 0.8);
+    }
+}
+
+@keyframes fire-fill {
+    0% {
+        background-position: left;
+    }
+    50% {
+        background-position: center;
+    }
+    100% {
+        background-position: right;
+    }
 }

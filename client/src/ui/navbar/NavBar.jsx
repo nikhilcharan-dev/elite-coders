@@ -12,17 +12,24 @@ import './NavBar.css';
 const NavBar = ({ edited }) => {
     const loginPage = '/intro';
     const navigate = useNavigate();
-    
+
     const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('token') ? true : false);
     const [profileImage, setProfileImage] = useState(def);
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')) || {});
+    const [showCodeLabMenu, setShowCodeLabMenu] = useState(false);
+    const [showCodeGloryMenu, setShowCodeGloryMenu] = useState(false);
 
     useEffect(() => {
         const setImage = () => {
-            const image = userData.profilePhoto || 
-                (userData.gender === 'Male' ? boy :
-                    userData.gender === 'Female' ? girl : 
-                        userData.gender === 'Other' ? def : user);
+            const image =
+                userData.profilePhoto ||
+                (userData.gender === 'Male'
+                    ? boy
+                    : userData.gender === 'Female'
+                    ? girl
+                    : userData.gender === 'Other'
+                    ? def
+                    : user);
             setProfileImage(image);
         };
 
@@ -42,23 +49,49 @@ const NavBar = ({ edited }) => {
     return (
         <nav>
             <div className="Logo">
-                <a href="/">
+                <a href="/home">
                     <img id="Logo" src={elite} alt="logo" />
                 </a>
-                <h1>Elite Coders</h1>
+                <h1><a href='/home'>Elite Coders</a></h1>
             </div>
             <ul>
                 <li>
                     <Link to="/home">Home</Link>
                 </li>
-                <li>
-                    <Link to="/learn">Learn</Link>
+                <li
+                    onMouseEnter={() => setShowCodeLabMenu(true)}
+                    onMouseLeave={() => setShowCodeLabMenu(false)}
+                >
+                    <span>CodeLab</span>
+                    {showCodeLabMenu && (
+                        <ul className="dropdown">
+                            <li>
+                                <Link to="/learn">Learn</Link>
+                            </li>
+                            <li>
+                                <Link to="/practice">Practice</Link>
+                            </li>
+                        </ul>
+                    )}
                 </li>
                 <li>
-                    <Link to="/practice">Practice</Link>
+                    <Link className='codeblood-link' to="/codeblooded/curated">CodeBlooded</Link>
                 </li>
-                <li>
-                    <Link to="/compete">Compete</Link>
+                <li
+                    onMouseEnter={() => setShowCodeGloryMenu(true)}
+                    onMouseLeave={() => setShowCodeGloryMenu(false)}
+                >
+                    <span>CodeGlory</span>
+                    {showCodeGloryMenu && (
+                        <ul className="dropdown">
+                            <li>
+                                <Link to="/compete">Compete</Link>
+                            </li>
+                            <li>
+                                <Link to="/stats">Stats</Link>
+                            </li>
+                        </ul>
+                    )}
                 </li>
                 <li>
                     <Link to="/social">Social</Link>
@@ -71,6 +104,6 @@ const NavBar = ({ edited }) => {
             </ul>
         </nav>
     );
-}
+};
 
 export default NavBar;

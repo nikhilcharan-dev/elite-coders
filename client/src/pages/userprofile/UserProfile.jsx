@@ -22,7 +22,7 @@ import "./layout.css";
 import "./elements.css";
 
 const UserProfile = () => {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState(localStorage.getItem("userData"));
 	const [loading, setLoading] = useState(true);
 	const [showEdit, setShowEdit] = useState(false);
 	const [showFrnd, setShowFrnd] = useState(false);
@@ -51,6 +51,7 @@ const UserProfile = () => {
 			try {
 				const response = await Axios.get(`/api/meta/${userId}`);
 				setUser(response.data);
+				localStorage.setItem("userData", response.data);
 				setLoading(false);
 			} catch (error) {
 				console.error("Error fetching user data:", error);
@@ -58,7 +59,7 @@ const UserProfile = () => {
 			}
 		};
 
-		if (userId) {
+		if (!userId) {
 			fetchUserData();
 		}
 	}, [userId, edited]);

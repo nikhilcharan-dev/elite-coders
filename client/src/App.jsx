@@ -7,7 +7,6 @@ import Social from './pages/social/Social';
 import Spinner from './pages/spinner/Spinner';
 import Compete from './pages/compete/Compete';
 import Adventurer from './pages/adventurer/Adventurer';
-import RegisterPage from "./ui/registerpage/RegisterPage";
 const Learn = React.lazy(() => import('./pages/learn/Learn'));
 const Practice = React.lazy(() => import('./pages/practise/Practise'));
 const Resource = React.lazy(() => import('./pages/resources/Resource'));
@@ -35,7 +34,6 @@ const routes = [
 	{ path: '/compete', element: <Compete /> },
 	{ path: '/user/:id', element: <UserProfile /> },
 	{ path: '/login', element: <LoginRegisterPage /> },
-	{ path: '/register', element: <RegisterPage /> },
 	
 	{ path: '/social', element: <Social /> },
 	{ path: '/social/meta/resources', element: <Resource /> },
