@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "@api";
 import Popup from "../../pages/popup/Popup";
@@ -70,6 +70,16 @@ const LoginRegisterPage = () => {
         }
         setLoading(false);
     };
+
+
+    useEffect(() => {
+        const checkOAuth = () => {
+            if(localStorage.getItem('token')) {
+                navigate(`/user/id=${localStorage.getItem("id")}`);
+            }
+        }
+        checkOAuth();
+    }, []);
 
     const handleAfterLogin = () => {
         setPopup(false);
