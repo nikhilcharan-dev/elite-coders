@@ -20,7 +20,7 @@ import PopTest from './pages/demo/PopTest';
 import Loader from './ui/loader/Loader.jsx';
 import Like from './ui/like/Like.jsx';
 import Intro from './ui/intro/Intro.jsx';
-import LoginRegisterPage from './ui/test/LoginRegisterPage.jsx';
+import LoginRegisterPage from './ui/Authentication/LoginRegisterPage.jsx';
 
 
 import './App.css';
@@ -44,7 +44,7 @@ const routes = [
 	{ path: '/cheatsheets/:name', element: <CheatSheetDetail /> },
 
 	{ path: '*', element: <Adventurer /> },
-	{ path: '/test', element: <Intro /> },
+	{ path: '/Authentication', element: <Intro /> },
 	{ path: '/test1', element: <LoginRegisterPage /> },
 	{ path: '/codeblooded/curated', element: <CodeBlooded />}
 ];
