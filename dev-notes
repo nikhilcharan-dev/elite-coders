@@ -10,5 +10,5 @@ if you wanna use tailwind make sure you have vs extension,
 
 killing process on ports
 
---netstat -ano | findstr : <port_number>
+--netstat -ano | findstr  <port_number>
 --taskkill /PID <pid_number> /F [/F terminated forcibly]

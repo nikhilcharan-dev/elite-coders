@@ -38,6 +38,7 @@ const LoginRegisterPage = () => {
             sessionStorage.setItem("token", res.data.token);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("id", res.data.userData._id);
+            console.log(res.data);
             localStorage.setItem("userData", JSON.stringify(res.data.userData));
         } catch (err) {
             setLogError(err.response?.data?.message || "Invalid credentials");
@@ -74,8 +75,11 @@ const LoginRegisterPage = () => {
 
     useEffect(() => {
         const checkOAuth = () => {
-            if(localStorage.getItem('token')) {
+            if(sessionStorage.getItem('token')) {
                 navigate(`/user/id=${localStorage.getItem("id")}`);
+            } else {
+                localStorage.clear();
+                sessionStorage.clear();
             }
         }
         checkOAuth();

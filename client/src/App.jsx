@@ -7,6 +7,7 @@ import Social from './pages/social/Social';
 import Spinner from './pages/spinner/Spinner';
 import Compete from './pages/compete/Compete';
 import Adventurer from './pages/adventurer/Adventurer';
+import CodeBlooded from './pages/ashok/CodeBlooded.jsx';
 const Learn = React.lazy(() => import('./pages/learn/Learn'));
 const Practice = React.lazy(() => import('./pages/practise/Practise'));
 const Resource = React.lazy(() => import('./pages/resources/Resource'));
@@ -14,18 +15,14 @@ const CheatSheet = React.lazy(() => import('./pages/cspage/CheatSheet.jsx'));
 const UserProfile = React.lazy(() => import('./pages/userprofile/UserProfile'));
 const CheatSheetDetail = React.lazy(() => import('./pages/cspage/CheatSheetDetail'))
 const FriendProfile = React.lazy(()	=> import('./pages/friendprofile/FriendProfile'));
+import LoginRegisterPage from './ui/Authentication/LoginRegisterPage.jsx';
 
 // testing components
-import PopTest from './pages/demo/PopTest';
-import Loader from './ui/loader/Loader.jsx';
-import Like from './ui/like/Like.jsx';
 import Intro from './ui/intro/Intro.jsx';
 import Stats from "./pages/stats/Stats.jsx";
-import LoginRegisterPage from './ui/Authentication/LoginRegisterPage.jsx';
 
 
 import './App.css';
-import CodeBlooded from './pages/ashok/CodeBlooded.jsx';
 
 const routes = [
 	{ path: '/home', element: <Home /> },

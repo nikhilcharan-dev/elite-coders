@@ -10,7 +10,8 @@
 .cheatsheet-section h2 {
 	font-size: 1.8rem;
 	color: #333;
-	margin-bottom: 20px;
+	margin-top: 0;
+	margin-bottom: 10px;
 	text-align: center;
 }
 
@@ -43,7 +44,7 @@
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.cheatsheet-card img {
+.cheatsheet-card > img {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
@@ -51,16 +52,16 @@
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.cheatsheet-card h3 {
+.cheatsheet-card > h3 {
 	font-size: 1.2rem;
 	color: #333;
 	margin-bottom: 10px;
 }
 
-.cheatsheet-card p {
+.cheatsheet-card > p {
 	font-size: 0.9rem;
 	color: gray;
-	margin-bottom: 0px
+	margin-bottom: 5px
 }
 
 .expand-button {
@@ -81,26 +82,37 @@
 	transform: scale(1.1);
 }
 
-.btns {
+.cheatsheet-btns {
+	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 }
 
-.learn-btn,
- .rec-btn {
+.learn-me-button,
+ .rec-button {
 	padding: 10px 20px;
 	font-size: 1rem;
-	color: white;
+	color: rgb(0, 0, 0);
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: background-color 0.3s, transform 0.3s;
 }
 
-.learn-btn {
+.learn-me-button {
 	background-color: #F9E4D4;
 }
 
-.rec-btn {
+.rec-button {
 	background-color: #4ECDC4;
+}
+
+.learn-me-button:hover {
+	background-color: #f2d6c6;
+	transform: scale(1.1);
+}
+
+.rec-button:hover {
+	background-color: #3bafa3;
+	transform: scale(1.1);
 }

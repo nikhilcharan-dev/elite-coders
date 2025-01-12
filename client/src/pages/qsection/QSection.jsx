@@ -26,14 +26,15 @@ const Questions = ({ loading, setLoading, questions, onRefresh, onRandomQuestion
                 const userResponse = await Axios.get(`/api/meta/${userId}`);
                 const friendsResponse = await Axios.get(`/api/friends/`);
                 setUser(userResponse.data);
+                console.log(friendsResponse.data.friends)
                 setUserFriends(friendsResponse.data.friends);
             } catch (error) {
                 console.error("Error fetching user:", error);
             }
         };
 
-        if (userId) fetchUser();
-    }, [userId]);
+        fetchUser();
+    }, []);
 
     const handleSolve = async (question) => {
         setLoading(true);
@@ -59,14 +60,15 @@ const Questions = ({ loading, setLoading, questions, onRefresh, onRandomQuestion
     };
 
     const handleRecommendButtonClick = (e, question) => {
-        if(userFriends.length > 0) {
-            setUserFriends(user.friends);
+        if (userFriends && userFriends.length > 0) {
+            setSelectedQuestion(question._id);
+            setIsPopoverVisible(true);
+            console.log("onclick data", userFriends)
         } else {
             alert('You have no friends to recommend to.');
         }
-        setSelectedQuestion(question._id);
-        setIsPopoverVisible(true);
     };
+    
 
     return (
         <div className="questions-section">
@@ -87,7 +89,7 @@ const Questions = ({ loading, setLoading, questions, onRefresh, onRandomQuestion
                 <div className="popover">
                     <h4>Select a Friend to Recommend</h4>
                     <ul>
-                        {userFriends.map((friend) => (
+                        {userFriends.length > 0 ? userFriends.map((friend) => (
                             <li key={friend._id + friend.username}>
                                 <div className="friend-item">
                                     <img 
@@ -100,14 +102,14 @@ const Questions = ({ loading, setLoading, questions, onRefresh, onRandomQuestion
                                         className="recommend-btn no-margin"
                                         onClick={() => {
                                             handleRecommendQuestion(friend._id);
-                                            setIsPopoverVisible(false); // Hide popover after selection
+                                            setIsPopoverVisible(false);
                                         }}
                                     >
                                         Recommend
                                     </button>
                                 </div>
                             </li>
-                        ))}
+                        )) : <div>no friends</div> }
                     </ul>
                     <button className="close-btn" onClick={() => setIsPopoverVisible(false)}>Close</button>
                 </div>
@@ -124,12 +126,12 @@ const Questions = ({ loading, setLoading, questions, onRefresh, onRandomQuestion
                                 <h4>{question.name}</h4>
                                 <p><strong>Topics:</strong> {question.topics.join(', ')}</p>
                                 <p><strong>Difficulty:</strong> {question.difficulty}</p>
-                                <div className="platform">
+                                <div className="platform_">
                                     <p><strong>Platform: </strong></p>
                                     <img src={`/images/${question.platform.toUpperCase()}.png`} className="icon" alt={question.platform} />
                                     <p>{question.platform}</p>
                                 </div>
-                                <div className="btns">
+                                <div className="practise-question-card-btns">
                                     {isSolved ? (
                                         <button className="solved-btn" onClick={() => {
                                             handleSolve(question);
@@ -147,7 +149,7 @@ const Questions = ({ loading, setLoading, questions, onRefresh, onRandomQuestion
                                     )}
 
                                     <button 
-                                        className="recommend-btn" 
+                                        className="practise-recommend-btn" 
                                         onClick={(e) => handleRecommendButtonClick(e, question)}
                                     >
                                         Recommend

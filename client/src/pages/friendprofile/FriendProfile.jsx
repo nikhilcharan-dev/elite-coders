@@ -55,7 +55,8 @@ const UserProfile = () => {
 						return {
 							senderId: recommendation.senderId,
 							senderUsername: senderResponse.data.username,
-							senderProfilePhoto: senderResponse.data.profilePhoto,
+							profilePhoto: senderResponse.data.profilePhoto,
+							gender: senderResponse.data.gender,
 							questionName: questionResponse.data.name,
 							questionTopic: questionResponse.data.topics.join(', '),
 							questionLink: questionResponse.data.link,
@@ -75,16 +76,19 @@ const UserProfile = () => {
 						const senderResponse = await Axios.get(
 							`/api/meta/${recommendation.senderId}`
 						);
+
 						const topicResponse = await Axios.get(
-							`http://localhost:5010/api/topics/${recommendation.topicId}`
+							`/api/topics/${recommendation.topicId}`
 						);
 
 						return {
 							senderId: recommendation.senderId,
 							senderUsername: senderResponse.data.username,
-							senderProfilePhoto: senderResponse.data.profilePhoto,
+							profilePhoto: senderResponse.data.profilePhoto,
+							gender: senderResponse.data.gender,
 							topicName: topicResponse.data.name,
-							topicDescription: topicResponse.data.description,
+							youtubeLink: topicResponse.data.youtubeLink,
+							gfgLink: topicResponse.data.gfgLink
 						};
 					})
 				);
@@ -99,11 +103,16 @@ const UserProfile = () => {
 
 	}, [user]);
 
-	let profileImage = def;
-	if (user) {
-		profileImage = user.profilePhoto ||
-			(user.gender === 'Male' ? boy :
-				user.gender === 'Female' ? girl : def);
+	const getProfileImage = (person) => {
+		return (
+			person.profilePhoto ? person.profilePhoto :
+				person.gender === 'Male' ? boy : person.gender === 'Female' ? girl :
+					def
+		);
+	}
+
+	const handleSolve = (link) => {
+		window.open(link, '__blank')
 	}
 
 	if (loading) {
@@ -126,19 +135,11 @@ const UserProfile = () => {
 					<div className="profile-info">
 						<h2>{user.username.toUpperCase()}'s Profile</h2>
 						<div className="profile-photo">
-							{user.profilePhoto ? (
-								<img
-									className="profile-img"
-									src={user.profilePhoto}
-									alt="Profile"
-								/>
-							) : (
-								<img
-									className="profile-img"
-									src={profileImage}
-									alt="Profile"
-								/>
-							)}
+							<img
+								className="profile-img"
+								src={getProfileImage(user)}
+								alt="Profile"
+							/>
 						</div>
 						<div className="profile-details">
 							<p><strong>Email:</strong> {user.email}</p>
@@ -167,27 +168,24 @@ const UserProfile = () => {
 				{recommendedQuestions && recommendedQuestions.length > 0 ? (
 					<ul>
 						{recommendedQuestions.map((question, index) => (
-							<div key={index} className="question-card">
+							<div key={index} className="fquestion-card">
 								{/* Sender Profile Section */}
-								<div className="sender-info">
+								<div className="sender-info" onClick={() => navigate(`/profile/${question.senderId}`)}>
 									<img
 										className="sender-img"
-										src={question.senderProfilePhoto || def}
+										src={getProfileImage(question)}
 										alt="Sender Profile"
 									/>
-									<p className="sender-username"> Sender Name: <strong>{question.senderUsername || "Unknown"} </strong></p>
-									<button className="view-profile" onClick={() => navigate(`/profile/${question.senderId}`)}>
-										view profile
-									</button>
+									<p className="sender-username"><strong>{question.senderUsername || "Unknown"} </strong></p>
 								</div>
 
 								{/* Question Details */}
-								<div className="question-details">
-									<h4 className="question-name">{question.questionName}</h4>
-									<p className="question-topic">
+								<div className="fquestion-details">
+									<h4 className="fquestion-name">{question.questionName}</h4>
+									<p className="fquestion-topic">
 										<strong>Topic:</strong> {question.questionTopic || "Not Specified"}
 									</p>
-									<p className="question-difficulty">
+									<p className="fquestion-difficulty">
 										<strong>Difficulty:</strong> {question.questionDifficulty || "Not Specified"}
 									</p>
 									<button
@@ -211,18 +209,15 @@ const UserProfile = () => {
 				{recommendedTopics && recommendedTopics.length > 0 ? (
 					<ul>
 						{recommendedTopics.map((question, index) => (
-							<div key={index} className="question-card">
+							<div key={index} className="fquestion-card">
 								{/* Sender Profile Section */}
-								<div className="sender-info">
+								<div className="sender-info" onClick={() => navigate(`/profile/${question.senderId}`)}>
 									<img
 										className="sender-img"
-										src={question.senderProfilePhoto || def}
+										src={getProfileImage(question)}
 										alt="Sender Profile"
 									/>
-									<p className="sender-username"> Sender Name: <strong>{question.senderUsername || "Unknown"} </strong></p>
-									<button className="view-profile" onClick={() => navigate(`/profile/${question.senderId}`)}>
-										view profile
-									</button>
+									<p className="sender-username"><strong>{question.senderUsername || "Unknown"} </strong></p>
 								</div>
 
 								{/* Question Details */}

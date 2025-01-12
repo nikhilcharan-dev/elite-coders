@@ -50,6 +50,7 @@ const CheatsheetPanel = () => {
 };
 
 const CheatsheetCard = ({ profilePhoto, name, quote }) => {
+	const navigate = useNavigate();
 	return (
 		<div className="cheatsheet-card">
 			<img
@@ -60,11 +61,9 @@ const CheatsheetCard = ({ profilePhoto, name, quote }) => {
             />
 			<h3>{name}</h3>
 			<p className='quote'>"{quote}"</p>
-			<div className='btns'>
-				<a href={`/cheatsheets/${name}`} alt={`${name}'s Profile`}> 
-					<button className='learn-btn'>Learn</button>
-				</a>
-				<button className='rec-btn'>Recommend</button>
+			<div className='cheatsheet-btns'>
+				<button className='learn-me-button' onClick={() => navigate(`/cheatsheets/${name}`)}>Learn</button>
+				<button className='rec-button'>Recommend</button>
 			</div>
 		</div>
 	);

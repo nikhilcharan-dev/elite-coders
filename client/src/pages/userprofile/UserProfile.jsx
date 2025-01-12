@@ -1,4 +1,4 @@
-import React, { useDeferredValue, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "@api";
 
@@ -22,8 +22,9 @@ import "./layout.css";
 import "./elements.css";
 
 const UserProfile = () => {
-	const [user, setUser] = useState(localStorage.getItem("userData"));
-	const [loading, setLoading] = useState(true);
+	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(false);
+	const [profileImage, setProfileImage] = useState(def);
 	const [showEdit, setShowEdit] = useState(false);
 	const [showFrnd, setShowFrnd] = useState(false);
 	const [showMail, setShowMail] = useState(false);
@@ -31,11 +32,12 @@ const UserProfile = () => {
 	const [recommendedQuestions, setRecommendedQuestions] = useState([]);
 	const [recommendedTopics, setRecommendedTopics] = useState([]);
 
+	const BASE_URL = import.meta.env.VITE_BASE_URL;
 	const navigate = useNavigate();
 	const userId = localStorage.getItem("id");
 
 	useEffect(() => {
-		if(sessionStorage.getItem('token')) {
+		if (sessionStorage.getItem('token')) {
 			const token = sessionStorage.getItem('token');
 			localStorage.setItem('token', token);
 		} else {
@@ -43,37 +45,47 @@ const UserProfile = () => {
 			sessionStorage.clear();
 			navigate('/login');
 		}
-	}, []);
 
-	useEffect(() => {
 		const fetchUserData = async () => {
 			setLoading(true);
 			try {
-				const response = await Axios.get(`/api/meta/${userId}`);
+				const response = await Axios.get(`${BASE_URL}/api/meta/${userId}`);
 				setUser(response.data);
-				localStorage.setItem("userData", response.data);
-				setLoading(false);
+				localStorage.setItem("userData", JSON.stringify(response.data));
 			} catch (error) {
 				console.error("Error fetching user data:", error);
+			} finally {
 				setLoading(false);
 			}
 		};
 
-		if (!userId) {
-			fetchUserData();
+		fetchUserData();
+	}, [userId]);
+
+	useEffect(() => {
+		if (user) {
+			const image =
+				user.profilePhoto ||
+				(user.gender === 'Male'
+					? boy
+					: user.gender === 'Female'
+						? girl
+						: def);
+			setProfileImage(image)
 		}
-	}, [userId, edited]);
+	}, [user]);
+
 
 	useEffect(() => {
 		const fetchRecommendedQuestions = async () => {
-			if (user && user.recommendedQuestions) {
+			if (user && user.recommendedQuestions.length > 0) {
 				const updatedQuestions = await Promise.all(
 					user.recommendedQuestions.map(async (recommendation) => {
 						const senderResponse = await Axios.get(
-							`/api/meta/${recommendation.senderId}`
+							`${BASE_URL}/api/meta/${recommendation.senderId}`
 						);
 						const questionResponse = await Axios.get(
-							`/api/questions/${recommendation.questionLink}`
+							`${BASE_URL}/api/questions/${recommendation.questionLink}`
 						);
 
 						return {
@@ -93,14 +105,14 @@ const UserProfile = () => {
 		};
 
 		const fetchRecommendedTopics = async () => {
-			if (user && user.recommendedTopics) {
+			if (user && user.recommendedTopics.length > 0) {
 				const updatedTopics = await Promise.all(
 					user.recommendedTopics.map(async (recommendation) => {
 						const senderResponse = await Axios.get(
-							`/api/meta/${recommendation.senderId}`
+							`${BASE_URL}/api/meta/${recommendation.senderId}`
 						);
 						const topicResponse = await Axios.get(
-							`/api/topics/${recommendation.topicId}`
+							`${BASE_URL}/api/topics/${recommendation.topicId}`
 						);
 
 						return {
@@ -114,21 +126,14 @@ const UserProfile = () => {
 				);
 
 				setRecommendedTopics(updatedTopics);
-				console.log(updatedTopics);
 			}
 		}
 
 		fetchRecommendedQuestions();
 		fetchRecommendedTopics();
 
-	}, [user]);
 
-	let profileImage = def;
-	if (user) {
-		profileImage = user.profilePhoto ||
-			(user.gender === 'Male' ? boy :
-				user.gender === 'Female' ? girl : def);
-	}
+	}, []);
 
 	const handleLogout = () => {
 		setUser(null);
@@ -151,6 +156,7 @@ const UserProfile = () => {
 		return <div>User not found</div>;
 	}
 
+	// return;
 
 	return (
 		<section className="user-profile">
@@ -277,7 +283,7 @@ const UserProfile = () => {
 					<p>No new Questions recommended.</p>
 				)}
 			</div>
-			
+
 			{/* Recommended Topics */}
 			<div className="recommendations">
 				<h3>Recommended Topics</h3>
@@ -302,7 +308,7 @@ const UserProfile = () => {
 								<div className="topic-details">
 									<h4 className="topic-name">{question.topicName}</h4>
 									<div className="topic-links">
-										<img onClick={() => handleSolve(question.youtubeLink)} src={youtube} alt="Youtube.png"/>
+										<img onClick={() => handleSolve(question.youtubeLink)} src={youtube} alt="Youtube.png" />
 										<img onClick={() => handleSolve(question.gfgLink)} src={gfg} alt="GFG.png" />
 									</div>
 								</div>

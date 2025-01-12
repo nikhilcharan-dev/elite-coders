@@ -58,7 +58,7 @@
 .question-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     gap: 2px;
     background: linear-gradient(135deg, #A1D8F1, #D3A9F7);
     padding: 15px;
@@ -83,7 +83,7 @@
     margin: 5px 0;
 }
 
-.platform {
+.platform_ {
     display: flex;
     align-items: center;
 }
@@ -99,7 +99,13 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.recommend-btn,
+.practise-question-card-btns {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.practise-recommend-btn,
 .solve-btn,
 .solved-btn {
     background-color: #4ECDC4;
