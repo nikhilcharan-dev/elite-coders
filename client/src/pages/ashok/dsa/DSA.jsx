@@ -1,4 +1,6 @@
 import React from 'react';
+import Question from "../Question.jsx";
+
 import './DSA.css';
 
 const DSA = () => {
@@ -112,20 +114,7 @@ const DSA = () => {
                         </a>
                     </div>
                     <div className="questions-container">
-                        {topic.questions.map((question, idx) => (
-                            <div key={idx} className="question-card">
-                                <h4 className="question-name">{question.name}</h4>
-                                <p className="question-details">
-                                    <span className={`difficulty ${question.difficulty.toLowerCase()}`}>
-                                        {question.difficulty}
-                                    </span>
-                                    <span className="platform">{question.platform}</span>
-                                </p>
-                                <a href={question.link} target="_blank" rel="noopener noreferrer" className="solve-btn">
-                                    Solve
-                                </a>
-                            </div>
-                        ))}
+                        {topic.questions.map((question, idx) => <Question question={question} /> )}
                     </div>
                 </div>
             ))}

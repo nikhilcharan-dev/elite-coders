@@ -1,0 +1,72 @@
+
+.question-card {
+    flex: 0 0 auto;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    border: 1px solid rgba(200, 200, 200, 0.5);
+    border-radius: 4px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+.question-name {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 0 0.5rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.question-details {
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.difficulty {
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    text-transform: capitalize;
+}
+
+.difficulty.easy {
+    background-color: rgba(212, 237, 218, 0.6); /* Transparent green */
+    color: rgba(21, 87, 36, 0.9);
+}
+
+.difficulty.medium {
+    background-color: rgba(255, 243, 205, 0.6); /* Transparent yellow */
+    color: rgba(133, 100, 4, 0.9);
+}
+
+.difficulty.hard {
+    background-color: rgba(248, 215, 218, 0.6); /* Transparent red */
+    color: rgba(114, 28, 36, 0.9);
+}
+
+.platform {
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.solveBtn {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.solveBtn:hover {
+    background-color: #0056b3;
+}
