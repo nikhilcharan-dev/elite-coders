@@ -11,6 +11,11 @@ const DSA = () => {
                 { name: 'Trapping Rain Water', difficulty: 'Hard', platform: 'LeetCode', link: 'https://leetcode.com/problems/trapping-rain-water/' },
                 { name: 'Rotate Array', difficulty: 'Medium', platform: 'GeeksForGeeks', link: 'https://practice.geeksforgeeks.org/problems/rotate-array' },
                 { name: 'Find Missing Number', difficulty: 'Easy', platform: 'CodeChef', link: 'https://www.codechef.com/problems/MISNUM' },
+                { name: 'Two Sum', difficulty: 'Easy', platform: 'LeetCode', link: 'https://leetcode.com/problems/two-sum/' },
+                { name: 'Maximum Subarray', difficulty: 'Medium', platform: 'LeetCode', link: 'https://leetcode.com/problems/maximum-subarray/' },
+                { name: 'Trapping Rain Water', difficulty: 'Hard', platform: 'LeetCode', link: 'https://leetcode.com/problems/trapping-rain-water/' },
+                { name: 'Rotate Array', difficulty: 'Medium', platform: 'GeeksForGeeks', link: 'https://practice.geeksforgeeks.org/problems/rotate-array' },
+                { name: 'Find Missing Number', difficulty: 'Easy', platform: 'CodeChef', link: 'https://www.codechef.com/problems/MISNUM' },
             ],
             pdfLink: '/pdf/arrays.pdf',
         },
@@ -36,11 +41,6 @@ const DSA = () => {
         {
             title: 'Set',
             questions: [
-                { name: 'Longest Consecutive Sequence', difficulty: 'Hard', platform: 'LeetCode', link: 'https://leetcode.com/problems/longest-consecutive-sequence/' },
-                { name: 'Intersection of Two Arrays', difficulty: 'Easy', platform: 'LeetCode', link: 'https://leetcode.com/problems/intersection-of-two-arrays/' },
-                { name: 'Happy Number', difficulty: 'Easy', platform: 'LeetCode', link: 'https://leetcode.com/problems/happy-number/' },
-                { name: 'Unique Email Addresses', difficulty: 'Easy', platform: 'LeetCode', link: 'https://leetcode.com/problems/unique-email-addresses/' },
-                { name: 'Valid Sudoku', difficulty: 'Medium', platform: 'LeetCode', link: 'https://leetcode.com/problems/valid-sudoku/' },
                 { name: 'Longest Consecutive Sequence', difficulty: 'Hard', platform: 'LeetCode', link: 'https://leetcode.com/problems/longest-consecutive-sequence/' },
                 { name: 'Intersection of Two Arrays', difficulty: 'Easy', platform: 'LeetCode', link: 'https://leetcode.com/problems/intersection-of-two-arrays/' },
                 { name: 'Happy Number', difficulty: 'Easy', platform: 'LeetCode', link: 'https://leetcode.com/problems/happy-number/' },
