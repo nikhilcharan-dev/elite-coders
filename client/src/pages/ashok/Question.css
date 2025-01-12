@@ -1,7 +1,7 @@
 
 .question-card {
     flex: 0 0 auto;
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid rgba(200, 200, 200, 0.5);
     border-radius: 4px;
     padding: 1rem;
@@ -36,17 +36,17 @@
 }
 
 .difficulty.easy {
-    background-color: rgba(212, 237, 218, 0.6); /* Transparent green */
+    background-color: rgba(212, 237, 218, 0.6);
     color: rgba(21, 87, 36, 0.9);
 }
 
 .difficulty.medium {
-    background-color: rgba(255, 243, 205, 0.6); /* Transparent yellow */
+    background-color: rgba(255, 243, 205, 0.6);
     color: rgba(133, 100, 4, 0.9);
 }
 
 .difficulty.hard {
-    background-color: rgba(248, 215, 218, 0.6); /* Transparent red */
+    background-color: rgba(248, 215, 218, 0.6);
     color: rgba(114, 28, 36, 0.9);
 }
 
