@@ -1,23 +1,28 @@
 .codeblood {
-    height: 100vh;
-    background-color: rgb(0, 0, 0);
+    height: 100%;
+    background: black;
 }
 
 
 .section-header {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+    height: 100vh;
+    background: black;
 }
 
 .code-logo {
-    margin: 7px;
-    height: 100%;
-    width: 14%;
+    position: absolute;
+    top: 10px;
+    height: 98vh;
+    width: 98vw;
     object-fit: contain;
-    border-radius: 30px;
-    animation: glow 2s forwards infinite;
+    border-radius: 10px;
+    background: black;
+    animation: fadeIn 2s forwards, glow 4s forwards infinite;
     transition: all 0.3s ease-in-out;
 }
 
@@ -25,8 +30,11 @@
     0% {
         box-shadow: 0 0 1px rgba(255, 255, 255, 0.4), 0 0 5px rgba(255, 255, 255, 0.4), 0 0 7px rgba(255, 255, 255, 0.4), 0 0 10px rgba(255, 255, 255, 0.4);
     }
-    100% {
+    50% {
         box-shadow: 0 0 2px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 1px rgba(255, 255, 255, 0.4), 0 0 5px rgba(255, 255, 255, 0.4), 0 0 7px rgba(255, 255, 255, 0.4), 0 0 10px rgba(255, 255, 255, 0.4);
     }
 }
 
@@ -34,6 +42,7 @@
     position: relative;
     display: flex;
     gap: 25px;
+    top: 5%;
 }
 
 .button-group > button {
@@ -65,4 +74,14 @@
     background-color: #DC143C;
     border-radius: 2px;
     transition: transform 0.3s ease, width 0.3s ease;
+}
+
+.data-container {
+    position: relative;
+    z-index: 1000;
+    top: 10%;
+    height: 83%;
+    width: 95%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
 }

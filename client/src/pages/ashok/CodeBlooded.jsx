@@ -64,9 +64,10 @@ const CodeBlooded = () => {
                         style={borderStyle}
                     ></div>
                 </div>
+                <div className="data-container">
+                    {showSection === 'dsa' ? <DSA/> : <CP/>}
+                </div>
             </div>
-
-            {showSection === 'dsa' ? <DSA /> : <CP />}
         </section>
     );
 };

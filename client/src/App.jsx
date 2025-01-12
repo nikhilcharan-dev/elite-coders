@@ -20,6 +20,7 @@ import PopTest from './pages/demo/PopTest';
 import Loader from './ui/loader/Loader.jsx';
 import Like from './ui/like/Like.jsx';
 import Intro from './ui/intro/Intro.jsx';
+import Stats from "./pages/stats/Stats.jsx";
 import LoginRegisterPage from './ui/Authentication/LoginRegisterPage.jsx';
 
 
@@ -34,7 +35,6 @@ const routes = [
 	{ path: '/compete', element: <Compete /> },
 	{ path: '/user/:id', element: <UserProfile /> },
 	{ path: '/login', element: <LoginRegisterPage /> },
-	
 	{ path: '/social', element: <Social /> },
 	{ path: '/social/meta/resources', element: <Resource /> },
 
@@ -45,7 +45,7 @@ const routes = [
 
 	{ path: '*', element: <Adventurer /> },
 	{ path: '/Authentication', element: <Intro /> },
-	{ path: '/test1', element: <LoginRegisterPage /> },
+	{ path: '/test', element: <Stats /> },
 	{ path: '/codeblooded/curated', element: <CodeBlooded />}
 ];
 

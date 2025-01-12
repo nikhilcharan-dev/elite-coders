@@ -23,12 +23,12 @@ const CheatSheet = () => {
             }
         };
 
-        fetchCheatsheets();
+         fetchCheatsheets();
     }, []);
 
     return (
         <div className="cheatsheet-section page">
-			<h2 className='quote'>"Cheatsheets Crafted for Excellence"</h2>
+			<h2>"Cheatsheets Crafted for Excellence"</h2>
 			<div className="cheatsheet-cards">
                 {loading && <Spinner />}
 				{!loading && cheatsheets.length > 0 ? cheatsheets.map((cheatsheet) => (

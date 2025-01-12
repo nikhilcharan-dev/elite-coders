@@ -4,8 +4,7 @@
 /* Font searching */
 @font-face {
   font-family: 'CustomFont';
-  src: url('./src/ui/fonts/CustomFont.ttf') format('truetype'),
-       url('./src/ui/fonts/CustomFont.otf') format('truetype');
+  src: url('./ui/fonts/BrittanySignature.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -16,6 +15,8 @@
  font-family: 'Cedarville Cursive', cursive;
   font-weight: bolder;
 }
+
+
 
 a {
   text-decoration: none;
