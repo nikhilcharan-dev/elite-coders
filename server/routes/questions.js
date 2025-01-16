@@ -34,9 +34,6 @@ router.post('/filter/byIds', async (req, res) => {
         return res.status(400).json({ error: 'Invalid IDs provided' });
     }
 
-    // ids.map(id => new ObjectId(id));
-    console.log(ids);
-
     try {
         const questions = await Question.find({ _id: { $in: ids } });
         res.status(200).json(questions);

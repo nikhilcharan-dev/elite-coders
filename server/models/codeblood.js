@@ -1,14 +1,16 @@
 import mongoose from "mongoose";
 
-const codebloodSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    questions: {
-        type: [{
-            link: { type: mongoose.Schema.Types.ObjectId, ref: "questionbanks", required: true}
-        }],
-        default: [],
+// Define the CodeBlood schema
+const codebloodSchema = new mongoose.Schema(
+    {
+        topic: { type: String, required: true },
+        questions: {
+            type: [mongoose.Schema.Types.ObjectId], // Array of ObjectId references to questions
+            default: [],
+        },
     },
-}, { timestamps: true });
+    { timestamps: true } // Automatically adds createdAt and updatedAt fields
+);
 
 const CodeBlood = mongoose.model('CodeBlood', codebloodSchema);
 

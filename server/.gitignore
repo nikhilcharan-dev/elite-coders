@@ -6,3 +6,6 @@ dist/
 .DS_Store
 
 accumulator.js
+CRUD.js
+LEETCODE_QA.js
+CS_Manager.js

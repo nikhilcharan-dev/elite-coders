@@ -9,6 +9,7 @@ import quoteRoutes from './routes/quotes.js';
 import friendRoutes from './routes/friends.js';
 import infoRoutes from './routes/credentials.js';
 import questionRoutes from './routes/questions.js';
+import codebloodRoutes from './routes/codeblood.js';
 import recommendRoutes from './routes/recommend.js';
 import cheatsheetRouter from './routes/cheatsheet.js';
 import UserStats from './routes/stats.js';
@@ -35,9 +36,9 @@ const corsOptions = {
             callback(new Error('Not allowed by CORS'));
         }
     },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT'],
     credentials: true,
-};1
+};
 
 
 // CORS middleware
@@ -51,22 +52,23 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.route('/').get((req, res) => {
     const welcome = `
     <h1> Welcome to Backend Server </h1>
-    <p> Nikhil Charan -- </p>
+    <p> --- Nikhil Charan </p>
     `;
     return res.send(welcome);
 });
 
 // routes
-app.use('/api/oauth', authRoutes);
-app.use('/api/random', quoteRoutes);
-app.use('/api/users', infoRoutes);
+app.use('/api/stats', UserStats);
 app.use('/api/meta', userRoutes);
+app.use('/api/oauth', authRoutes);
+app.use('/api/users', infoRoutes);
+app.use('/api/random', quoteRoutes);
 app.use('/api/topics', topicRoutes);
 app.use('/api/friends', friendRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/recommend', recommendRoutes);
 app.use('/api/cheatsheets', cheatsheetRouter);
-app.use('/api/stats', UserStats);
+app.use('/api/codeblood', codebloodRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
