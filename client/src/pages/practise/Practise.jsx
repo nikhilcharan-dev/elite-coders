@@ -4,6 +4,7 @@ import Axios from '@api';
 import CheatSheetPanel from '../cheatsheet/CheatSheetPanel';
 import Filter from '../filter/Filter';
 import Questions from '../qsection/QSection';
+import Burger from '../../ui/burgernav/Burger';
 
 import './Practise.css';
 
@@ -63,6 +64,7 @@ const Practice = () => {
 
     return (
         <div className="practice-page">
+            <Burger />
             <CheatSheetPanel/>
             <Filter onFilter={handleFilter} />
             <Questions

@@ -1,0 +1,146 @@
+.burger-section {
+    position: fixed;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    z-index: 1000;
+    
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.burger-icon {
+    cursor: pointer;
+    margin: 1rem;
+}
+
+.burger-img {
+    height: 40px;
+    width: 40px;
+}
+
+.burger-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 97%;
+    width: 100%;
+    max-width: 300px;
+    background: linear-gradient(to bottom, #00113e, #3f4c6e);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    color: #bdc2cd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    animation: slideIn 0.5s forwards;
+    z-index: 9999;
+
+    transition: all 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.burger-menu .hidden {
+    z-index: -1;
+    animation: slideOut 5s forwards;
+}
+
+.burger-profile {
+    align-self: center;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #7e879e;
+    margin-bottom: 1rem;
+}
+
+.burger-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.burger-links > li {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.burger-links > li:hover {
+    color: white;
+}
+
+.burger-dropdown > li:hover {
+    color: white;
+}
+
+.burger-links .burger-dropdown {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.burger-dropdown > li {
+    font-size: 1rem;
+    margin: 0.8rem;
+    color: #7e879e;
+}
+
+.burger-links > li:hover .burger-dropdown {
+    display: block;
+    animation: fadeIn 0.5s forwards;
+}
+
+.burger-dropdown > li {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: #7e879e;
+}
+
+.logout-button {
+    padding: 0.8rem 1.5rem;
+    background: #bdc2cd;
+    color: #00113e;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    align-self: center;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #ffffff;
+}

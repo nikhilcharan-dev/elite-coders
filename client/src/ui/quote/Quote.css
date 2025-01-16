@@ -1,9 +1,3 @@
-.quote {
-    font-family: 'Cedarville Cursive', cursive;
-    font-weight: bolder;
-  }
-  
-
 .quote-section {
     height: 100px;
     width: 80%;
@@ -21,10 +15,6 @@
     font-size: xx-large;
 }
 
-.quote-section > p {
-    font-size: large;
-    font-family: italic;
-}
 
 .quote-section {
     transition: all 1.0s ease-in-out;
@@ -36,7 +26,7 @@
     text-align: center;
 }
 
-.quote-section h1 {
+.quote-section > h1 {
     font-size: 2rem;
     cursor: pointer;
     display: inline-block;
@@ -44,7 +34,7 @@
     transition: transform 1s ease-in-out;
 }
 
-.quote-section p {
+.quote-section > p {
     opacity: 0;
     transform: translateX(100%);
     transition: transform 1s ease-in-out, opacity 1s ease;

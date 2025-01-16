@@ -11,6 +11,7 @@ import infoRoutes from './routes/credentials.js';
 import questionRoutes from './routes/questions.js';
 import recommendRoutes from './routes/recommend.js';
 import cheatsheetRouter from './routes/cheatsheet.js';
+import UserStats from './routes/stats.js';
 
 // setting up env
 dotenv.config();
@@ -65,6 +66,7 @@ app.use('/api/friends', friendRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/recommend', recommendRoutes);
 app.use('/api/cheatsheets', cheatsheetRouter);
+app.use('/api/stats', UserStats);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

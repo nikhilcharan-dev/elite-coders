@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
 
 /* Font searching */
 @font-face {
@@ -12,8 +12,9 @@
 /*  font-family: 'Cedarville Cursive', cursive; */
 
 .quote {
- font-family: 'Cedarville Cursive', cursive;
+  font-family: 'Marck Script','Cedarville Cursive', cursive;
   font-weight: bolder;
+  margin-bottom: 20px;
 }
 
 

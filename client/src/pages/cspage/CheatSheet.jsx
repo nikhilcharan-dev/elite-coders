@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Axios from '@api';
 import Spinner from '../spinner/Spinner';
+import Burger from '../../ui/burgernav/Burger';
 
 import './CheatSheet.css';
 
@@ -28,6 +29,7 @@ const CheatSheet = () => {
 
     return (
         <div className="cheatsheet-section page">
+            <Burger />
 			<h2>"Cheatsheets Crafted for Excellence"</h2>
 			<div className="cheatsheet-cards">
                 {loading && <Spinner />}

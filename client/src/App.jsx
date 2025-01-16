@@ -20,6 +20,7 @@ import LoginRegisterPage from './ui/Authentication/LoginRegisterPage.jsx';
 // testing components
 import Intro from './ui/intro/Intro.jsx';
 import Stats from "./pages/stats/Stats.jsx";
+import Burger from './ui/burgernav/Burger.jsx';
 
 
 import './App.css';
@@ -42,7 +43,7 @@ const routes = [
 
 	{ path: '*', element: <Adventurer /> },
 	{ path: '/Authentication', element: <Intro /> },
-	{ path: '/test', element: <Stats /> },
+	{ path: '/test', element: <Burger /> },
 	{ path: '/codeblooded/curated', element: <CodeBlooded />}
 ];
 

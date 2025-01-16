@@ -8,6 +8,14 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     bio: { type: String, default: "Elite Coder" },
     gotoLanguage: { type: String, default: "" },
+    handle: {
+        type: {
+            leetcode: { type: String, default: "" },
+            codeforces: { type: String, default: "" },
+            codechef: { type: String, default: "" },
+        },
+        default: "",
+    },
     password: { type: String, required: true },
     friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }], // Accepted friends
     friendRequests: [{
@@ -28,12 +36,12 @@ const userSchema = new mongoose.Schema({
         default: [],
     },
     recommendedTopics: {
-    type: [{
-        senderId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-        topicId: { type: mongoose.Schema.Types.ObjectId, ref: "Topic", required: true },
-    }],
-    default: [],
-},
+        type: [{
+            senderId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+            topicId: { type: mongoose.Schema.Types.ObjectId, ref: "Topic", required: true },
+        }],
+        default: [],
+    },
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

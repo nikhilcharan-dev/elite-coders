@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from '@api';
 import CheatsheetPanel from '../cheatsheet/CheatSheetPanel';
 import TSection from '../tsection/TSection';
+import Burger from '../../ui/burgernav/Burger';
 
 import './Learn.css';
 import '../filter/Filter.css';
@@ -57,6 +58,7 @@ const Learn = () => {
 
     return (
         <div className='learn-section'>
+            <Burger />
             <CheatsheetPanel />
             <Filter
                 onFilter={handleFilter}

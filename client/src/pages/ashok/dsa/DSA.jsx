@@ -114,7 +114,7 @@ const DSA = () => {
                         </a>
                     </div>
                     <div className="questions-container">
-                        {topic.questions.map((question, idx) => <Question question={question} /> )}
+                        {topic.questions.map((question, idx) => <Question key={idx} question={question} /> )}
                     </div>
                 </div>
             ))}

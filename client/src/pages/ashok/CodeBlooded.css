@@ -84,4 +84,6 @@
     width: 95%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
+
+    animation: fadeIn 7s forwards;
 }

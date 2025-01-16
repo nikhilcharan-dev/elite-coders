@@ -85,10 +85,10 @@ const NavBar = ({ edited }) => {
                     {showCodeGloryMenu && (
                         <ul className="dropdown">
                             <li>
-                                <Link to="/compete">Compete</Link>
+                                <Link to="/stats">Stats</Link>
                             </li>
                             <li>
-                                <Link to="/stats">Stats</Link>
+                                <Link to="/compete">Compete</Link>
                             </li>
                         </ul>
                     )}
