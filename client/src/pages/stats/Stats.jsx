@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import './UserStats.css';
+import './Stats.css';
 
-const UserStats = ({ username }) => {
+const Stats = ({ username }) => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.put(`/api/user/${username}`, {
-                    
+                const response = await axios.put(`http://localhost:5010//api/stats/`, {
+                    lcusername: "NIKHILCHARAN",
+                    year: new Date().getFullYear(),
+                    ccusername: "nikiru",
+                    cfusername: "nikiru",
                 });
                 setUserData(response.data);
             } catch (error) {
@@ -109,4 +112,4 @@ const UserStats = ({ username }) => {
     );
 };
 
-export default UserStats;
+export default Stats;

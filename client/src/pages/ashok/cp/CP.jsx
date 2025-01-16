@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from '@api';
 import { useNavigate } from 'react-router-dom';
-import Question from "../Question.jsx";
+import QuestionCard from "../Question.jsx";
 
 import './CP.css';
 
@@ -48,7 +48,7 @@ const CP = () => {
                     </div>
                     <div className="questions-container">
                         {topic.questions.map((question, idx) => (
-                            <Question key={idx} question={question} />
+                            <QuestionCard key={idx} question={question} />
                         ))}
                     </div>
                     <button className='codeblood-expand' onClick={() => navigate(`/codeblood/dsa/${topic.topic}`)}>
