@@ -13,7 +13,7 @@ const Adventurer = () => {
                 Beware, Brave Adventurer, for the road ahead is fraught with peril and uncertainty.
                 <br/> Yet, even in the face of adversity, never lose hope and press onward!
             </p>
-            <a href='/'>Return to the safety of the village</a>
+            <a href='/home'>Return to the safety of the village</a>
             <p>Remember, every great story has its twists and turns. <br/> Embrace the journey!</p>
         </div>
     );

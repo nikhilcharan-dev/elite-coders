@@ -78,17 +78,21 @@ router.put('/', async (req, res) => {
 
     const { ccusername, cfusername } = req.body;
 
-    const apiData = [];
-    if(GQLvariables.username !== "") apiData.push(axios.post(process.env.LC_API, { query: GQLQuery, variables: GQLvariables }, { headers: { 'Content-Type': 'application/json', Accept: 'application/json'} }));
-    if(ccusername !== "") apiData.push(axios.get(`https://codechef-api.vercel.app/handle/${ccusername}`));
-    if(cfusername !== "") apiData.push(axios.get(`https://codeforces.com/api/user.info?handles=${cfusername}`));
-
     try {
-        const [lcData, ccData, cfData] = await Promise.all([
-            axios.get(`https://codechef-api.vercel.app/handle/${ccusername}`),
-            axios.get(`https://codeforces.com/api/user.info?handles=${cfusername}`)
-        ]);
-        console.log(lcData.data, ccData.data, cfData.data);
+        let lcData = null;
+        let ccData = null;
+        let cfData = null;
+
+        if (GQLvariables.username) {
+            lcData = await axios.post(process.env.LC_API, { query: GQLQuery, variables: GQLvariables }, { headers: { 'Content-Type': 'application/json', Accept: 'application/json' } }).then(res => res.data);
+        }
+        if (ccusername) {
+            ccData = await axios.get(`https://codechef-api.vercel.app/handle/${ccusername}`);
+        }
+        if (cfusername) {
+            cfData = await axios.get(`https://codeforces.com/api/user.info?handles=${cfusername}`);
+        }
+
         return res.status(200).json({ "leetcode": lcData.data, "codechef": ccData.data, "codeforces": cfData.data });
     } catch (err) {
         console.error(err);

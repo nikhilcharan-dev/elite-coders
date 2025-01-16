@@ -11,17 +11,16 @@ import CodeBlooded from './pages/ashok/CodeBlooded.jsx';
 const Learn = React.lazy(() => import('./pages/learn/Learn'));
 const Practice = React.lazy(() => import('./pages/practise/Practise'));
 const Resource = React.lazy(() => import('./pages/resources/Resource'));
+import LoginRegisterPage from './ui/Authentication/LoginRegisterPage.jsx';
 const CheatSheet = React.lazy(() => import('./pages/cspage/CheatSheet.jsx'));
 const UserProfile = React.lazy(() => import('./pages/userprofile/UserProfile'));
 const CheatSheetDetail = React.lazy(() => import('./pages/cspage/CheatSheetDetail'))
 const FriendProfile = React.lazy(()	=> import('./pages/friendprofile/FriendProfile'));
-import LoginRegisterPage from './ui/Authentication/LoginRegisterPage.jsx';
+const TopicDetail = React.lazy(() => import('./pages/ashok/topicDetail/TopicDetail.jsx'));
 
 // testing components
 import Intro from './ui/intro/Intro.jsx';
 import Stats from "./pages/stats/Stats.jsx";
-import Burger from './ui/burgernav/Burger.jsx';
-import TopicDetail from './pages/ashok/topicDetail/TopicDetail.jsx';
 
 
 import './App.css';
@@ -46,7 +45,7 @@ const routes = [
 
 	{ path: '*', element: <Adventurer /> },
 	{ path: '/Authentication', element: <Intro /> },
-	{ path: '/test', element: <Burger /> },
+	{ path: '/test', element: <Stats /> },
 	{ path: '/codeblood/curated', element: <CodeBlooded />}
 ];
 
