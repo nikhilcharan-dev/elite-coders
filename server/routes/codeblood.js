@@ -30,7 +30,6 @@ const cpTopics = [
 router.get("/dsa", async (req, res) => {
     try {
         const dsa = await CodeBlood.find({ topic: { $in : dsaTopics } }).exec();
-
         return res.status(200).json(dsa);
     } catch (err) {
         res.status(500).json({ message: "Server Error"  });
@@ -46,5 +45,15 @@ router.get("/cp", async (req, res) => {
     }
 });
 
+router.get("/find/:topic", async (req, res) => {
+    console.log("Finding all topics", req.params);
+    try {
+        const topic = req.params.topic;
+        const questions = await CodeBlood.findOne({ topic: topic }).exec();
+        return res.status(200).json(questions);
+    } catch (err) {
+        res.status(500).json({ message: "Server Error" });
+    }
+});
 
 export default router;

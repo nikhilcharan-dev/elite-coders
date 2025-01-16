@@ -28,8 +28,6 @@ router.get("/:id", async (req, res) => {
 router.post('/filter/byIds', async (req, res) => {
     const { ids } = req.body;
 
-    console.log(ids);
-
     if (!ids || !Array.isArray(ids)) {
         return res.status(400).json({ error: 'Invalid IDs provided' });
     }

@@ -75,7 +75,7 @@ const Burger = () => {
                             </ul>
                         </li>
                         <li>
-                            <li className='codeblood-link' to="/codeblooded/curated">CodeBlooded</li>
+                            <li className='codeblood-link' to="/codeblood/curated">CodeBlooded</li>
                         </li>
                         <li>
                             CodeGlory

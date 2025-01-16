@@ -87,3 +87,13 @@
 
     animation: fadeIn 7s forwards;
 }
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    overflow-x: auto;
+    animation: fadeIn 7s forwards;
+}

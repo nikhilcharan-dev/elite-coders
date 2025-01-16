@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Question.css';
 
-const QuestionCard = ({ question }) => {
+const QuestionCard = ({ question, style }) => {
     return (
-        <div className="codeblood-card">
+        <div className={`codeblood-card`}>
             <div className="codeblood-name">{question.name}</div>
             <div className="codeblood-details">
                 <span className={`difficulty ${question.difficulty.toLowerCase()}`}>
@@ -11,7 +11,7 @@ const QuestionCard = ({ question }) => {
                 </span>
                 <span className="platform">{question.platform}</span>
             </div>
-            <button className="solveBtn">Solve</button>
+            <button className="solveBtn" onClick={() => window.open(question.link, "__blank")} >Solve</button>
         </div>
     );
 };

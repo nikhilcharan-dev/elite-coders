@@ -75,7 +75,7 @@ const NavBar = ({ edited }) => {
                     )}
                 </li>
                 <li>
-                    <Link className='codeblood-link' to="/codeblooded/curated">CodeBlooded</Link>
+                    <Link className='codeblood-link' to="/codeblood/curated">CodeBlooded</Link>
                 </li>
                 <li
                     onMouseEnter={() => setShowCodeGloryMenu(true)}

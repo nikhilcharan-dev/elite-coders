@@ -21,6 +21,7 @@ import LoginRegisterPage from './ui/Authentication/LoginRegisterPage.jsx';
 import Intro from './ui/intro/Intro.jsx';
 import Stats from "./pages/stats/Stats.jsx";
 import Burger from './ui/burgernav/Burger.jsx';
+import TopicDetail from './pages/ashok/topicDetail/TopicDetail.jsx';
 
 
 import './App.css';
@@ -37,6 +38,8 @@ const routes = [
 	{ path: '/social/meta/resources', element: <Resource /> },
 
 	{ path: '/profile/:id', element: <FriendProfile /> },
+	{ path: '/codeblood/dsa/:topic', element: <TopicDetail /> },
+	{ path: '/codeblood/cp/:topic', element: <TopicDetail /> },
 
 	{ path: '/cheatsheets', element: <CheatSheet /> },
 	{ path: '/cheatsheets/:name', element: <CheatSheetDetail /> },
@@ -44,7 +47,7 @@ const routes = [
 	{ path: '*', element: <Adventurer /> },
 	{ path: '/Authentication', element: <Intro /> },
 	{ path: '/test', element: <Burger /> },
-	{ path: '/codeblooded/curated', element: <CodeBlooded />}
+	{ path: '/codeblood/curated', element: <CodeBlooded />}
 ];
 
 function App() {
