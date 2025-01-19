@@ -73,7 +73,6 @@ const Stats = () => {
     useEffect(() => {
         const getMetaData = async () => {
             let userHandles = null;
-            console.log("Fetching initiated....");
             try {
                 setLoading(true);
                 if (localStorage.getItem('userData') && !showEdit) {
@@ -88,10 +87,7 @@ const Stats = () => {
 
                 setUser(userHandles);
 
-                // console.log("User Handles", userHandles);
-
-                // setLoading(false)
-                // return;
+                console.log("Fetching User Meta Data....");
 
                 const response = await Axios.put('/api/stats/', {
                     lcusername: userHandles?.leetcode || "",

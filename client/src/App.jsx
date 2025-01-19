@@ -35,6 +35,7 @@ const routes = [
 	{ path: '/login', element: <LoginRegisterPage /> },
 	{ path: '/social', element: <Social /> },
 	{ path: '/social/meta/resources', element: <Resource /> },
+	{ path: '/stats', element: <Stats /> },
 
 	{ path: '/profile/:id', element: <FriendProfile /> },
 	{ path: '/codeblood/dsa/:topic', element: <TopicDetail /> },
