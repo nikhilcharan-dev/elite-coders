@@ -252,7 +252,7 @@ const Stats = () => {
                             {statsData.leetcode.matchedUser.upcomingBadges.map((badge) => (
                                 <div key={badge.id + badge.name} className="badge">
                                     <p>{badge.name}</p>
-                                    <p className='progess' style={}>Progress: {badge.progress}%</p>
+                                    <p className='progess'>Progress: {badge.progress}%</p>
                                 </div>
                             ))}
                         </div>
