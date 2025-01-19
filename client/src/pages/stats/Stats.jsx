@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from '@api';
 import Burger from '../../ui/burgernav/Burger';
 import { DotLoader } from 'react-spinners';
 
@@ -82,7 +82,7 @@ const Stats = () => {
                     userHandles = res.handle;
                     console.log("User Handles", userHandles);
                 } else {
-                    const res = await axios.get(`http://localhost:5010/api/meta/${localStorage.getItem('id')}`);
+                    const res = await Axios.get(`/api/meta/${localStorage.getItem('id')}`);
                     userHandles = res.data.handle;
                 }
 
@@ -93,7 +93,7 @@ const Stats = () => {
                 // setLoading(false)
                 // return;
 
-                const response = await axios.put('http://localhost:5010/api/stats/', {
+                const response = await Axios.put('/api/stats/', {
                     lcusername: userHandles?.leetcode || "",
                     year: new Date().getFullYear(),
                     geeksforgeeks: userHandles?.geeksforgeeks || "",
@@ -123,7 +123,7 @@ const Stats = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.put(`http://localhost:5010/api/meta/${localStorage.getItem('id')}`, {
+            const res = await Axios.put(`/api/meta/${localStorage.getItem('id')}`, {
                 leetcode: user.leetcode,
                 geeksforgeeks: user.geeksforgeeks,
                 codechef: user.codechef,
