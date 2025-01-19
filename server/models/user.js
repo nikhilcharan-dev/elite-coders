@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     handle: {
         type: {
             leetcode: { type: String, default: "" },
+            geeksforgeeks: { type: String, default: ""},
             codeforces: { type: String, default: "" },
             codechef: { type: String, default: "" },
         },

@@ -76,15 +76,22 @@ router.put('/', async (req, res) => {
         year: req.body.year,
     }
 
-    const { ccusername, cfusername } = req.body;
+    const { ggusername, ccusername, cfusername } = req.body;
+
+
+    console.log(GQLvariables, ggusername, ccusername, cfusername);
 
     try {
         let lcData = null;
+        let ggData = null;
         let ccData = null;
         let cfData = null;
 
         if (GQLvariables.username) {
             lcData = await axios.post(process.env.LC_API, { query: GQLQuery, variables: GQLvariables }, { headers: { 'Content-Type': 'application/json', Accept: 'application/json' } }).then(res => res.data);
+        }
+        if(ggusername) {
+            ggData = null;
         }
         if (ccusername) {
             ccData = await axios.get(`https://codechef-api.vercel.app/handle/${ccusername}`);
@@ -93,7 +100,7 @@ router.put('/', async (req, res) => {
             cfData = await axios.get(`https://codeforces.com/api/user.info?handles=${cfusername}`);
         }
 
-        return res.status(200).json({ "leetcode": lcData.data, "codechef": ccData.data, "codeforces": cfData.data });
+        return res.status(200).json({ "leetcode": lcData?.data, "geeksforgeeks": ggData?.data ,"codechef": ccData?.data, "codeforces": cfData?.data });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Server Error" });

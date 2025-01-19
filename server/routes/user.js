@@ -69,9 +69,8 @@ router.get('/:id', async (req, res) => {
 // editing user data
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const { username, email, dob, gender, bio, language, leetcode, codechef, codeforces } = req.body;
+    const { username, email, dob, gender, bio, language, leetcode, geeksforgeeks ,codechef, codeforces } = req.body;
 
-    console.log(leetcode, codeforces, codechef);
     // checking ObjectId
     if (!isValidObjectId(id)) {
         return res.status(400).send('Invalid ObjectId format');
@@ -91,9 +90,10 @@ router.put('/:id', async (req, res) => {
         user.gotoLanguage = language || user.gotoLanguage;
         
         user.handle = user.handle || {};
-        if (leetcode !== "") user.handle.leetcode = leetcode;
-        if (codeforces !== "") user.handle.codeforces = codeforces;
-        if (codechef !== "") user.handle.codechef = codechef;
+        if(leetcode !== "") user.handle.leetcode = leetcode;
+        if(geeksforgeeks !== "") user.handle.geeksforgeeks = geeksforgeeks;
+        if(codeforces !== "") user.handle.codeforces = codeforces;
+        if(codechef !== "") user.handle.codechef = codechef;
 
         await user.save();
 

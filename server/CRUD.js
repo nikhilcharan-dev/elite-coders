@@ -10,6 +10,7 @@ const updateExistingUsers = async () => {
                 $set: {
                     handle: {
                         leetcode: "",
+                        geeksforgeeks: "",
                         codechef: "",
                         codeforces: "",
                     }
@@ -125,7 +126,9 @@ const addNormalizedTopicsToCodeBlood = async () => {
 
 (async () => {
     await connectDB();
-    await getAllTopics();
+    await updateExistingUsers();
+    await getAllUsers();
+    // await getAllTopics();
     // await addNormalizedTopicsToCodeBlood();
     await mongoose.disconnect();
 })();

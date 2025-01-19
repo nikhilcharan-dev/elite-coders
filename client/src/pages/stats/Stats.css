@@ -1,4 +1,3 @@
-
 .stats-page {
     font-family: 'Roboto', Arial, sans-serif;
     background: linear-gradient(120deg, #DAE2F8, #D6A4A4);
@@ -8,12 +7,16 @@
 }
 
 .stats-page {
+    position: relative;
     max-width: 100vw;
     margin: 20px auto;
     margin-top: 0;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    height: 100vh;
+    width: auto;
 }
 
 .stats-page > h1 {
@@ -22,7 +25,54 @@
     color: #2d2d2d;
 }
 
-.stats-page > div {
+.user-profile-handles {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile-handles > img {
+    width: 40px;
+    height: 40px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.user-profile-handles > img:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-handle-edit {
+    position: absolute;
+    top: 30%;
+    right: 1%;
+}
+
+.user-handle-edit > img {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.user-handle-edit:hover {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+.stats {
     margin-bottom: 30px;
     border-radius: 10px;
     padding: 15px;
@@ -219,14 +269,67 @@
     gap: 20px;
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
-    .profile {
-        flex-direction: column;
-        align-items: center;
-    }
+/* popover */
+.edit-handle-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
 
-    .profile img {
-        margin-bottom: 10px;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+
+    padding: 15px;
+    border-radius: 10px;
+
+    z-index: 1000;
+}
+
+.handle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: 10px;
+}
+
+.handle-container > label {
+    font-size: larger;
+    font-family: monospace;
+}
+
+.handle-container > label > input {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-left: 5px;
+
+    font-family: monospace;
+}
+
+.user-handle-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    gap: 15px;
+}
+
+.user-handle-buttons > button {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.handle-save {
+    background-color: rgb(12, 199, 12);
+}
+
+.edit-handle-close {
+    background-color: red;
 }

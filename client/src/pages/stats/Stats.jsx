@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Burger from '../../ui/burgernav/Burger';
+import { DotLoader } from 'react-spinners';
 
 import './Stats.css';
 
@@ -58,55 +59,174 @@ const getDate = (data) => {
 
 const Stats = () => {
     const [statsData, setStatsData] = useState({
-        leetcode: null,
-        codechef: null,
-        codeforces: null,
+        leetcode: "",
+        geeksforgeeks: "",
+        codechef: "",
+        codeforces: "",
     });
 
-    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
+
 
     useEffect(() => {
-        const fetchStatsData = async () => {
+        const getMetaData = async () => {
+            let userHandles = null;
+            console.log("Fetching initiated....");
             try {
+                setLoading(true);
+                if (localStorage.getItem('userData') && !showEdit) {
+                    console.log("cookie available")
+                    const res = JSON.parse(localStorage.getItem('userData'));
+                    userHandles = res.handle;
+                    console.log("User Handles", userHandles);
+                } else {
+                    const res = await axios.get(`http://localhost:5010/api/meta/${localStorage.getItem('id')}`);
+                    userHandles = res.data.handle;
+                }
+
+                setUser(userHandles);
+
+                // console.log("User Handles", userHandles);
+
+                // setLoading(false)
+                // return;
+
                 const response = await axios.put('http://localhost:5010/api/stats/', {
-                    lcusername: 'NIKHILCHARAN',
+                    lcusername: userHandles?.leetcode || "",
                     year: new Date().getFullYear(),
-                    ccusername: 'nikiru',
-                    cfusername: 'nikiru',
+                    geeksforgeeks: userHandles?.geeksforgeeks || "",
+                    ccusername: userHandles?.codechef || "",
+                    cfusername: userHandles?.codeforces || "",
                 });
 
                 console.log(response.data);
 
                 setStatsData({
-                    leetcode: response.data.leetcode,
-                    codechef: response.data.codechef,
-                    codeforces: response.data.codeforces,
+                    leetcode: response.data?.leetcode,
+                    geeksforgeeks: response.data?.geeksforgeeks,
+                    codechef: response.data?.codechef,
+                    codeforces: response.data?.codeforces,
                 });
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching stats data:', error);
-                setLoading(false);
-            }
-        };
 
-        fetchStatsData();
+                setLoading(false);
+                console.log("Fetching Succesfull....");
+            } catch (err) {
+                console.error("Error fetching user meta data:", err);
+            }
+        }
+
+        getMetaData();
     }, []);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.put(`http://localhost:5010/api/meta/${localStorage.getItem('id')}`, {
+                leetcode: user.leetcode,
+                geeksforgeeks: user.geeksforgeeks,
+                codechef: user.codechef,
+                codeforces: user.codeforces,
+            });
+
+            console.log(res.data);
+            localStorage.setItem('userData', JSON.stringify(res.data));
+            alert(`Handles updated successfully`);
+            setShowEdit(!showEdit);
+        } catch (err) {
+            console.error("Error updating user handles:", err);
+        }
+    }
+
+    const handleInputChange = (event) => {
+        setUser((prev) => ({
+            ...prev,
+            [event.target.name]: event.target.value,
+        }));
+    }
+
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className='popup-overlay' style={{ backgroundColor: "white" }}>
+                <DotLoader
+                    size={60}
+                    color='black' />
+            </div>
+        );
     }
 
     return (
         <div className="stats-page">
             <Burger />
+
+            {
+                showEdit &&
+                <section className='edit-handle-container'>
+                    <h1>Edit User Handles</h1>
+                    <form className='handle-container' onSubmit={handleSubmit}>
+                        <label>
+                            https://leetcode.com/u/
+                            <input type='text' placeholder='Enter Valid Username'
+                                id="leetcode"
+                                name="leetcode"
+                                value={user.leetcode}
+                                onChange={handleInputChange}
+                            />
+                        </label>
+                        <label>
+                            https://www.codechef.com/users/
+                            <input type='text' placeholder='Enter Valid Username'
+                                id="codechef"
+                                name="codechef"
+                                value={user.codechef}
+                                onChange={handleInputChange} />
+                        </label>
+                        <label>
+                            https://codeforces.com/profile/
+                            <input type='text' placeholder='Enter Valid Username'
+                                id="codeforces"
+                                name="codeforces"
+                                value={user.codeforces}
+                                onChange={handleInputChange} />
+                        </label>
+                        <label>
+                            https://www.geeksforgeeks.org/user/
+                            <input type='text' placeholder='Enter Valid Username'
+                                id="geeksforgeeks"
+                                name="geeksforgeeks"
+                                value={user.geeksforgeeks}
+                                onChange={handleInputChange}
+                            />
+                        </label>
+
+                        <div className='user-handle-buttons'>
+                            <button className='handle-save' type='submit'>Save Changes</button>
+                            <button className='edit-handle-close' onClick={() => setShowEdit(!showEdit)}>Close</button>
+                        </div>
+
+                    </form>
+                </section>
+            }
+
             <h1>Stats Overview</h1>
 
-            {/* LeetCode Stats */}
-            {statsData.leetcode && (
+            <div className='user-profile-handles'>
+                <img src='/images/LEETCODE.png' alt='LeetCode' onClick={() => window.open(`https://leetcode.com/${user.handle.leetcode}`, "_blank")} />
+                <img src='/images/GFG.png' alt='GeeksforGeeks' onClick={() => window.open(`https://www.geeksforgeeks.org/user/${user.handle.geeksforgeeks}`, "_blank")} />
+                <img src='/images/CODECHEF.png' alt='CodeChef' onClick={() => window.open(`https://www.codechef.com/users/${user.handle.codechef}`, "_blank")} />
+                <img src='/images/CODEFORCES.png' alt='CodeForces' onClick={() => window.open(`https://codeforces.com/profile/${user.handle.codeforces}`, "_blank")} />
+                <div className='user-handle-edit'>
+                    <img src='/images/edit.png' onClick={() => setShowEdit(!showEdit)} />
+                </div>
+            </div>
+
+            {/* Leetcode data */}
+            {statsData.leetcode ? (
                 <div className="leetcode stats">
-                    <div class="profile-data">
+                    <div className="profile-data">
                         <img src="/images/LEETCODE.png" alt='LeetCode' />
-                        <div className='side'/>
+                        <div className='side' />
                         <h2>LeetCode</h2>
                     </div>
                     <div className="profile lc">
@@ -132,7 +252,7 @@ const Stats = () => {
                             {statsData.leetcode.matchedUser.upcomingBadges.map((badge) => (
                                 <div key={badge.id + badge.name} className="badge">
                                     <p>{badge.name}</p>
-                                    <p>Progress: {badge.progress}%</p>
+                                    <p className='progess' style={}>Progress: {badge.progress}%</p>
                                 </div>
                             ))}
                         </div>
@@ -148,22 +268,26 @@ const Stats = () => {
                             <div className='total-subs'>
                                 <h3>Total Submissions</h3>
                                 {statsData.leetcode.matchedUser.submitStats.totalSubmissionNum.map((submission) => (
-                                <div key={submission.difficulty}>
-                                    <p>{submission.difficulty}: {submission.count} correct submissions</p>
-                                </div>
-                            ))}
+                                    <div key={submission.difficulty}>
+                                        <p>{submission.difficulty}: {submission.count} correct submissions</p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
                 </div>
+            ) : (
+                <div className="no-data">
+                    <p>No LeetCode data available. Please add your handles.</p>
+                </div>
             )}
 
-            {/* CodeChef Stats */}
-            {statsData.codechef && (
+            {/* CodeChef data */}
+            {statsData.leetcode ? (
                 <div className="codechef stats">
-                    <div class="profile-data">
+                    <div className="profile-data">
                         <img src="/images/CODECHEF.png" alt='CodeChef' />
-                        <div className='side'/>
+                        <div className='side' />
                         <h2>CodeChef</h2>
                     </div>
                     <div className="profile">
@@ -183,14 +307,18 @@ const Stats = () => {
                         </div>
                     </div>
                 </div>
+            ) : (
+                <div className="no-data">
+                    <p>No CodeChef data available. Please add your handles.</p>
+                </div>
             )}
 
-            {/* CodeForces Stats */}
-            {statsData.codeforces && (
+            {/* CodeForces data */}
+            {statsData.leetcode ? (
                 <div className="codeforces stats">
-                    <div class="profile-data">
+                    <div className="profile-data">
                         <img src="/images/CODEFORCES.png" alt='CodeForces' />
-                        <div className='side'/>
+                        <div className='side' />
                         <h2>CodeForces</h2>
                     </div>
                     <div className="profile cf">
@@ -204,6 +332,25 @@ const Stats = () => {
                             <p>Contributions: {statsData.codeforces.result[0].contribution}</p>
                         </div>
                     </div>
+                </div>
+            ) : (
+                <div className="no-data">
+                    <p>No Codeforces data available. Please add your handles.</p>
+                </div>
+            )}
+
+            {/* GeeksforGeeks data */}
+            {statsData.geeksforgeeks ? (
+                <div className="geeksforgeeks stats">
+                    <div className="profile-data">
+                        <img src="/images/GFG.png" alt='GeeksforGeeks' />
+                        <div className='side' />
+                        <h2>GeeksforGeeks</h2>
+                    </div>
+                </div>
+            ) : (
+                <div className="no-data">
+                    <p>GeeksForGeeks Stats will be available soon..</p>
                 </div>
             )}
         </div>
