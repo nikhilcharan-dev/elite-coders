@@ -81,4 +81,13 @@ router.get('/refresh', async (req, res) => {
     }
 });
 
+router.put('/get-otp', async (req, res) => {
+    const { email, id } = req.body;
+    const isVerified = User.findById(id).exec();
+});
+
+router.put('/verify-otp', async (req, res) => {
+    const { otp } = req.body;
+});
+
 export default router;
