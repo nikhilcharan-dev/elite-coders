@@ -6,7 +6,6 @@ const userSchema = new mongoose.Schema({
     gender: { type: String, enum: ['Male', 'Female', 'Other'], default: 'Other' },
     dob: { type: Date, default: null },
     email: { type: String, required: true, unique: true },
-    verified: { type: Boolean, default: false },
     bio: { type: String, default: "Elite Coder" },
     gotoLanguage: { type: String, default: "" },
     handle: {
@@ -16,7 +15,7 @@ const userSchema = new mongoose.Schema({
             codeforces: { type: String, default: "" },
             codechef: { type: String, default: "" },
         },
-        default: "",
+        default: {},
     },
     password: { type: String, required: true },
     friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }], // Accepted friends
@@ -49,3 +48,5 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 export default User;
+
+// verified: { type: Boolean, default: false },

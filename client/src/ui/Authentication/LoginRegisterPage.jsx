@@ -48,6 +48,7 @@ const LoginRegisterPage = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        console.log(email, username, password);
         if (!email || !username || !password) {
             setRegisterError("Please fill out all fields.");
             return;
