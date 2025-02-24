@@ -142,6 +142,11 @@ const Stats = () => {
         }));
     }
 
+    const openHandleEdit = () => {
+        console.log("Alternating", showEdit);
+        setShowEdit(prev => !prev);
+    }
+
     if (loading) {
         return (
             <div className='popup-overlay' style={{ backgroundColor: "white" }}>
@@ -205,15 +210,15 @@ const Stats = () => {
                 </section>
             }
 
+            {/* Stats Navigation */}
             <h1>Stats Overview</h1>
-
             <div className='user-profile-handles'>
                 <img src='/images/LEETCODE.png' alt='LeetCode' onClick={() => window.open(`https://leetcode.com/${user.handle.leetcode}`, "_blank")} />
                 <img src='/images/GFG.png' alt='GeeksforGeeks' onClick={() => window.open(`https://www.geeksforgeeks.org/user/${user.handle.geeksforgeeks}`, "_blank")} />
                 <img src='/images/CODECHEF.png' alt='CodeChef' onClick={() => window.open(`https://www.codechef.com/users/${user.handle.codechef}`, "_blank")} />
                 <img src='/images/CODEFORCES.png' alt='CodeForces' onClick={() => window.open(`https://codeforces.com/profile/${user.handle.codeforces}`, "_blank")} />
                 <div className='user-handle-edit'>
-                    <img src='/images/edit.png' onClick={() => setShowEdit(!showEdit)} />
+                    <img src='/images/edit.png' onClick={openHandleEdit} />
                 </div>
             </div>
 

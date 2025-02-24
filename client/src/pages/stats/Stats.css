@@ -71,7 +71,6 @@
     cursor: pointer;
 }
 
-
 .stats {
     margin-bottom: 30px;
     border-radius: 10px;
@@ -92,7 +91,6 @@
     height: 40px;
     margin-right: 20px;
 }
-
 
 .side {
     position: relative;
@@ -272,7 +270,7 @@
 /* popover */
 .edit-handle-container {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     translate: -50% -50%;
 
@@ -280,11 +278,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
+    
+    height: 500vh;
+    width: 100vw;
+    backdrop-filter: blur(10px);
 
     padding: 15px;
     border-radius: 10px;
-
+    
     z-index: 1000;
 }
 
@@ -299,6 +300,7 @@
 .handle-container > label {
     font-size: larger;
     font-family: monospace;
+    font-weight: bolder;
 }
 
 .handle-container > label > input {
