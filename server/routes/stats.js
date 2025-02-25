@@ -91,13 +91,13 @@ router.put('/', async (req, res) => {
             lcData = await axios.post(process.env.LC_API, { query: GQLQuery, variables: GQLvariables }, { headers: { 'Content-Type': 'application/json', Accept: 'application/json' } }).then(res => res.data);
         }
         if(ggusername) {
-            ggData = null;
+            ggData = await axios.get(`${process.env.GFG_API}/${ggusername}`) ;
         }
         if (ccusername) {
-            ccData = await axios.get(`https://codechef-api.vercel.app/handle/${ccusername}`);
+            ccData = await axios.get(`${process.env.CC_API}/${ccusername}`);
         }
         if (cfusername) {
-            cfData = await axios.get(`https://codeforces.com/api/user.info?handles=${cfusername}`);
+            cfData = await axios.get(`${process.env.CF_API}?handles=${cfusername}`);
         }
 
         return res.status(200).json({ "leetcode": lcData?.data, "geeksforgeeks": ggData?.data ,"codechef": ccData?.data, "codeforces": cfData?.data });

@@ -335,3 +335,8 @@
 .edit-handle-close {
     background-color: red;
 }
+/* No-data */
+.no-data {
+    text-align: center;
+    font-weight: bolder;
+}

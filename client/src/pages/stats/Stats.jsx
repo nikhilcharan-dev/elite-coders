@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, PureComponent } from 'react';
 import Axios from '@api';
 import Burger from '../../ui/burgernav/Burger';
 import { DotLoader } from 'react-spinners';
@@ -92,7 +92,7 @@ const Stats = () => {
                 const response = await Axios.put('/api/stats/', {
                     lcusername: userHandles?.leetcode || "",
                     year: new Date().getFullYear(),
-                    geeksforgeeks: userHandles?.geeksforgeeks || "",
+                    ggusername: userHandles?.geeksforgeeks || "",
                     ccusername: userHandles?.codechef || "",
                     cfusername: userHandles?.codeforces || "",
                 });
@@ -347,6 +347,21 @@ const Stats = () => {
                         <img src="/images/GFG.png" alt='GeeksforGeeks' />
                         <div className='side' />
                         <h2>GeeksforGeeks</h2>
+                    </div>
+                    <div className="profile gfg">
+                        <img src={statsData.geeksforgeeks.info.profilePicture} alt="GeeksForGeeks Avatar" />
+                        <div className='gg-data'>
+                            <p>{statsData.geeksforgeeks.info.username}</p>
+                            <p>Institution: {statsData.geeksforgeeks.info.institute}</p>
+                            <p>Ranking: {statsData.geeksforgeeks.info.instituteRank}</p>
+                            <p>Coding Score: {statsData.geeksforgeeks.info.codingScore}</p>
+                            <div className='s-m-h'> 
+                                <p>Problems Solved: {statsData.geeksforgeeks.info.totalProblemsSolved}</p>
+                                <p>Small: {statsData.geeksforgeeks.solvedStats.easy.count}</p>
+                                <p>Medium: {statsData.geeksforgeeks.solvedStats.medium.count}</p>
+                                <p>Hard: {statsData.geeksforgeeks.solvedStats.hard.count}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             ) : (
