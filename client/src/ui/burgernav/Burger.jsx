@@ -59,12 +59,15 @@ const Burger = () => {
                     <div className="burger-icon" onClick={toggleMenu}>
                         <img className="burger-img" src={close} alt="close" />
                     </div>
-                    <img
-                        className="burger-profile"
-                        src={getImage()}
-                        alt="user"
-                        onClick={() => navigate(`/user/id=${user?._id}`)}
-                    />
+                    <div className="user-profile">
+                        <img
+                            className="burger-profile"
+                            src={getImage()}
+                            alt="user"
+                            onClick={() => navigate(`/user/id=${user?._id}`)}
+                        />
+                        <h1 className="burger-title"> {user.username} </h1>
+                    </div>
                     <ul className="burger-links">
                         <li onClick={() => navigate("/home")}>Home</li>
                         <li>
