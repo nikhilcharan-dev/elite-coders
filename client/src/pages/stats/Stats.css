@@ -64,11 +64,8 @@
 }
 
 .user-handle-edit:hover {
-    width: 20px;
-    height: 20px;
-    padding: 5px;
-    margin-right: 10px;
     cursor: pointer;
+    transform: scale(1.1);
 }
 
 .stats {
