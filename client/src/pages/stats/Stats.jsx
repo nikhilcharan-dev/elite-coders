@@ -76,18 +76,14 @@ const Stats = () => {
             try {
                 setLoading(true);
                 if (localStorage.getItem('userData') && !showEdit) {
-                    console.log("cookie available")
                     const res = JSON.parse(localStorage.getItem('userData'));
                     userHandles = res.handle;
-                    console.log("User Handles", userHandles);
                 } else {
                     const res = await Axios.get(`/api/meta/${localStorage.getItem('id')}`);
                     userHandles = res.data.handle;
                 }
 
                 setUser(userHandles);
-
-                console.log("Fetching User Meta Data....");
 
                 const response = await Axios.put('/api/stats/', {
                     lcusername: userHandles?.leetcode || "",
@@ -97,8 +93,6 @@ const Stats = () => {
                     cfusername: userHandles?.codeforces || "",
                 });
 
-                console.log(response.data);
-
                 setStatsData({
                     leetcode: response.data?.leetcode,
                     geeksforgeeks: response.data?.geeksforgeeks,
@@ -107,7 +101,6 @@ const Stats = () => {
                 });
 
                 setLoading(false);
-                console.log("Fetching Succesfull....");
             } catch (err) {
                 console.error("Error fetching user meta data:", err);
             }
@@ -126,7 +119,6 @@ const Stats = () => {
                 codeforces: user.codeforces,
             });
 
-            console.log(res.data);
             localStorage.setItem('userData', JSON.stringify(res.data));
             alert(`Handles updated successfully`);
             setShowEdit(!showEdit);
@@ -143,8 +135,12 @@ const Stats = () => {
     }
 
     const openHandleEdit = () => {
-        console.log("Alternating", showEdit);
         setShowEdit(prev => !prev);
+    }
+
+    const openProfile = () => {
+        console.log("Openinig", `https://leetcode.com/${user.leetcode}`);
+        window.open(`https://leetcode.com/${user.leetcode}`, "_blank")
     }
 
     if (loading) {
@@ -213,10 +209,10 @@ const Stats = () => {
             {/* Stats Navigation */}
             <h1>Stats Overview</h1>
             <div className='user-profile-handles'>
-                <img src='/images/LEETCODE.png' alt='LeetCode' onClick={() => window.open(`https://leetcode.com/${user.handle.leetcode}`, "_blank")} />
-                <img src='/images/GFG.png' alt='GeeksforGeeks' onClick={() => window.open(`https://www.geeksforgeeks.org/user/${user.handle.geeksforgeeks}`, "_blank")} />
-                <img src='/images/CODECHEF.png' alt='CodeChef' onClick={() => window.open(`https://www.codechef.com/users/${user.handle.codechef}`, "_blank")} />
-                <img src='/images/CODEFORCES.png' alt='CodeForces' onClick={() => window.open(`https://codeforces.com/profile/${user.handle.codeforces}`, "_blank")} />
+                <img src='/images/LEETCODE.png' alt='LeetCode' onClick={() => openProfile(`https://leetcode.com/${user.leetcode}`)} />
+                <img src='/images/GFG.png' alt='GeeksforGeeks' onClick={() => openProfile(`https://www.geeksforgeeks.org/user/${user.geeksforgeeks}`)} />
+                <img src='/images/CODECHEF.png' alt='CodeChef' onClick={() => openProfile(`https://www.codechef.com/users/${user.codechef}`)} />
+                <img src='/images/CODEFORCES.png' alt='CodeForces' onClick={() => openProfile(`https://www.codechef.com/users/${user.codeforces}`)} />
                 <div className='user-handle-edit'>
                     <img src='/images/edit.png' onClick={openHandleEdit} />
                 </div>
