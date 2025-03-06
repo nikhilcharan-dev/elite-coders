@@ -65,7 +65,7 @@
     animation: slideOut 5s forwards;
 }
 
-.user-profile {
+.user-burger-profile {
     display: flex;
     flex-direction: column;
     align-items: center;

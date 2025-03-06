@@ -59,7 +59,7 @@ const Burger = () => {
                     <div className="burger-icon" onClick={toggleMenu}>
                         <img className="burger-img" src={close} alt="close" />
                     </div>
-                    <div className="user-profile">
+                    <div className="user-burger-profile">
                         <img
                             className="burger-profile"
                             src={getImage()}
