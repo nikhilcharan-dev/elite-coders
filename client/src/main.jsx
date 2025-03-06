@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import './index.css'
@@ -8,4 +7,4 @@ createRoot(document.getElementById('root')).render(
   <App />
 );
 
-// strictmode renders components to check for clashes and unexpected behaviour
+// strictmode renders twice components to check for clashes and unexpected behaviour

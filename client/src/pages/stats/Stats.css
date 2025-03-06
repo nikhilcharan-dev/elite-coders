@@ -4,8 +4,9 @@
     margin: 0;
     padding: 0;
     color: #333;
+    height: 100vh;
+    width: 100vw;
 }
-
 .stats-page {
     position: relative;
     max-width: 100vw;
