@@ -61,6 +61,6 @@ function App() {
 			<Analytics />
 		</Suspense>
 	);
-};
+}
 
 export default App;
