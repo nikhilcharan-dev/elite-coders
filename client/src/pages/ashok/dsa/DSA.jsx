@@ -56,11 +56,11 @@ const DSA = () => {
                                 View PDF
                             </a>
                         </div>
-                        <div className="questions-container">
+                        {/* <div className="questions-container">
                             {topic.questions.map((question, idx) => (
                                 <QuestionCard key={idx} question={question} />
                             ))}
-                        </div>
+                        </div> */}
                         <button className='codeblood-expand' onClick={() => navigate(`/codeblood/dsa/${topic.topic}`)}>
                             <img src={"/images/expand.png"} alt='expand'/>
                         </button>

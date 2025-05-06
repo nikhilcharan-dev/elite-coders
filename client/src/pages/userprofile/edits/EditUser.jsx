@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Axios from '@api';
-
+import axios from "axios";
 import edit from '../../assests/photo-edit.png'
 
 import def from '../../assests/default-other.jpg';
@@ -101,10 +101,12 @@ const EditUser = ({ onClose, user, onEdit }) => {
     const handleDelete = async () => {
         if (!window.confirm('Are you sure you want to delete this user?')) return;
         try {
-            const BASE_URL = import.meta.env.VITE_BASE_URL;
-            await Axios.delete(`/api/meta/${user.id}`);
+            await axios.delete(`http://localhost:5010/api/meta/${user._id}`);
             alert('User deleted successfully');
             onClose();
+            localStorage.clear();
+            sessionStorage.clear();
+            window.open('/login');
         } catch (error) {
             console.error('Error deleting user:', error);
             alert('Failed to delete user');

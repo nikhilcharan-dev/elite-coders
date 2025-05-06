@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, PureComponent } from 'react';
 import Axios from '@api';
 import Burger from '../../ui/burgernav/Burger';
 import { DotLoader } from 'react-spinners';
@@ -76,10 +76,8 @@ const Stats = () => {
             try {
                 setLoading(true);
                 if (localStorage.getItem('userData') && !showEdit) {
-                    console.log("cookie available")
                     const res = JSON.parse(localStorage.getItem('userData'));
                     userHandles = res.handle;
-                    console.log("User Handles", userHandles);
                 } else {
                     const res = await Axios.get(`/api/meta/${localStorage.getItem('id')}`);
                     userHandles = res.data.handle;
@@ -87,17 +85,13 @@ const Stats = () => {
 
                 setUser(userHandles);
 
-                console.log("Fetching User Meta Data....");
-
                 const response = await Axios.put('/api/stats/', {
                     lcusername: userHandles?.leetcode || "",
                     year: new Date().getFullYear(),
-                    geeksforgeeks: userHandles?.geeksforgeeks || "",
+                    ggusername: userHandles?.geeksforgeeks || "",
                     ccusername: userHandles?.codechef || "",
                     cfusername: userHandles?.codeforces || "",
                 });
-
-                console.log(response.data);
 
                 setStatsData({
                     leetcode: response.data?.leetcode,
@@ -107,7 +101,6 @@ const Stats = () => {
                 });
 
                 setLoading(false);
-                console.log("Fetching Succesfull....");
             } catch (err) {
                 console.error("Error fetching user meta data:", err);
             }
@@ -126,7 +119,6 @@ const Stats = () => {
                 codeforces: user.codeforces,
             });
 
-            console.log(res.data);
             localStorage.setItem('userData', JSON.stringify(res.data));
             alert(`Handles updated successfully`);
             setShowEdit(!showEdit);
@@ -140,6 +132,15 @@ const Stats = () => {
             ...prev,
             [event.target.name]: event.target.value,
         }));
+    }
+
+    const openHandleEdit = () => {
+        setShowEdit(prev => !prev);
+    }
+
+    const openProfile = () => {
+        console.log("Openinig", `https://leetcode.com/${user.leetcode}`);
+        window.open(`https://leetcode.com/${user.leetcode}`, "_blank")
     }
 
     if (loading) {
@@ -205,15 +206,15 @@ const Stats = () => {
                 </section>
             }
 
+            {/* Stats Navigation */}
             <h1>Stats Overview</h1>
-
             <div className='user-profile-handles'>
-                <img src='/images/LEETCODE.png' alt='LeetCode' onClick={() => window.open(`https://leetcode.com/${user.handle.leetcode}`, "_blank")} />
-                <img src='/images/GFG.png' alt='GeeksforGeeks' onClick={() => window.open(`https://www.geeksforgeeks.org/user/${user.handle.geeksforgeeks}`, "_blank")} />
-                <img src='/images/CODECHEF.png' alt='CodeChef' onClick={() => window.open(`https://www.codechef.com/users/${user.handle.codechef}`, "_blank")} />
-                <img src='/images/CODEFORCES.png' alt='CodeForces' onClick={() => window.open(`https://codeforces.com/profile/${user.handle.codeforces}`, "_blank")} />
+                <img src='/images/LEETCODE.png' alt='LeetCode' onClick={() => openProfile(`https://leetcode.com/${user.leetcode}`)} />
+                <img src='/images/GFG.png' alt='GeeksforGeeks' onClick={() => openProfile(`https://www.geeksforgeeks.org/user/${user.geeksforgeeks}`)} />
+                <img src='/images/CODECHEF.png' alt='CodeChef' onClick={() => openProfile(`https://www.codechef.com/users/${user.codechef}`)} />
+                <img src='/images/CODEFORCES.png' alt='CodeForces' onClick={() => openProfile(`https://www.codechef.com/users/${user.codeforces}`)} />
                 <div className='user-handle-edit'>
-                    <img src='/images/edit.png' onClick={() => setShowEdit(!showEdit)} />
+                    <img src='/images/edit.png' onClick={openHandleEdit} />
                 </div>
             </div>
 
@@ -342,6 +343,21 @@ const Stats = () => {
                         <img src="/images/GFG.png" alt='GeeksforGeeks' />
                         <div className='side' />
                         <h2>GeeksforGeeks</h2>
+                    </div>
+                    <div className="profile gfg">
+                        <img src={statsData.geeksforgeeks.info.profilePicture} alt="GeeksForGeeks Avatar" />
+                        <div className='gg-data'>
+                            <p>{statsData.geeksforgeeks.info.username}</p>
+                            <p>Institution: {statsData.geeksforgeeks.info.institute}</p>
+                            <p>Ranking: {statsData.geeksforgeeks.info.instituteRank}</p>
+                            <p>Coding Score: {statsData.geeksforgeeks.info.codingScore}</p>
+                            <div className='s-m-h'> 
+                                <p>Problems Solved: {statsData.geeksforgeeks.info.totalProblemsSolved}</p>
+                                <p>Small: {statsData.geeksforgeeks.solvedStats.easy.count}</p>
+                                <p>Medium: {statsData.geeksforgeeks.solvedStats.medium.count}</p>
+                                <p>Hard: {statsData.geeksforgeeks.solvedStats.hard.count}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             ) : (
