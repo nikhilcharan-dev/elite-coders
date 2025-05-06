@@ -1,6 +1,9 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
@@ -42,19 +45,25 @@ const corsOptions = {
 
 
 // CORS middleware
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions)); // add after development
+app.use(cors());
 
 // middleware
 app.use(express.json({ limit: '10mb' })); // limiting size
 app.use(express.urlencoded({ limit: '10mb', extended: true })); 
 
-// home
-app.route('/').get((req, res) => {
-    const welcome = `
-    <h1> Welcome to Backend Server </h1>
-    <p> --- Nikhil Charan </p>
-    `;
-    return res.send(welcome);
+
+// HomePage
+// Getting pwd
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route to serve index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // routes

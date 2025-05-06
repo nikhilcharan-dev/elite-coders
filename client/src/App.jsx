@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 
 // pages & comps
 import Home from './pages/home/Home';
@@ -57,6 +58,7 @@ function App() {
 	return (
 		<Suspense fallback={<Spinner />}>
 			<RouterProvider router={router} />
+			<Analytics />
 		</Suspense>
 	);
 };

@@ -30,9 +30,14 @@ router.post('/register', async (req, res) => {
         });
 
         await newUser.save();
+
+        console.log("User creation Succefull");
+        console.log(newUser);
         return res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch(err) {
+        console.log(err);
         return res.status(500).json({ message: 'Server Error', error: err });
+
     }
 });
 
@@ -79,6 +84,15 @@ router.get('/refresh', async (req, res) => {
     } catch(err) {
         res.status(403).json({ message: 'Invalid token' });
     }
+});
+
+router.put('/get-otp', async (req, res) => {
+    const { email, id } = req.body;
+    const isVerified = User.findById(id).exec();
+});
+
+router.put('/verify-otp', async (req, res) => {
+    const { otp } = req.body;
 });
 
 export default router;

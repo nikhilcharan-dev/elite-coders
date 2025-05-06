@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
             codeforces: { type: String, default: "" },
             codechef: { type: String, default: "" },
         },
-        default: "",
+        default: {},
     },
     password: { type: String, required: true },
     friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }], // Accepted friends
@@ -48,3 +48,5 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 export default User;
+
+// verified: { type: Boolean, default: false },
